@@ -8,6 +8,7 @@ public class Main {
     	world.addPlayer(p1);
     	world.addPlayer(p2);
     	
-        View view = new View(world, 800, 600);        
+        View view = new View(world, 800, 600);
+        Controller controller = new Controller();
     }
 }

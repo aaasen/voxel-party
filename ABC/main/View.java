@@ -15,7 +15,7 @@ public class View implements Runnable {
 		this.model = model;
 		this.width = width;
 		this.height = height;
-		viewThread.start();
+		this.viewThread.start();
 	}
 	
 	@Override
