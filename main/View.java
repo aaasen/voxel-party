@@ -7,15 +7,18 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class View {
 	Model model;
+	int width, height;
 	
-	public View(Model model) {
+	public View(Model model, int width, int height) {
 		this.model = model;
+		this.width = width;
+		this.height = height;
 	}
 	
     public void start() {
         try {
         	
-        	Display.setDisplayMode(new DisplayMode(800,600));
+        	Display.setDisplayMode(new DisplayMode(this.width, this.height));
         	Display.create();
 	    
         } catch (LWJGLException e) {
@@ -26,23 +29,16 @@ public class View {
     	// init OpenGLs
     	glMatrixMode(GL_PROJECTION);
     	glLoadIdentity();
-    	glOrtho(0, 800, 0, 600, 1, -1);
+    	glOrtho(0, this.width, 0, this.height, 1, -1);
     	glMatrixMode(GL_MODELVIEW);
      
     	while (!Display.isCloseRequested()) {
     	    // Clear the screen and depth buffer
     	    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
     		
-    	    // set the color of the quad (R,G,B,A)
-    	    glColor3f(0.5f,0.5f,1.0f);
-    	    	
-    	    // draw quad
-    	    glBegin(GL_QUADS);
-    	        glVertex2f(100,100);
-    		glVertex2f(100+200,100);
-    		glVertex2f(100+200,100+200);
-    		glVertex2f(100,100+200);
-    	    glEnd();
+    	    for (Player player : model.players) {
+    	    	player.draw();
+    	    }
      
     	    Display.update();
     	}
