@@ -7,7 +7,11 @@ public class Model {
 	ArrayList<Player> players;
 	
 	public Model() {
+		this.lock();
+		
 		this.players = new ArrayList<Player>();
+	
+		this.unlock();
 	}
 	
 	public void lock() {
