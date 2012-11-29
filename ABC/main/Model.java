@@ -1,7 +1,5 @@
 package main;
 
-import java.util.ArrayList;
-
 public class Model {
 	boolean locked;
 	Player player;

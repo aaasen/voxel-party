@@ -4,6 +4,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class Player {
 	float x, y;
+	float speed = 0.0001f;
 	
 	public Player(float x, float y) {
 		this.x = x;
@@ -22,6 +23,18 @@ public class Player {
 	}
 	
 	public void moveForwards() {
-		this.x += 0.001;
+		this.y += this.speed;
+	}
+	
+	public void moveBackwards() {
+		this.y -= this.speed;
+	}
+	
+	public void moveRight() {
+		this.x += this.speed;
+	}
+	
+	public void moveLeft() {
+		this.x -= this.speed;
 	}
 }

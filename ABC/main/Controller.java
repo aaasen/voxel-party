@@ -3,7 +3,6 @@ package main;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.Display;
 
 public class Controller implements Runnable {
 	Thread inputThread;
@@ -42,35 +41,16 @@ public class Controller implements Runnable {
 		}
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
-			System.out.println("forwards");
 			this.model.player.moveForwards();
 		}
-
-		while (Keyboard.next()) {
-			if (Keyboard.getEventKeyState()) {
-				if (Keyboard.getEventKey() == Keyboard.KEY_A) {
-					System.out.println("A Key Pressed");
-				}
-				if (Keyboard.getEventKey() == Keyboard.KEY_S) {
-					System.out.println("S Key Pressed");
-				}
-				if (Keyboard.getEventKey() == Keyboard.KEY_D) {
-					System.out.println("D Key Pressed");
-				}
-				if (Keyboard.getEventKey() == Keyboard.KEY_Q) {
-					this.stop();
-				}
-			} else {
-				if (Keyboard.getEventKey() == Keyboard.KEY_A) {
-					System.out.println("A Key Released");
-				}
-				if (Keyboard.getEventKey() == Keyboard.KEY_S) {
-					System.out.println("S Key Released");
-				}
-				if (Keyboard.getEventKey() == Keyboard.KEY_D) {
-					System.out.println("D Key Released");
-				}
-			}
+		if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
+			this.model.player.moveLeft();
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
+			this.model.player.moveBackwards();
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
+			this.model.player.moveRight();
 		}
 	}
 	
