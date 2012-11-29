@@ -2,6 +2,7 @@ package main;
 
 import org.lwjgl.opengl.Display;
 import static org.lwjgl.opengl.GL11.*;
+import org.lwjgl.util.glu.GLU;
 
 public class View {
 	Model model;
@@ -15,10 +16,23 @@ public class View {
 	}
 
 	public void init() {
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		glOrtho(0, this.width, 0, this.height, 1, -1);
-		glMatrixMode(GL_MODELVIEW);
+		/* OpenGL */
+		int width = Display.getDisplayMode().getWidth();
+		int height = Display.getDisplayMode().getHeight();
+		
+		glViewport(0, 0, width, height); // Reset The Current Viewport
+		glMatrixMode(GL_PROJECTION); // Select The Projection Matrix
+		glLoadIdentity(); // Reset The Projection Matrix
+		GLU.gluPerspective(45.0f, ((float) width / (float) height), 0.1f, 100.0f); // Calculate The Aspect Ratio Of The Window
+		glMatrixMode(GL_MODELVIEW); // Select The Modelview Matrix
+		glLoadIdentity(); // Reset The Modelview Matrix
+
+		glShadeModel(GL_SMOOTH); // Enables Smooth Shading
+		glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Black Background
+		glClearDepth(1.0f); // Depth Buffer Setup
+		glEnable(GL_DEPTH_TEST); // Enables Depth Testing
+		glDepthFunc(GL_LEQUAL); // The Type Of Depth Test To Do
+		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); // Really Nice Perspective Calculations
 	
 		this.run();
 	}
@@ -38,7 +52,37 @@ public class View {
 			// Clear the screen and depth buffer
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
 
-			model.player.draw();
+//			model.player.draw3D();
+			
+	         glLoadIdentity();                                         //Reset The View
+	         glTranslatef(-1.5f,0.0f,-8.0f);						// Move Left 1.5 Units And Into The Screen 6.0
+//	         glRotatef(rtri,0.0f,1.0f,0.0f);						// Rotate The Triangle On The Y axis ( NEW )
+	         glBegin(GL_TRIANGLES);								// Start Drawing A Triangle
+	         glColor3f(1.0f,0.0f,0.0f);						// Red
+	         glVertex3f( 0.0f, 1.0f, 0.0f);					// Top Of Triangle (Front)
+	         glColor3f(0.0f,1.0f,0.0f);						// Green
+	         glVertex3f(-1.0f,-1.0f, 1.0f);					// Left Of Triangle (Front)
+	         glColor3f(0.0f,0.0f,1.0f);						// Blue
+	         glVertex3f( 1.0f,-1.0f, 1.0f);					// Right Of Triangle (Front)
+	         glColor3f(1.0f,0.0f,0.0f);						// Red
+	         glVertex3f( 0.0f, 1.0f, 0.0f);					// Top Of Triangle (Right)
+	         glColor3f(0.0f,0.0f,1.0f);						// Blue
+	         glVertex3f( 1.0f,-1.0f, 1.0f);					// Left Of Triangle (Right)
+	         glColor3f(0.0f,1.0f,0.0f);						// Green
+	         glVertex3f( 1.0f,-1.0f, -1.0f);					// Right Of Triangle (Right)
+	         glColor3f(1.0f,0.0f,0.0f);						// Red
+	         glVertex3f( 0.0f, 1.0f, 0.0f);					// Top Of Triangle (Back)
+	         glColor3f(0.0f,1.0f,0.0f);						// Green
+	         glVertex3f( 1.0f,-1.0f, -1.0f);					// Left Of Triangle (Back)
+	         glColor3f(0.0f,0.0f,1.0f);						// Blue
+	         glVertex3f(-1.0f,-1.0f, -1.0f);					// Right Of Triangle (Back)
+	         glColor3f(1.0f,0.0f,0.0f);						// Red
+	         glVertex3f( 0.0f, 1.0f, 0.0f);					// Top Of Triangle (Left)
+	         glColor3f(0.0f,0.0f,1.0f);						// Blue
+	         glVertex3f(-1.0f,-1.0f,-1.0f);					// Left Of Triangle (Left)
+	         glColor3f(0.0f,1.0f,0.0f);						// Green
+	         glVertex3f(-1.0f,-1.0f, 1.0f);					// Right Of Triangle (Left)
+	         glEnd();		
 
 			Display.update();
 		}

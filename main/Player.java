@@ -22,6 +22,50 @@ public class Player {
 	    glEnd();
 	}
 	
+	public void draw3D() {
+		triprism(true);
+	}
+	
+	 public void triprism(boolean solid){
+		    // back endcap
+		    glBegin(solid ? GL_TRIANGLES : GL_LINES);
+		    glVertex3f(1f, 0f, 0f);
+		    glVertex3f(0f, 0f, 0f);
+		    glVertex3f(0f, 1f, 0f);
+		    glEnd();
+
+		    // front endcap
+		    glBegin(solid ? GL_TRIANGLES : GL_LINES);
+		    glVertex3f(1f, 0f, 1f);
+		    glVertex3f(0f, 0f, 1f);
+		    glVertex3f(0f, 1f, 1f);
+		    glEnd();
+
+		    // bottom
+		    glBegin(solid ? GL_QUADS : GL_LINES);
+		    glVertex3f(0f, 0f, 0f);
+		    glVertex3f(1f, 0f, 0f);
+		    glVertex3f(1f, 0f, 1f);
+		    glVertex3f(0f, 0f, 1f);
+		    glEnd();
+
+		    // back
+		    glBegin(solid ? GL_QUADS : GL_LINES);
+		    glVertex3f(0f, 0f, 0f);
+		    glVertex3f(0f, 1f, 0f);
+		    glVertex3f(0f, 1f, 1f);
+		    glVertex3f(0f, 0f, 1f);
+		    glEnd();
+
+		    // top
+		    glBegin(solid ? GL_QUADS : GL_LINES);
+		    glVertex3f(0f, 1f, 0f);
+		    glVertex3f(1f, 0f, 0f);
+		    glVertex3f(1f, 0f, 1f);
+		    glVertex3f(0f, 1f, 1f);
+		    glEnd();
+		}
+	
 	public void moveForwards() {
 		this.y += this.speed;
 	}
