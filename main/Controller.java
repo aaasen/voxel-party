@@ -28,18 +28,11 @@ public class Controller implements Runnable {
 	@Override
 	public void run() {
 		while (!stop) {
-			pollInput();
+			processInput();
 		}
 	}
 
-	public void pollInput() {		
-		if (Mouse.isButtonDown(0)) {
-			int x = Mouse.getX();
-			int y = Mouse.getY();
-
-			System.out.println("MOUSE DOWN @ X: " + x + " Y: " + y);
-		}
-
+	public void processInput() {
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			this.model.player.moveForwards();
 		}
