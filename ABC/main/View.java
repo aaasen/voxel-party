@@ -2,6 +2,7 @@ package main;
 
 import org.lwjgl.opengl.Display;
 import static org.lwjgl.opengl.GL11.*;
+
 import org.lwjgl.util.glu.GLU;
 
 public class View {
@@ -38,24 +39,31 @@ public class View {
 	}
 
 	public void run() {
+		long frame = 0;
 		
 		while (!Display.isCloseRequested() && !this.stop) {
 			Display.sync(60);
-			this.render();
+			this.render(frame++);
 		}
 
 		Display.destroy();
 	}
 
-	public void render() {
+	public void render(long frame) {
+		
 		if(!model.locked) {
 			// Clear the screen and depth buffer
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
 
 //			model.player.draw3D();
 			
-	         glLoadIdentity();                                         //Reset The View
-	         glTranslatef(-1.5f,0.0f,-8.0f);						// Move Left 1.5 Units And Into The Screen 6.0
+	         glLoadIdentity();           
+	         System.out.println(frame);
+	         //Reset The View
+	         float xdil = -1.5f + (0.1f * (float) frame);
+	         System.out.println(xdil);
+	         glTranslatef(xdil ,0.0f,-8.0f);						// Move Left 1.5 Units And Into The Screen 6.0
+	         
 //	         glRotatef(rtri,0.0f,1.0f,0.0f);						// Rotate The Triangle On The Y axis ( NEW )
 	         glBegin(GL_TRIANGLES);								// Start Drawing A Triangle
 	         glColor3f(1.0f,0.0f,0.0f);						// Red
@@ -83,9 +91,13 @@ public class View {
 	         glColor3f(0.0f,1.0f,0.0f);						// Green
 	         glVertex3f(-1.0f,-1.0f, 1.0f);					// Right Of Triangle (Left)
 	         glEnd();		
-
+	         
 			Display.update();
 		}
+	}
+	
+	public void cam(float x, float y, float z) {
+		glTranslatef(x, y, z);
 	}
 
 	public void stop() {

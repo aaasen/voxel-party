@@ -1,5 +1,7 @@
 package main;
 
+import static org.lwjgl.opengl.GL11.glTranslatef;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -33,16 +35,16 @@ public class Controller implements Runnable {
 
 	public void processInput() {
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
-			this.model.player.moveForwards();
+			this.view.cam(0.1f, 0f, 0f);
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
-			this.model.player.moveLeft();
+//			this.model.player.moveLeft();
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
-			this.model.player.moveBackwards();
+			this.view.cam(-0.1f, 0f, 0f);
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
-			this.model.player.moveRight();
+			this.view.cam(0f, 0f, 0f);		
 		}
 	}
 	
