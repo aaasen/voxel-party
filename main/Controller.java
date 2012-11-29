@@ -11,6 +11,7 @@ public class Controller implements Runnable {
 	boolean stop = false;
 	Model model;
 	View view;
+	float sensitivity = 0.000001f;
 	
 	public Controller(Model model, View view) {
 		this.inputThread = new Thread(this, "input_thread");
@@ -35,16 +36,16 @@ public class Controller implements Runnable {
 
 	public void processInput() {
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
-			this.view.cam(0.1f, 0f, 0f);
+			this.view.camera.z += this.sensitivity;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
-//			this.model.player.moveLeft();
+			this.view.camera.x += this.sensitivity;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
-			this.view.cam(-0.1f, 0f, 0f);
+			this.view.camera.z -= this.sensitivity;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
-			this.view.cam(0f, 0f, 0f);		
+			this.view.camera.x -= this.sensitivity;			
 		}
 	}
 	
