@@ -27,6 +27,8 @@ public class Main {
         }
     	
         View view = new View(world, 800, 600);
-        Controller controller = new Controller();
+        Controller controller = new Controller(world, view);
+        
+        view.run();
     }
 }

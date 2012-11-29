@@ -7,20 +7,17 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import static org.lwjgl.opengl.GL11.*;
 
-public class View implements Runnable {
-	Thread viewThread;
+public class View {
 	Model model;
 	int width, height;
+	boolean stop = false;
 	
 	public View(Model model, int width, int height) {
-		this.viewThread = new Thread(this, "view_thread");
 		this.model = model;
 		this.width = width;
 		this.height = height;
-		this.viewThread.start();
 	}
 	
-	@Override
     public void run() {
     	// init OpenGLs
     	glMatrixMode(GL_PROJECTION);
@@ -28,7 +25,7 @@ public class View implements Runnable {
     	glOrtho(0, this.width, 0, this.height, 1, -1);
     	glMatrixMode(GL_MODELVIEW);
      
-    	while (!Display.isCloseRequested()) {
+    	while (!Display.isCloseRequested() && !this.stop) {
     		if(!model.locked) {
     			// Clear the screen and depth buffer
     			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
@@ -43,4 +40,8 @@ public class View implements Runnable {
      
     	Display.destroy();
 	}
+    
+    public void stop() {
+    	this.stop = true;
+    }
 }

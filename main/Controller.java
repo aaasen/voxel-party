@@ -7,11 +7,16 @@ import org.lwjgl.opengl.Display;
 
 public class Controller implements Runnable {
 	Thread inputThread;
+	boolean stop = false;
+	Model model;
+	View view;
 	
-	public Controller() {
+	public Controller(Model model, View view) {
 		this.inputThread = new Thread(this, "input_thread");
 		this.inputThread.start();
-    	
+		this.model = model;
+		this.view = view;
+		
 		try {
 			Mouse.create();
 			Keyboard.create();
@@ -23,7 +28,9 @@ public class Controller implements Runnable {
 	
 	@Override
 	public void run() {
-		pollInput();
+		while (!stop) {
+			pollInput();
+		}
 	}
 
 	public void pollInput() {		
@@ -49,6 +56,9 @@ public class Controller implements Runnable {
 				if (Keyboard.getEventKey() == Keyboard.KEY_D) {
 					System.out.println("D Key Pressed");
 				}
+				if (Keyboard.getEventKey() == Keyboard.KEY_Q) {
+					this.stop();
+				}
 			} else {
 				if (Keyboard.getEventKey() == Keyboard.KEY_A) {
 					System.out.println("A Key Released");
@@ -61,5 +71,10 @@ public class Controller implements Runnable {
 				}
 			}
 		}
+	}
+	
+	public void stop() {
+		this.stop = true;
+		this.view.stop();
 	}
 }
