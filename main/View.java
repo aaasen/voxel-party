@@ -87,6 +87,9 @@ public class View {
 	         glVertex3f(-1.0f,-1.0f, 1.0f);					// Right Of Triangle (Left)
 	         glEnd();		
 	         
+	         BasicDrawing.drawGrid(10.0f, 1.0f, 0.0f);
+	         
+	         
 			Display.update();
 		}
 	}

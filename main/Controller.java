@@ -21,6 +21,7 @@ public class Controller implements Runnable {
 
 		try {
 			Mouse.create();
+			Mouse.setGrabbed(true);
 			Keyboard.create();
 		} catch (LWJGLException e) {
 			e.printStackTrace();
@@ -29,10 +30,6 @@ public class Controller implements Runnable {
 
 	@Override
 	public void run() {
-		// reset mouse position
-		// TODO adjust for different dimesions
-		
-		
 		while (!stop) {
 			processInput();
 		}
@@ -40,13 +37,11 @@ public class Controller implements Runnable {
 
 	public void processInput() {
 
-		int x = Mouse.getX();
-		int y = Mouse.getY();
-
 		while (Mouse.next()) {
 			this.view.camera.focal.y -= (Mouse.getEventDY() * 0.003);
 			this.view.camera.focal.x += (Mouse.getEventDX() * 0.003);
-//			System.out.println(Mouse.getEventDX());
+			
+			System.out.println(Mouse.getEventDX() + " : " + Mouse.getEventDY());
 		}
 		
 //		System.out.println("MOUSE DOWN @ X: " + x + " Y: " + y);
