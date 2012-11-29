@@ -1,11 +1,16 @@
 package main;
 
 public class Camera {
-	float x, y, z;
+	Point eye;
+	Point focal;
 	
-	public Camera(float x, float y, float z) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
+	public Camera(Point eye, Point focal) {
+		this.eye = eye;
+		this.focal = focal;
+	}
+	
+	public Camera(float ex, float ey, float ez, float lx, float ly, float lz) {
+		this.eye = new Point(ex, ey, ez);
+		this.focal = new Point(lx, ly, lz);
 	}
 }
