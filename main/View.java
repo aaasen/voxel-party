@@ -1,6 +1,8 @@
 package main;
 
 import org.lwjgl.*;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import static org.lwjgl.opengl.GL11.*;
@@ -20,16 +22,6 @@ public class View implements Runnable {
 	
 	@Override
     public void run() {
-        try {
-        	
-        	Display.setDisplayMode(new DisplayMode(this.width, this.height));
-        	Display.create();
-	    
-        } catch (LWJGLException e) {
-        	e.printStackTrace();
-        	System.exit(0);
-        }
-
     	// init OpenGLs
     	glMatrixMode(GL_PROJECTION);
     	glLoadIdentity();

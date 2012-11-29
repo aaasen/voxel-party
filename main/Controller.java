@@ -3,20 +3,21 @@ package main;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
 
 public class Controller implements Runnable {
 	Thread inputThread;
 	
 	public Controller() {
 		this.inputThread = new Thread(this, "input_thread");
+		this.inputThread.start();
+    	
 		try {
 			Mouse.create();
 			Keyboard.create();
 		} catch (LWJGLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.inputThread.start();
 	}
 	
 	
