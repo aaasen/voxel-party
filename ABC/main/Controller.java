@@ -41,8 +41,9 @@ public class Controller implements Runnable {
 			System.out.println("MOUSE DOWN @ X: " + x + " Y: " + y);
 		}
 
-		if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
-			System.out.println("SPACE KEY IS DOWN");
+		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
+			System.out.println("forwards");
+			this.model.player.moveForwards();
 		}
 
 		while (Keyboard.next()) {

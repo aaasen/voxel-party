@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Model {
 	boolean locked;
-	ArrayList<Player> players;
+	Player player;
 	
 	public Model() {
 		this.lock();
 		
-		this.players = new ArrayList<Player>();
+		this.player = new Player(50, 50);
 	
 		this.unlock();
 	}
@@ -20,13 +20,5 @@ public class Model {
 	
 	public void unlock() {
 		this.locked = false;
-	}
-	
-	public void addPlayer(Player player) {
-		this.lock();
-		
-		this.players.add(player);
-		
-		this.unlock();
 	}
 }

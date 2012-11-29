@@ -20,4 +20,8 @@ public class Player {
 	    glVertex2f(this.x - 10, this.y - 10);
 	    glEnd();
 	}
+	
+	public void moveForwards() {
+		this.x += 0.001;
+	}
 }
