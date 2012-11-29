@@ -15,7 +15,7 @@ public class View {
 		this.model = model;
 		this.width = width;
 		this.height = height;
-		this.camera = new Camera(1.5f, 0.0f, -8.0f);
+		this.camera = new Camera(1.5f, 0.0f, -8.0f, 0.0f, 0.0f, 0.0f);
 	}
 
 	public void init() {
@@ -58,7 +58,7 @@ public class View {
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
 		
 	         glLoadIdentity();
-	         glTranslatef(this.camera.x, this.camera.y, this.camera.z);
+	         GLU.gluLookAt(this.camera.eye.x, this.camera.eye.y, this.camera.eye.z, 0f, 0f, 0f, 0.0f, 1.0f, 0.0f);
 
 	         glBegin(GL_TRIANGLES);								// Start Drawing A Triangle
 	         glColor3f(1.0f,0.0f,0.0f);						// Red

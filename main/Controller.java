@@ -36,16 +36,22 @@ public class Controller implements Runnable {
 
 	public void processInput() {
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
-			this.view.camera.z += this.sensitivity;
+			this.view.camera.eye.z += this.sensitivity;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
-			this.view.camera.x += this.sensitivity;
+			this.view.camera.eye.x += this.sensitivity;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
-			this.view.camera.z -= this.sensitivity;
+			this.view.camera.eye.z -= this.sensitivity;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
-			this.view.camera.x -= this.sensitivity;			
+			this.view.camera.eye.x -= this.sensitivity;			
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_H)) {
+			this.view.camera.eye.y -= this.sensitivity;			
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_N)) {
+			this.view.camera.eye.y += this.sensitivity;			
 		}
 	}
 	
