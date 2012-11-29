@@ -28,7 +28,9 @@ public class View {
 	}
 
 	public void run() {
+		
 		while (!Display.isCloseRequested() && !this.stop) {
+			Display.sync(60);
 			this.render();
 		}
 
