@@ -15,7 +15,7 @@ public class View {
 		this.model = model;
 		this.width = width;
 		this.height = height;
-		this.camera = new Camera(1.5f, 0.0f, -8.0f, -1.5f, 0.0f, 8.0f);
+		this.camera = new Camera(0.0f, 0.0f, -10.0f, 0.0f, 0.0f, 1.0f);
 	}
 
 	public void init() {

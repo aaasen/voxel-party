@@ -12,13 +12,13 @@ public class Controller implements Runnable {
 	Model model;
 	View view;
 	float sensitivity = 0.000001f;
-	
+
 	public Controller(Model model, View view) {
 		this.inputThread = new Thread(this, "input_thread");
 		this.inputThread.start();
 		this.model = model;
 		this.view = view;
-		
+
 		try {
 			Mouse.create();
 			Keyboard.create();
@@ -26,15 +26,32 @@ public class Controller implements Runnable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void run() {
+		// reset mouse position
+		// TODO adjust for different dimesions
+		
+		
 		while (!stop) {
 			processInput();
 		}
 	}
 
 	public void processInput() {
+
+		int x = Mouse.getX();
+		int y = Mouse.getY();
+
+		while (Mouse.next()) {
+			this.view.camera.focal.y -= (Mouse.getEventDY() * 0.003);
+			this.view.camera.focal.x += (Mouse.getEventDX() * 0.003);
+//			System.out.println(Mouse.getEventDX());
+		}
+		
+//		System.out.println("MOUSE DOWN @ X: " + x + " Y: " + y);
+
+
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			this.view.camera.eye.z += this.sensitivity;
 		}
@@ -54,7 +71,7 @@ public class Controller implements Runnable {
 			this.view.camera.eye.y += this.sensitivity;			
 		}
 	}
-	
+
 	public void stop() {
 		this.stop = true;
 		this.view.stop();
