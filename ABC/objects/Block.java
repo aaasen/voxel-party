@@ -1,7 +1,7 @@
 package objects;
 
 import main.Point;
-import glhelper.Planes;
+import glhelper.Prisms;
 
 /**
  * A generic rectangular prism
@@ -29,6 +29,6 @@ public class Block implements Renderable {
 	
 	@Override
 	public void draw() {
-		Planes.drawQuad2d(a, b);
+		Prisms.drawRectPrism2f(a, b);
 	}
 }

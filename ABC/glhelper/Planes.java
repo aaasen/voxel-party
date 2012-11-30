@@ -40,17 +40,27 @@ public class Planes {
 	 * 
 	 * @param a bottom left corner
 	 * @param b top right corner
+	 * 
+	 * TODO: research
 	 */
 	public static void drawQuad2f(Point a, Point b) {
 		glBegin(GL_TRIANGLES);
 		glVertex3f(a.x, a.y, a.z);
-		glVertex3f(a.x, b.y, a.z);
+		glVertex3f(b.x, a.y, a.z);
 		glVertex3f(b.x, b.y, b.z);
 		
 		glVertex3f(a.x, a.y, a.z);
-		glVertex3f(b.x, a.y, b.z);
-		glVertex3f(b.x, b.y, b.z);	
-		glEnd();		
+		glVertex3f(b.x, b.y, a.z);
+		glVertex3f(b.x, b.y, b.z);
+		
+		glVertex3f(a.x, a.y, a.z);
+		glVertex3f(a.x, a.y, b.z);
+		glVertex3f(b.x, b.y, b.z);
+		
+		glVertex3f(a.x, a.y, a.z);
+		glVertex3f(a.x, b.y, b.z);
+		glVertex3f(b.x, b.y, b.z);
+		glEnd();
 	}
 	
 	/**
