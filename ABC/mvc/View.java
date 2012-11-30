@@ -45,7 +45,7 @@ public class View {
 		glLoadIdentity();
 
 		glShadeModel(GL_SMOOTH);
-		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+		glClearColor(0.55f, 0.804f, 0.97f, 0.0f);
 		glClearDepth(1.0f);
 		glEnable(GL_DEPTH_TEST);
 		glDepthFunc(GL_LEQUAL);
