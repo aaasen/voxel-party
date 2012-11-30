@@ -24,6 +24,7 @@ public class Pyramid implements Renderable {
 		this.position = position;
 	}
 	
+	@Override
 	public void draw() {
 		glBegin(GL_TRIANGLES);								
 		glColor3f(1.0f,0.0f,0.0f);						
