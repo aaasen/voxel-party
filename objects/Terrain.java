@@ -27,7 +27,7 @@ public class Terrain implements Renderable {
 	public void genTerrain() {
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
-				matrix[i][j] = new Point((i - matrix.length / 2) * 0.1f, 0, (j - matrix[i].length / 2) * 0.1f);
+				matrix[i][j] = new Point(i * 0.1f, 0.0f, j * 0.1f);
 			}
 		}
 

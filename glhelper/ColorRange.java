@@ -14,4 +14,9 @@ public class ColorRange {
 		float value = x / range;
 		glColor3f(value, value, value);
 	}
+	
+	public static void gw(float range, float x) {
+		float value = x / range;
+		glColor3f(value, 0.9f, value);
+	}
 }
