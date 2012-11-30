@@ -10,14 +10,16 @@ package main;
 import java.util.ArrayList;
 
 public class Model {
-	boolean locked;
 	ArrayList<Block> blocks;
+	Camera camera;
+	boolean locked;
 	
 	/**
 	 * Constructs an empty Model
 	 */
 	public Model() {
 		this.blocks = new ArrayList<Block>();
+		this.camera = new Camera(0.0f, 0.0f, -10.0f, 0.0f, 0.0f);
 		this.locked = false;
 	}
 	
