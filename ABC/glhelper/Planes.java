@@ -4,6 +4,7 @@ package glhelper;
  * A collection of static helper methods for drawing 2D shapes
  * 
  * @author Lane Aasen <laneaasen@gmail.com>
+ * 
  */
 
 import static org.lwjgl.opengl.GL11.GL_TRIANGLES;

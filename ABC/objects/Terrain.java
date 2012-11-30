@@ -6,29 +6,38 @@ package objects;
  * @author Lane Aasen <laneaasen@gmail.com>
  *
  */
+
+import static org.lwjgl.opengl.GL11.glColor3f;
+import glhelper.Planes;
+import glhelper.Outlines;
+import main.Point;
+
 public class Terrain implements Renderable {
-	float[][] terrainMatrix;
+	Point[][] matrix;
 	
 	public Terrain(int width, int depth) {
-		this.terrainMatrix = new float[width][depth];
-		this.genTerrain();
+		matrix = new Point[width + 1][depth + 1];
+		genTerrain();
 	}
 	
 	/**
 	 * Populates the Terrain matrix
 	 */
 	public void genTerrain() {
-		for (int i = 0; i < this.terrainMatrix.length; i++) {
-			for (int j = 0; j < this.terrainMatrix[i].length; j++) {
-				this.terrainMatrix[i][j] = i * j;
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[i].length; j++) {
+				matrix[i][j] = new Point(i, i * j, j);
 			}
 		}
 	}
 	
 	public void draw() {
-		for (int i = 0; i < this.terrainMatrix.length; i++) {
-			for (int j = 0; j < this.terrainMatrix[i].length; j++) {
-				System.out.println(this.terrainMatrix[i][j]);
+		for (int i = 0; i < matrix.length - 1; i++) {
+			for (int j = 0; j < matrix[i].length - 1; j++) {
+				glColor3f(1.0f, 1.0f, 1.0f);
+				Planes.drawQuad4f(matrix[i][j], matrix[i + 1][j], matrix[i + 1][j + 1], matrix[i][j + 1]);
+				glColor3f(0.0f, 0.0f, 0.0f);
+				Outlines.drawOutline(matrix[i][j], matrix[i + 1][j], matrix[i + 1][j + 1], matrix[i][j + 1]);
 			}
 		}
 	}
