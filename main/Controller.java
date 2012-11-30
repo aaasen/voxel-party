@@ -38,32 +38,34 @@ public class Controller implements Runnable {
 	public void processInput() {
 
 		while (Mouse.next()) {
-			this.view.camera.focal.y -= (Mouse.getEventDY() * 0.003);
-			this.view.camera.focal.x += (Mouse.getEventDX() * 0.003);
-			
-			System.out.println(Mouse.getEventDX() + " : " + Mouse.getEventDY());
+			this.view.camera.pitch -= (Mouse.getEventDY() * 0.003);
+			this.view.camera.yaw += (Mouse.getEventDX() * 0.003);
+			this.view.camera.update();
 		}
-		
-//		System.out.println("MOUSE DOWN @ X: " + x + " Y: " + y);
-
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			this.view.camera.eye.z += this.sensitivity;
+			this.view.camera.update();
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
 			this.view.camera.eye.x += this.sensitivity;
+			this.view.camera.update();
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
 			this.view.camera.eye.z -= this.sensitivity;
+			this.view.camera.update();
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
-			this.view.camera.eye.x -= this.sensitivity;			
+			this.view.camera.eye.x -= this.sensitivity;	
+			this.view.camera.update();
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_H)) {
-			this.view.camera.eye.y -= this.sensitivity;			
+			this.view.camera.eye.y -= this.sensitivity;
+			this.view.camera.update();
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_N)) {
-			this.view.camera.eye.y += this.sensitivity;			
+			this.view.camera.eye.y += this.sensitivity;
+			this.view.camera.update();
 		}
 	}
 
