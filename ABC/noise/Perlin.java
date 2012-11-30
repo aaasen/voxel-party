@@ -9,29 +9,8 @@ package noise;
  */
 
 public class Perlin {
-	public static final float P = 0.1f;
-	public static final int OCTAVES = 16;
-	
-	/*
-	  function PerlinNoise_2D(float x, float y)
-
-      total = 0
-      p = persistence
-      n = Number_Of_Octaves - 1
-
-      loop i from 0 to n
-
-          frequency = 2i
-          amplitude = pi
-
-          total = total + InterpolatedNoisei(x * frequency, y * frequency) * amplitude
-
-      end of i loop
-
-      return total
-
-  end function
-  */
+	public static final float P = 0.5f;
+	public static final int OCTAVES = 1;
 	
 	public static float perlin2D(float x, float y) {
 		float total = 0.0f;
