@@ -11,7 +11,6 @@ import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
 import static org.lwjgl.opengl.GL11.glBegin;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glVertex3f;
-import static org.lwjgl.opengl.GL11.glColor3f;
 import main.Point;
 
 public class Planes {
@@ -27,18 +26,19 @@ public class Planes {
 	 */
 	public static void drawQuad4f(Point a, Point b, Point c, Point d) {
 		glBegin(GL_TRIANGLES);
-		glColor3f(a.y, a.y, a.y);
+		
+		ColorRange.bw(32.0f, a.y);
 		glVertex3f(a.x, a.y, a.z);
-		glColor3f(b.y, b.y, b.y);
+		ColorRange.bw(32.0f, b.y);
 		glVertex3f(b.x, b.y, b.z);
-		glColor3f(c.y, c.y, c.y);
+		ColorRange.bw(32.0f, c.y);
 		glVertex3f(c.x, c.y, c.z);
 		
-		glColor3f(a.y, a.y, a.y);
+		ColorRange.bw(32.0f, a.y);
 		glVertex3f(a.x, a.y, a.z);
-		glColor3f(d.y, d.y, d.y);
+		ColorRange.bw(32.0f, d.y);
 		glVertex3f(d.x, d.y, d.z);
-		glColor3f(c.y, c.y, c.y);
+		ColorRange.bw(32.0f, c.y);
 		glVertex3f(c.x, c.y, c.z);	
 		glEnd();		
 	}

@@ -20,15 +20,32 @@ public class Terrain implements Renderable {
 		genTerrain();
 	}
 	
+	public float hashNoise(int x) {
+		x = (x<<13) ^ x;
+	    return (float) ( 1.0 - ( (x * (x * x * 15731 + 789221) + 1376312589) & 0xfffffff) / 1073741824.0);    	
+	}
+	
 	/**
 	 * Populates the Terrain matrix
 	 */
 	public void genTerrain() {
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
-				matrix[i][j] = new Point(i - matrix.length / 2, (float) Math.random() * 1.0f, j - matrix[i].length / 2);
+				matrix[i][j] = new Point(i - matrix.length / 2, 0, j - matrix[i].length / 2);
 			}
 		}
+		
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[i].length; j++) {
+				matrix[i][j].y += (float) hashNoise(512 * i + j) * 16;
+			}
+		}
+		
+//		for (int i = 0; i < matrix.length; i++) {
+//			for (int j = 0; j < matrix[i].length; j++) {
+//				matrix[i][j] = new Point(i - matrix.length / 2, (float) Math.random() * 1.0f, j - matrix[i].length / 2);
+//			}
+//		}
 	}
 	
 	public void draw() {
