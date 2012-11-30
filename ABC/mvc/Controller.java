@@ -20,7 +20,8 @@ public class Controller implements Runnable {
 	Thread inputThread;
 	boolean stop = false;
 	Model model;
-	float sensitivity = 0.000001f;
+	float sensitivity = 0.1f;
+	float mouseSensitivity = 0.003f;
 
 	/**
 	 * Creates a Controller
@@ -49,6 +50,12 @@ public class Controller implements Runnable {
 	public void run() {
 		while (!stop) {
 			processInput();
+			
+			try {
+				Thread.sleep(15l);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -56,12 +63,19 @@ public class Controller implements Runnable {
 	 * Processes input once
 	 */
 	public void processInput() {
+		int dy = 0;
+		int dx = 0;
+		
 		while (Mouse.next()) {
-			this.model.camera.pitch -= (Mouse.getEventDY() * 0.003);
-			this.model.camera.yaw += (Mouse.getEventDX() * 0.003);
-			this.model.camera.update();
+			dy += Mouse.getEventDY();
+			dx += Mouse.getEventDX();
 		}
 
+		this.model.camera.pitch -= dy * this.mouseSensitivity;
+		this.model.camera.yaw += dx * this.mouseSensitivity;
+
+		this.model.camera.update();
+		
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			this.model.camera.eye.z += this.sensitivity;
 			this.model.camera.update();
