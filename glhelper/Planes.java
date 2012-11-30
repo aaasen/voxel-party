@@ -27,18 +27,20 @@ public class Planes {
 	public static void drawQuad4f(Point a, Point b, Point c, Point d) {
 		glBegin(GL_TRIANGLES);
 		
-		ColorRange.bw(2.0f, a.y);
+		float range = 32.0f;
+		
+		ColorRange.bw(range, a.y);
 		glVertex3f(a.x, a.y, a.z);
-		ColorRange.bw(2.0f, b.y);
+		ColorRange.bw(range, b.y);
 		glVertex3f(b.x, b.y, b.z);
-		ColorRange.bw(2.0f, c.y);
+		ColorRange.bw(range, c.y);
 		glVertex3f(c.x, c.y, c.z);
 		
-		ColorRange.bw(2.0f, a.y);
+		ColorRange.bw(range, a.y);
 		glVertex3f(a.x, a.y, a.z);
-		ColorRange.bw(2.0f, d.y);
+		ColorRange.bw(range, d.y);
 		glVertex3f(d.x, d.y, d.z);
-		ColorRange.bw(2.0f, c.y);
+		ColorRange.bw(range, c.y);
 		glVertex3f(c.x, c.y, c.z);	
 		glEnd();		
 	}
