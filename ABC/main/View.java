@@ -15,7 +15,7 @@ public class View {
 		this.model = model;
 		this.width = width;
 		this.height = height;
-		this.camera = new Camera(0.0f, 0.0f, -10.0f, 0.0f, 0.0f, 1.0f);
+		this.camera = new Camera(0.0f, 0.0f, -10.0f, 0.0f, 0.0f);
 	}
 
 	public void init() {
@@ -41,24 +41,24 @@ public class View {
 	}
 
 	public void run() {
-		long frame = 0;
-		
 		while (!Display.isCloseRequested() && !this.stop) {
 			Display.sync(60);
-			this.render(frame++);
+			this.render();
 		}
 
 		Display.destroy();
 	}
 
-	public void render(long frame) {
+	public void render() {
 		
 		if(!model.locked) {
 			// Clear the screen and depth buffer
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
 		
 	         glLoadIdentity();
-	         GLU.gluLookAt(this.camera.eye.x, this.camera.eye.y, this.camera.eye.z, this.camera.eye.x + this.camera.focal.x, this.camera.eye.y + this.camera.focal.y, this.camera.eye.z + this.camera.focal.z, 0.0f, 1.0f, 0.0f);
+	         GLU.gluLookAt(camera.eye.x, camera.eye.y, camera.eye.z,
+	        		 		camera.focal.x, camera.focal.y, camera.focal.z,
+	        		 		0.0f, 1.0f, 0.0f);
 
 	         glBegin(GL_TRIANGLES);								// Start Drawing A Triangle
 	         glColor3f(1.0f,0.0f,0.0f);						// Red
