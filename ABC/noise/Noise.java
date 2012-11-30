@@ -26,7 +26,7 @@ public class Noise {
 	}
 
 	/**
-	 * Creates smooth noise from one number based on its neighbors
+	 * Creates smooth noise from one numbers based on its neighbors
 	 * 
 	 * @param x
 	 * @param primes set of 4 primes to use in generating the noise
@@ -35,7 +35,7 @@ public class Noise {
 	public static float smoothNoise1f(int x, int[] primes) {
 		return noise1f(x, primes) / 2.0f + noise1f(x - 1, primes) / 4.0f + noise1f(x + 1, primes) / 4.0f;
 	}
-	
+
 	/**
 	 * Deteministically hashes two numbers
 	 * 
@@ -48,5 +48,19 @@ public class Noise {
 		int n = x + y * 57;
 		n = (n<<13) ^ n;
 		return noise1f(n, primes);   	
+	}
+
+	/**
+	 * Creates smooth noise from two numbers based on its neighbors
+	 * 
+	 * @param x
+	 * @param primes set of 4 primes to use in generating the noise
+	 * @return deteministic noise
+	 */
+	public static float smoothNoise2f(int x, int y, int[] primes) {
+		float corners = (noise2f(x - 1, y - 1, primes) + noise2f(x + 1, y - 1, primes) + noise2f(x - 1, y + 1, primes) + noise2f(x + 1, y + 1, primes)) / 16.0f;
+		float sides   = (noise2f(x - 1, y, primes) + noise2f(x + 1, y, primes) + noise2f(x, y - 1, primes) + noise2f(x, y + 1, primes)) / 8.0f;
+		float center  =  noise2f(x, y, primes) / 4.0f;
+		return corners + sides + center;
 	}
 }
