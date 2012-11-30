@@ -4,6 +4,7 @@ package main;
  * Launcher for Nexus
  * 
  * @author Lane Aasen <laneaasen@gmail.com>
+ * 
  */
 
 import org.lwjgl.LWJGLException;
@@ -28,7 +29,7 @@ public class Main {
 	    
         	// start the mvc framework
         	Model world = new Model();
-            View view = new View(world, WIDTH, HEIGHT);
+            View view = new View(world);
             @SuppressWarnings("unused")
             Controller conroller = new Controller(world, view);
             view.init();
