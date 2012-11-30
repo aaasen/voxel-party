@@ -10,8 +10,6 @@ package main;
 import mvc.Controller;
 import mvc.Model;
 import mvc.View;
-import objects.Grid;
-import objects.Block;
 import objects.Terrain;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
@@ -39,9 +37,6 @@ public class Main {
             Controller conroller = new Controller(world);
             
             // populate the world
-//            world.grids.add(new Grid(64.0f, 1.0f, 0.0f, 1.0f));
-//            world.grids.add(new Grid(64.0f, 10.0f, 0.0f, 3.0f));
-            
             world.terrains.add(new Terrain(256, 256));
             world.terrains.get(0).draw();
             
