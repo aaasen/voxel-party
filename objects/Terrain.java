@@ -26,7 +26,7 @@ public class Terrain implements Renderable {
 	public void genTerrain() {
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
-				matrix[i][j] = new Point(i, i * j, j);
+				matrix[i][j] = new Point(i - matrix.length / 2, (float) Math.random() * 1.0f, j - matrix[i].length / 2);
 			}
 		}
 	}
@@ -37,7 +37,7 @@ public class Terrain implements Renderable {
 				glColor3f(1.0f, 1.0f, 1.0f);
 				Planes.drawQuad4f(matrix[i][j], matrix[i + 1][j], matrix[i + 1][j + 1], matrix[i][j + 1]);
 				glColor3f(0.0f, 0.0f, 0.0f);
-				Outlines.drawOutline(matrix[i][j], matrix[i + 1][j], matrix[i + 1][j + 1], matrix[i][j + 1]);
+				Outlines.outline(matrix[i][j], matrix[i + 1][j], matrix[i + 1][j + 1], matrix[i][j + 1]);
 			}
 		}
 	}

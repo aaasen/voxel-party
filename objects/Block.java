@@ -1,6 +1,8 @@
 package objects;
 
+import static org.lwjgl.opengl.GL11.glColor3f;
 import main.Point;
+import glhelper.Outlines;
 import glhelper.Prisms;
 
 /**
@@ -29,6 +31,9 @@ public class Block implements Renderable {
 	
 	@Override
 	public void draw() {
+		glColor3f(1.0f, 1.0f, 1.0f);
 		Prisms.drawRectPrism2f(a, b);
+		glColor3f(1.0f, 0.0f, 0.0f);
+		Outlines.outlineRectPrism2f(a, b);
 	}
 }
