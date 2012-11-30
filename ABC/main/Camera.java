@@ -11,6 +11,7 @@ public class Camera {
 	public float pitch, yaw;
 	public Point focal;
 	public boolean invert = false;
+	public float sensitivity = 0.3f;
 	
 	/**
 	 * Creates a Camera
@@ -51,5 +52,19 @@ public class Camera {
 	 */
 	public void update() {
 		this.focal = lookAt();
+	}
+		
+	/**
+	 * Moves the camera towards where it is pointing
+	 */
+	public void forwards() {
+		this.eye = Point.add(Point.scale(this.unitLookAt(), this.sensitivity), this.eye);
+	}
+	
+	/**
+	 * Moves the camera away from where it is pointing
+	 */
+	public void backwards() {
+		this.eye = Point.add(Point.scale(this.unitLookAt(), -this.sensitivity), this.eye);
 	}
 }

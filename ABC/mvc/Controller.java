@@ -20,7 +20,6 @@ public class Controller implements Runnable {
 	Thread inputThread;
 	boolean stop = false;
 	Model model;
-	float sensitivity = 0.1f;
 	float mouseSensitivity = 0.003f;
 
 	/**
@@ -75,24 +74,18 @@ public class Controller implements Runnable {
 		this.model.camera.yaw += dx * this.mouseSensitivity;
 		
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
-			this.model.camera.eye.z += this.sensitivity;
+			this.model.camera.forwards();
 		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
-			this.model.camera.eye.x += this.sensitivity;
-		}
+//		if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
+//			this.model.camera.strafeLeft();
+//		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
-			this.model.camera.eye.z -= this.sensitivity;
+			this.model.camera.backwards();
 		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
-			this.model.camera.eye.x -= this.sensitivity;	
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_H)) {
-			this.model.camera.eye.y -= this.sensitivity;
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_N)) {
-			this.model.camera.eye.y += this.sensitivity;
-		}
-
+//		if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
+//			this.model.camera.strafeRight();
+//		}
+//		
 		this.model.camera.update();
 		
 	}
