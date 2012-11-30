@@ -73,33 +73,28 @@ public class Controller implements Runnable {
 
 		this.model.camera.pitch -= dy * this.mouseSensitivity;
 		this.model.camera.yaw += dx * this.mouseSensitivity;
-
-		this.model.camera.update();
 		
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			this.model.camera.eye.z += this.sensitivity;
-			this.model.camera.update();
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
 			this.model.camera.eye.x += this.sensitivity;
-			this.model.camera.update();
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
 			this.model.camera.eye.z -= this.sensitivity;
-			this.model.camera.update();
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
 			this.model.camera.eye.x -= this.sensitivity;	
-			this.model.camera.update();
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_H)) {
 			this.model.camera.eye.y -= this.sensitivity;
-			this.model.camera.update();
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_N)) {
 			this.model.camera.eye.y += this.sensitivity;
-			this.model.camera.update();
 		}
+
+		this.model.camera.update();
+		
 	}
 
 	/**
