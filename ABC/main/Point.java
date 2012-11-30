@@ -8,7 +8,7 @@ package main;
  */
 
 public class Point {
-	float x, y, z;
+	public float x, y, z;
 	
 	/**
 	 * Constructs a Point

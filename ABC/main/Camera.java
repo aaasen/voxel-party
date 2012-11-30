@@ -1,5 +1,7 @@
 package main;
 
+
+
 /**
  * A Camera that defines a viewpoint
  * 
@@ -7,10 +9,10 @@ package main;
  *
  */
 public class Camera {
-	Point eye;
-	float pitch, yaw;
-	Point focal;
-	boolean invert = false;
+	public Point eye;
+	public float pitch, yaw;
+	public Point focal;
+	public boolean invert = false;
 	
 	/**
 	 * Creates a Camera

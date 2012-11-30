@@ -1,4 +1,4 @@
-package main;
+package objects;
 
 /**
  * An interface for anything that can be drawn in the Model

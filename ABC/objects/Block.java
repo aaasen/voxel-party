@@ -1,4 +1,6 @@
-package main;
+package objects;
+
+import main.Point;
 
 /**
  * A generic cube
