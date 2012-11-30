@@ -13,7 +13,7 @@ import static org.lwjgl.opengl.GL11.glVertex3f;
  *
  */
 
-public class Pyramid {
+public class Pyramid implements Renderable {
 	Point position;
 	
 	public Pyramid(float x, float y, float z) {

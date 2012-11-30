@@ -1,15 +1,13 @@
 package main;
 
+import java.util.ArrayList;
+
 public class Model {
 	boolean locked;
-	Player player;
+	ArrayList<Block> blocks;
 	
 	public Model() {
-		this.lock();
-		
-		this.player = new Player(50, 50);
-	
-		this.unlock();
+		this.blocks = new ArrayList<Block>();
 	}
 	
 	public void lock() {
