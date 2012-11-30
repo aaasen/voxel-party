@@ -28,7 +28,7 @@ public class Model {
 		this.blocks = new ArrayList<Block>();
 		this.grids = new ArrayList<Grid>();
 		this.terrains = new ArrayList<Terrain>();
-		this.camera = new Camera(new Point(0.0f, 0.0f, -10.0f), 0.0f, 0.0f);
+		this.camera = new Camera(new Point(0.0f, 8.0f, 0.0f), 0.0f, 0.0f);
 		this.locked = false;
 	}
 	
