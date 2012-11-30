@@ -2,6 +2,8 @@ package main;
 
 /**
  * A horizontal Grid for orientation
+ * 
+ *  @author Lane Aasen <laneaasen@gmail.com>
  */
 
 import static org.lwjgl.opengl.GL11.GL_LINES;
