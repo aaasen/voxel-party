@@ -39,8 +39,8 @@ public class Main {
             Controller conroller = new Controller(world);
             
             // populate the world
-            world.grids.add(new Grid(10.0f, 1.0f, 0.0f, 1.0f));
-            world.grids.add(new Grid(10.0f, 10.0f, 0.0f, 3.0f));
+            world.grids.add(new Grid(50.0f, 1.0f, 0.0f, 1.0f));
+            world.grids.add(new Grid(50.0f, 10.0f, 0.0f, 3.0f));
             
             world.blocks.add(new Block(new Point(0.0f, 0.0f, 0.0f), new Point(1.0f, 1.0f, 1.0f)));
             world.blocks.add(new Block(new Point(3.0f, 0.0f, 3.0f), new Point(5.0f, 2.0f, 5.0f)));
