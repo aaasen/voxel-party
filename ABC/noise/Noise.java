@@ -35,6 +35,16 @@ public class Noise {
 	public static float smoothNoise1f(int x, int[] primes) {
 		return noise1f(x, primes) / 2.0f + noise1f(x - 1, primes) / 4.0f + noise1f(x + 1, primes) / 4.0f;
 	}
+	
+	public static float interpolateNoise1f(float x, int[] primes) {
+		int intX = (int) x;
+		float fractionalX = x - intX;
+		
+		float v1 = smoothNoise1f(intX, primes);
+		float v2 = smoothNoise1f(intX + 1, primes);
+		
+		return Interpolate.cosine(v1, v2, fractionalX);
+	}
 
 	/**
 	 * Deteministically hashes two numbers
@@ -62,5 +72,23 @@ public class Noise {
 		float sides   = (noise2f(x - 1, y, primes) + noise2f(x + 1, y, primes) + noise2f(x, y - 1, primes) + noise2f(x, y + 1, primes)) / 8.0f;
 		float center  =  noise2f(x, y, primes) / 4.0f;
 		return corners + sides + center;
+	}
+	
+	public static float interpolateNoise2f(float x, float y, int[] primes) {
+		int intX = (int) x;
+		float fractionalX = x - intX;
+		
+		int intY = (int) y;
+		float fractionalY = y - intY;
+		
+		float v1 = smoothNoise2f(intX, intY, primes);
+		float v2 = smoothNoise2f(intX + 1, intY, primes);
+		float v3 = smoothNoise2f(intX, intY + 1, primes);
+		float v4 = smoothNoise2f(intX + 1, intY + 1, primes);
+		
+		float i1 = Interpolate.cosine(v1, v2, fractionalX);
+		float i2 = Interpolate.cosine(v3, v4, fractionalX);
+		
+		return Interpolate.cosine(i1, i2, fractionalY);
 	}
 }

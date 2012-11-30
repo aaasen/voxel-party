@@ -17,7 +17,7 @@ public class Interpolate {
 	 * @param x offset of the point from a
 	 * @return
 	 */
-	public static float cosineInterpolate(float a, float b, float x) {
+	public static float cosine(float a, float b, float x) {
 		float ft = x * (float) Math.PI;
 		float f = (1.0f - (float) Math.cos(ft)) * 0.5f;
 
