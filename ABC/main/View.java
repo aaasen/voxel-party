@@ -80,9 +80,10 @@ public class View {
 
 
 			glColor3f(1.0f, 1.0f, 1.0f);
-			glLineWidth(1.0f);
-			BasicDrawing.drawGrid(10.0f, 1.0f, 0.0f, false);
-			BasicDrawing.drawGrid(10.0f, 10.0f, 0.0f, true);
+			
+			for( Grid grid : this.model.grids ) {
+				grid.draw();
+			}
 
 			Display.update();
 		}

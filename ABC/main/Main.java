@@ -31,6 +31,11 @@ public class Main {
             View view = new View(world);
             @SuppressWarnings("unused")
             Controller conroller = new Controller(world);
+            
+            // populate the world
+            world.grids.add(new Grid(10.0f, 1.0f, 0.0f, 1.0f));
+            world.grids.add(new Grid(10.0f, 10.0f, 0.0f, 3.0f));
+            
             view.init();
         	
         } catch (LWJGLException e) {
