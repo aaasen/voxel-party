@@ -14,7 +14,6 @@ import org.lwjgl.util.glu.GLU;
 
 public class View {
 	Model model;
-	Camera camera;
 	boolean stop = false;
 
 	/**
@@ -26,7 +25,6 @@ public class View {
 	 */
 	public View(Model model) {
 		this.model = model;
-		this.camera = new Camera(0.0f, 0.0f, -10.0f, 0.0f, 0.0f);
 	}
 
 	/**
@@ -76,8 +74,8 @@ public class View {
 
 			// adjust camera angle
 			glLoadIdentity();
-			GLU.gluLookAt(camera.eye.x, camera.eye.y, camera.eye.z,
-					camera.focal.x, camera.focal.y, camera.focal.z,
+			GLU.gluLookAt(this.model.camera.eye.x, this.model.camera.eye.y, this.model.camera.eye.z,
+					this.model.camera.focal.x, this.model.camera.focal.y, this.model.camera.focal.z,
 					0.0f, 1.0f, 0.0f);
 
 

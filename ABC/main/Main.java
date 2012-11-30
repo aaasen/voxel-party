@@ -30,7 +30,7 @@ public class Main {
         	Model world = new Model();
             View view = new View(world);
             @SuppressWarnings("unused")
-            Controller conroller = new Controller(world, view);
+            Controller conroller = new Controller(world);
             view.init();
         	
         } catch (LWJGLException e) {

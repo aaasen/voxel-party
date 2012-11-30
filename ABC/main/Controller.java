@@ -1,6 +1,15 @@
 package main;
 
-import static org.lwjgl.opengl.GL11.glTranslatef;
+/**
+ * The Controller which handles input
+ * 
+ * Controller runs in a seperate thread from the View to ensure responsiveness
+ * 
+ * TODO: cap controller tick
+ * 
+ * @author Lane Aasen <laneaasen@gmail.com>
+ * 
+ */
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
@@ -10,14 +19,18 @@ public class Controller implements Runnable {
 	Thread inputThread;
 	boolean stop = false;
 	Model model;
-	View view;
 	float sensitivity = 0.000001f;
 
-	public Controller(Model model, View view) {
+	/**
+	 * Creates a Controller
+	 * 
+	 * @param model a Model for the Controller to manipulate
+	 * @param view
+	 */
+	public Controller(Model model) {
 		this.inputThread = new Thread(this, "input_thread");
 		this.inputThread.start();
 		this.model = model;
-		this.view = view;
 
 		try {
 			Mouse.create();
@@ -28,6 +41,9 @@ public class Controller implements Runnable {
 		}
 	}
 
+	/**
+	 * Starts the Controller
+	 */
 	@Override
 	public void run() {
 		while (!stop) {
@@ -35,42 +51,46 @@ public class Controller implements Runnable {
 		}
 	}
 
+	/**
+	 * Processes input once
+	 */
 	public void processInput() {
-
 		while (Mouse.next()) {
-			this.view.camera.pitch -= (Mouse.getEventDY() * 0.003);
-			this.view.camera.yaw += (Mouse.getEventDX() * 0.003);
-			this.view.camera.update();
+			this.model.camera.pitch -= (Mouse.getEventDY() * 0.003);
+			this.model.camera.yaw += (Mouse.getEventDX() * 0.003);
+			this.model.camera.update();
 		}
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
-			this.view.camera.eye.z += this.sensitivity;
-			this.view.camera.update();
+			this.model.camera.eye.z += this.sensitivity;
+			this.model.camera.update();
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
-			this.view.camera.eye.x += this.sensitivity;
-			this.view.camera.update();
+			this.model.camera.eye.x += this.sensitivity;
+			this.model.camera.update();
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
-			this.view.camera.eye.z -= this.sensitivity;
-			this.view.camera.update();
+			this.model.camera.eye.z -= this.sensitivity;
+			this.model.camera.update();
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
-			this.view.camera.eye.x -= this.sensitivity;	
-			this.view.camera.update();
+			this.model.camera.eye.x -= this.sensitivity;	
+			this.model.camera.update();
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_H)) {
-			this.view.camera.eye.y -= this.sensitivity;
-			this.view.camera.update();
+			this.model.camera.eye.y -= this.sensitivity;
+			this.model.camera.update();
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_N)) {
-			this.view.camera.eye.y += this.sensitivity;
-			this.view.camera.update();
+			this.model.camera.eye.y += this.sensitivity;
+			this.model.camera.update();
 		}
 	}
 
+	/**
+	 * Stops the Controller
+	 */
 	public void stop() {
 		this.stop = true;
-		this.view.stop();
 	}
 }
