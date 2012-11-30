@@ -36,8 +36,6 @@ public class Terrain implements Renderable {
 			for (int j = 0; j < matrix[i].length - 1; j++) {
 				glColor3f(1.0f, 1.0f, 1.0f);
 				Planes.drawQuad4f(matrix[i][j], matrix[i + 1][j], matrix[i + 1][j + 1], matrix[i][j + 1]);
-				glColor3f(0.0f, 0.0f, 0.0f);
-				Outlines.outline(matrix[i][j], matrix[i + 1][j], matrix[i + 1][j + 1], matrix[i][j + 1]);
 			}
 		}
 	}
