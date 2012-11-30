@@ -4,6 +4,7 @@ public class Camera {
 	Point eye;
 	float pitch, yaw;
 	Point focal;
+	boolean invert = false;
 	
 	public Camera(Point eye, float pitch, float yaw) {
 		this.eye = eye;
@@ -20,7 +21,7 @@ public class Camera {
 	}
 	
 	private Point unitLookAt() {
-		return new Point((float) Math.cos(this.yaw), 0.0f, (float) Math.sin(this.yaw));
+		return new Point((float) Math.cos(this.yaw), (float) Math.tan((invert ? 1.0f : -1.0f) * this.pitch), (float) Math.sin(this.yaw));
 	}
 	
 	public Point lookAt() {
