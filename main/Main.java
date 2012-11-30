@@ -39,13 +39,13 @@ public class Main {
             Controller conroller = new Controller(world);
             
             // populate the world
-            world.grids.add(new Grid(50.0f, 1.0f, 0.0f, 1.0f));
-            world.grids.add(new Grid(50.0f, 10.0f, 0.0f, 3.0f));
+            world.grids.add(new Grid(64.0f, 1.0f, 0.0f, 1.0f));
+            world.grids.add(new Grid(64.0f, 10.0f, 0.0f, 3.0f));
             
             world.blocks.add(new Block(new Point(0.0f, 0.0f, 0.0f), new Point(1.0f, 1.0f, 1.0f)));
             world.blocks.add(new Block(new Point(3.0f, 0.0f, 3.0f), new Point(5.0f, 2.0f, 5.0f)));
             
-            world.terrains.add(new Terrain(100, 100));
+            world.terrains.add(new Terrain(128, 128));
             world.terrains.get(0).draw();
             
             view.init();
