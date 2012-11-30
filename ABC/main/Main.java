@@ -12,7 +12,7 @@ import mvc.Model;
 import mvc.View;
 import objects.Grid;
 import objects.Block;
-
+import objects.Terrain;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -44,6 +44,9 @@ public class Main {
             
             world.blocks.add(new Block(new Point(0.0f, 0.0f, 0.0f), new Point(1.0f, 1.0f, 1.0f)));
             world.blocks.add(new Block(new Point(3.0f, 0.0f, 3.0f), new Point(5.0f, 2.0f, 5.0f)));
+            
+            world.terrains.add(new Terrain(10, 10));
+            world.terrains.get(0).draw();
             
             view.init();
         	

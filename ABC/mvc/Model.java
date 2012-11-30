@@ -8,17 +8,16 @@ package mvc;
  */
 
 import java.util.ArrayList;
-
 import main.Camera;
 import main.Point;
-
-
 import objects.Block;
 import objects.Grid;
+import objects.Terrain;
 
 public class Model {
 	public ArrayList<Block> blocks;
 	public ArrayList<Grid> grids;
+	public ArrayList<Terrain> terrains;
 	Camera camera;
 	boolean locked;
 	
@@ -28,6 +27,7 @@ public class Model {
 	public Model() {
 		this.blocks = new ArrayList<Block>();
 		this.grids = new ArrayList<Grid>();
+		this.terrains = new ArrayList<Terrain>();
 		this.camera = new Camera(new Point(0.0f, 0.0f, -10.0f), 0.0f, 0.0f);
 		this.locked = false;
 	}
