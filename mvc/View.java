@@ -1,4 +1,4 @@
-package main;
+package mvc;
 
 /** 
  * The View which is responsible for rendering a Model to the screen 
@@ -6,6 +6,8 @@ package main;
  * @author Lane Aasen <laneaasen@gmail.com>
  * 
  */
+
+import objects.Grid;
 
 import org.lwjgl.opengl.Display;
 import static org.lwjgl.opengl.GL11.*;

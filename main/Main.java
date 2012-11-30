@@ -7,6 +7,11 @@ package main;
  * 
  */
 
+import mvc.Controller;
+import mvc.Model;
+import mvc.View;
+import objects.Grid;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;

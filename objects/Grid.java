@@ -1,4 +1,4 @@
-package main;
+package objects;
 
 /**
  * A horizontal Grid for orientation

@@ -1,4 +1,4 @@
-package main;
+package mvc;
 
 /**
  * The Model which is responsible for holding all of the world's data
@@ -9,9 +9,16 @@ package main;
 
 import java.util.ArrayList;
 
+import main.Camera;
+import main.Point;
+
+
+import objects.Block;
+import objects.Grid;
+
 public class Model {
-	ArrayList<Block> blocks;
-	ArrayList<Grid> grids;
+	public ArrayList<Block> blocks;
+	public ArrayList<Grid> grids;
 	Camera camera;
 	boolean locked;
 	

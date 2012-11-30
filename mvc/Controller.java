@@ -1,4 +1,4 @@
-package main;
+package mvc;
 
 /**
  * The Controller which handles input
@@ -10,6 +10,7 @@ package main;
  * @author Lane Aasen <laneaasen@gmail.com>
  * 
  */
+
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
