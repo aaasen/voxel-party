@@ -9,6 +9,8 @@ package mvc;
 
 import objects.Grid;
 import objects.Block;
+import objects.Terrain;
+
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.glu.GLU;
 import static org.lwjgl.opengl.GL11.*;
@@ -88,6 +90,10 @@ public class View {
 
 			for( Block block : this.model.blocks ) {
 				block.draw();
+			}
+			
+			for( Terrain terrain : this.model.terrains ) {
+				terrain.draw();
 			}
 			
 			Display.update();
