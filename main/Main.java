@@ -1,36 +1,41 @@
 package main;
 
+/** 
+ * Launcher for Nexus
+ * 
+ * @author Lane Aasen <laneaasen@gmail.com>
+ */
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.PixelFormat;
-import org.lwjgl.opengl.ContextAttribs;
 
 public class Main {
+	public static final int WIDTH = 800;
+	public static final int HEIGHT = 600;
+	
     public static void main(String[] argv) {
-    	Model world = new Model();
-    	
-    	PixelFormat pixelFormat = new PixelFormat();
-    	ContextAttribs contextAttributes = new ContextAttribs(3, 0);
-    	contextAttributes.withForwardCompatible(true);
     	
         try {
-        	Display.setDisplayMode(new DisplayMode(800, 600));
-        	Display.create(pixelFormat, contextAttributes);
+        	// initialize lwjgl
+        	Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
+        	Display.setTitle("Nexus");
+        	Display.create();
         	Keyboard.create();
         	Mouse.create();
 	    
+        	// start the mvc framework
+        	Model world = new Model();
+            View view = new View(world, WIDTH, HEIGHT);
+            @SuppressWarnings("unused")
+            Controller conroller = new Controller(world, view);
+            view.init();
+        	
         } catch (LWJGLException e) {
         	e.printStackTrace();
         	System.exit(0);
         }
-    	
-        View view = new View(world, 800, 600);
-        new Controller(world, view);
-        
-        view.init();
     }
 }
