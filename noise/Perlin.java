@@ -9,8 +9,8 @@ package noise;
  */
 
 public class Perlin {
-	public static final float P = 0.5f;
-	public static final int OCTAVES = 4;
+	public static final float P = 0.1f;
+	public static final int OCTAVES = 16;
 	
 	/*
 	  function PerlinNoise_2D(float x, float y)
@@ -40,7 +40,7 @@ public class Perlin {
 			int frequency = (int) Math.pow(2, i);
 			float amplitude = (float) Math.pow(P, i);
 			
-			total += Noise.interpolateNoise2f(x * frequency, y * frequency, Noise.primes0) * amplitude;
+			total += Noise.interpolateNoise2f(x * frequency, y * frequency, Noise.primes[0]) * amplitude;
 		}
 		
 		return total;

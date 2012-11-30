@@ -46,7 +46,7 @@ public class Main {
             world.blocks.add(new Block(new Point(3.0f, 0.0f, 3.0f), new Point(5.0f, 2.0f, 5.0f)));
             world.blocks.add(new Block(new Point(16.0f, 0.0f, 16.0f), new Point(20.0f, 4.0f, 20.0f)));
             
-            world.terrains.add(new Terrain(128, 128));
+            world.terrains.add(new Terrain(256, 256));
             world.terrains.get(0).draw();
             
             view.init();
