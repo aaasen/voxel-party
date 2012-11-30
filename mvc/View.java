@@ -8,11 +8,10 @@ package mvc;
  */
 
 import objects.Grid;
-
+import objects.Block;
 import org.lwjgl.opengl.Display;
-import static org.lwjgl.opengl.GL11.*;
-
 import org.lwjgl.util.glu.GLU;
+import static org.lwjgl.opengl.GL11.*;
 
 public class View {
 	Model model;
@@ -87,6 +86,10 @@ public class View {
 				grid.draw();
 			}
 
+			for( Block block : this.model.blocks ) {
+				block.draw();
+			}
+			
 			Display.update();
 		}
 	}

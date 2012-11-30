@@ -11,6 +11,7 @@ import mvc.Controller;
 import mvc.Model;
 import mvc.View;
 import objects.Grid;
+import objects.Block;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
@@ -19,8 +20,8 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 public class Main {
-	public static final int WIDTH = 800;
-	public static final int HEIGHT = 600;
+	public static final int WIDTH = 1366;
+	public static final int HEIGHT = 768;
 	
     public static void main(String[] argv) {
         try {
@@ -40,6 +41,8 @@ public class Main {
             // populate the world
             world.grids.add(new Grid(10.0f, 1.0f, 0.0f, 1.0f));
             world.grids.add(new Grid(10.0f, 10.0f, 0.0f, 3.0f));
+            
+            world.blocks.add(new Block(new Point(0.0f, 0.0f, 0.0f), new Point(1.0f, 1.0f, 1.0f)));
             
             view.init();
         	

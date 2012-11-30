@@ -1,7 +1,5 @@
 package main;
 
-
-
 /**
  * A Camera that defines a viewpoint
  * 
