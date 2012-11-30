@@ -21,25 +21,20 @@ public class Terrain implements Renderable {
 		genTerrain();
 	}
 	
-	public float hashNoise(int x) {
-		x = (x<<13) ^ x;
-	    return (float) ( 1.0 - ( (x * (x * x * 15731 + 789221) + 1376312589) & 0xfffffff) / 1073741824.0);    	
-	}
-	
 	/**
 	 * Populates the Terrain matrix
 	 */
 	public void genTerrain() {
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
-				matrix[i][j] = new Point(i - matrix.length / 2, 0, j - matrix[i].length / 2);
+				matrix[i][j] = new Point((i - matrix.length / 2) * 1.0f, 0, (j - matrix[i].length / 2) * 1.0f);
 			}
 		}
 
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
 				matrix[i][j].y = Math.abs(Perlin.perlin2D(matrix[i][j].x, matrix[i][j].z));
-				System.out.println(matrix[i][j].y);
+//				System.out.println(matrix[i][j].y);
 			}
 		}
 	}
@@ -49,6 +44,8 @@ public class Terrain implements Renderable {
 			for (int j = 0; j < matrix[i].length - 1; j++) {
 				glColor3f(1.0f, 1.0f, 1.0f);
 				Planes.drawQuad4f(matrix[i][j], matrix[i + 1][j], matrix[i + 1][j + 1], matrix[i][j + 1]);
+//				glColor3f(0.0f, 0.0f, 0.0f);
+//				Outlines.outline(matrix[i][j], matrix[i + 1][j], matrix[i + 1][j + 1], matrix[i][j + 1]);
 			}
 		}
 	}

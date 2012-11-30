@@ -11,8 +11,8 @@ package noise;
 public class Noise {
 
 
-	public static final int[] primes0 = {15731, 789221, 1376312589, 107374182};
-
+	public static final int[][] primes = { {15731, 789221, 1376312589, 107374182} };
+	
 	/**
 	 * Deteministically hashes one number
 	 * 
