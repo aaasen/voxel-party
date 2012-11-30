@@ -11,7 +11,7 @@ import static org.lwjgl.opengl.GL11.glColor3f;
 
 public class ColorRange {
 	public static void bw(float range, float x) {
-		float value = (x % range) / range;
+		float value = x / range;
 		glColor3f(value, value, value);
 	}
 }
