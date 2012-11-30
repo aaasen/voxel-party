@@ -27,7 +27,7 @@ public class Planes {
 	public static void drawQuad4f(Point a, Point b, Point c, Point d) {
 		glBegin(GL_TRIANGLES);
 		
-		float range = 16.0f;
+		float range = 20.0f;
 		
 		ColorRange.bw(range, a.y);
 		glVertex3f(a.x, a.y, a.z);
