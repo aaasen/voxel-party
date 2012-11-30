@@ -26,6 +26,17 @@ public class Noise {
 	}
 
 	/**
+	 * Creates smooth noise from one number based on its neighbors
+	 * 
+	 * @param x
+	 * @param primes set of 4 primes to use in generating the noise
+	 * @return deteministic noise
+	 */
+	public static float smoothNoise1f(int x, int[] primes) {
+		return noise1f(x, primes) / 2.0f + noise1f(x - 1, primes) / 4.0f + noise1f(x + 1, primes) / 4.0f;
+	}
+	
+	/**
 	 * Deteministically hashes two numbers
 	 * 
 	 * @param x
