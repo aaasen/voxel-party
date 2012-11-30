@@ -1,7 +1,7 @@
 package glhelper;
 
 /**
- * A collection of static helper methods for drawing 2D surfaces
+ * A collection of static helper methods for drawing 2D shapes
  * 
  * @author Lane Aasen <laneaasen@gmail.com>
  */
@@ -41,7 +41,7 @@ public class Planes {
 	 * @param a bottom left corner
 	 * @param b top right corner
 	 */
-	public static void drawQuad2d(Point a, Point b) {
+	public static void drawQuad2f(Point a, Point b) {
 		glBegin(GL_TRIANGLES);
 		glVertex3f(a.x, a.y, a.z);
 		glVertex3f(a.x, b.y, a.z);
@@ -51,5 +51,19 @@ public class Planes {
 		glVertex3f(b.x, a.y, b.z);
 		glVertex3f(b.x, b.y, b.z);	
 		glEnd();		
+	}
+	
+	/**
+	 * Draws a rectangle through a, b, c and x, y z
+	 * 
+	 * @param a bottom left x
+	 * @param b bottom left y
+	 * @param c bottom left z
+	 * @param x top right x
+	 * @param y top right y
+	 * @param z top right z
+	 */
+	public static void drawQuad2f(float a, float b, float c, float x, float y, float z) {
+		drawQuad2f(new Point(a, b, c), new Point(x, y, z));
 	}
 }
