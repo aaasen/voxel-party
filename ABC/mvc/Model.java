@@ -7,17 +7,14 @@ package mvc;
  * 
  */
 
-import java.util.ArrayList;
+import java.util.HashMap;
+
 import main.Camera;
 import main.Point;
-import objects.Block;
-import objects.Grid;
-import objects.Terrain;
+import world.Chunk;
 
 public class Model {
-	public ArrayList<Block> blocks;
-	public ArrayList<Grid> grids;
-	public ArrayList<Terrain> terrains;
+	public HashMap<Float, Chunk> chunks;
 	Camera camera;
 	boolean locked;
 	
@@ -25,9 +22,7 @@ public class Model {
 	 * Constructs an empty Model
 	 */
 	public Model() {
-		this.blocks = new ArrayList<Block>();
-		this.grids = new ArrayList<Grid>();
-		this.terrains = new ArrayList<Terrain>();
+		this.chunks = new HashMap<Float, Chunk>();
 		this.camera = new Camera(new Point(0.0f, 8.0f, 0.0f), 0.0f, 0.0f);
 		this.locked = false;
 	}

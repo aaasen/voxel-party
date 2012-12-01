@@ -10,14 +10,11 @@ package main;
 import mvc.Controller;
 import mvc.Model;
 import mvc.View;
-import objects.Terrain;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
-
-import color.*;
 
 public class Main {
 	public static final int WIDTH = 1600;
@@ -37,10 +34,6 @@ public class Main {
             View view = new View(world);
             @SuppressWarnings("unused")
             Controller conroller = new Controller(world);
-            
-            // populate the world
-            world.terrains.add(new Terrain(256, 256, new Greyscale(12.0f, 0.0f), 0.3f, 0.3f));
-            world.terrains.get(0).draw();
             
             view.init();
         	
