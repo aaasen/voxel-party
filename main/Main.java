@@ -17,7 +17,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
-import color.Greyscale;
+import color.*;
 
 public class Main {
 	public static final int WIDTH = 1600;

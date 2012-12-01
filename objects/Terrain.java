@@ -38,7 +38,6 @@ public class Terrain implements Renderable {
 
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
-//				matrix[i][j].y = Math.abs(Perlin.perlin2D(matrix[i][j].x, matrix[i][j].z));
 				matrix[i][j].y = Math.abs(Perlin.perlin2D(i * 0.1f, j * 0.1f));
 			}
 		}
