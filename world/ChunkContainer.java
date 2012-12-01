@@ -14,7 +14,7 @@ public class ChunkContainer {
 	public static final int CHUNK_DIMENSION = 16;
 	public static final long BIG_NUMBER = (long) Math.pow(2, 31);
 	
-	HashMap<Long, Chunk> chunks;
+	public HashMap<Long, Chunk> chunks;
 	
 	/**
 	 * Creates an empty ChunkContainer
@@ -45,7 +45,7 @@ public class ChunkContainer {
 		Chunk chunk; 
 		
 		if((chunk = this.chunks.get(getKey(x, y))) == null) {
-			chunk = new Chunk();
+			chunk = new Chunk(x, y);
 			this.chunks.put(getKey(x, y), chunk);
 		}
 		
