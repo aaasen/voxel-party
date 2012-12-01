@@ -19,7 +19,6 @@ import static org.lwjgl.opengl.GL11.GL_SMOOTH;
 import static org.lwjgl.opengl.GL11.glClear;
 import static org.lwjgl.opengl.GL11.glClearColor;
 import static org.lwjgl.opengl.GL11.glClearDepth;
-import static org.lwjgl.opengl.GL11.glColor3f;
 import static org.lwjgl.opengl.GL11.glDepthFunc;
 import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL11.glHint;
@@ -27,6 +26,7 @@ import static org.lwjgl.opengl.GL11.glLoadIdentity;
 import static org.lwjgl.opengl.GL11.glMatrixMode;
 import static org.lwjgl.opengl.GL11.glShadeModel;
 import static org.lwjgl.opengl.GL11.glViewport;
+
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.glu.GLU;
 
@@ -79,6 +79,7 @@ public class View {
 		}
 
 		Display.destroy();
+		
 	}
 
 	/**
@@ -96,8 +97,9 @@ public class View {
 					this.model.camera.focal.x, this.model.camera.focal.y, this.model.camera.focal.z,
 					0.0f, 1.0f, 0.0f);
 
-
-			glColor3f(1.0f, 1.0f, 1.0f);
+			for(world.Chunk chunk : this.model.chunks.chunks.values()) {
+				chunk.terrain.draw();
+			}
 			
 			Display.update();
 		}

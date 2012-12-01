@@ -35,6 +35,11 @@ public class Main {
             @SuppressWarnings("unused")
             Controller conroller = new Controller(world);
             
+            world.chunks.getChunk(0, 0);
+            world.chunks.getChunk(1, 0);
+            world.chunks.getChunk(0, 1);
+            world.chunks.getChunk(1, 1);
+            
             view.init();
         	
         } catch (LWJGLException e) {
