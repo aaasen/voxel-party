@@ -84,18 +84,6 @@ public class View {
 
 			glColor3f(1.0f, 1.0f, 1.0f);
 			
-			for( Grid grid : this.model.grids ) {
-				grid.draw();
-			}
-
-			for( Block block : this.model.blocks ) {
-				block.draw();
-			}
-			
-			for( Terrain terrain : this.model.terrains ) {
-				terrain.draw();
-			}
-			
 			Display.update();
 		}
 	}
