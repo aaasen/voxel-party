@@ -17,8 +17,8 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 public class Main {
-	public static final int WIDTH = 1600;
-	public static final int HEIGHT = 900;
+	public static final int WIDTH = 1366;
+	public static final int HEIGHT = 768;
 	
     public static void main(String[] argv) {
         try {
@@ -34,11 +34,6 @@ public class Main {
             View view = new View(world);
             @SuppressWarnings("unused")
             Controller conroller = new Controller(world);
-            
-            world.chunks.getChunk(0, 0);
-            world.chunks.getChunk(1, 0);
-            world.chunks.getChunk(0, 1);
-            world.chunks.getChunk(1, 1);
             
             view.init();
         	

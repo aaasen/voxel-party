@@ -97,8 +97,10 @@ public class View {
 					this.model.camera.focal.x, this.model.camera.focal.y, this.model.camera.focal.z,
 					0.0f, 1.0f, 0.0f);
 
-			for(world.Chunk chunk : this.model.chunks.chunks.values()) {
-				chunk.terrain.draw();
+			for(int i = 0; i <= 3; i++) {
+				for(int j = 0; j <= 3; j++) {
+					this.model.chunks.getChunk(this.model.camera.eye.x + i * 16, this.model.camera.eye.z + j * 16).terrain.draw();	
+				}
 			}
 			
 			Display.update();

@@ -43,7 +43,7 @@ public class ChunkContainer {
 	 */
 	public Chunk getChunk(int x, int y) {
 		Chunk chunk; 
-		
+
 		if((chunk = this.chunks.get(getKey(x, y))) == null) {
 			chunk = new Chunk(x, y);
 			this.chunks.put(getKey(x, y), chunk);
