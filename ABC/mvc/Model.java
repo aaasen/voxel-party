@@ -7,14 +7,12 @@ package mvc;
  * 
  */
 
-import java.util.HashMap;
-
 import main.Camera;
 import main.Point;
-import world.Chunk;
+import world.ChunkContainer;
 
 public class Model {
-	public HashMap<Float, Chunk> chunks;
+	public ChunkContainer chunks;
 	Camera camera;
 	boolean locked;
 	
@@ -22,7 +20,7 @@ public class Model {
 	 * Constructs an empty Model
 	 */
 	public Model() {
-		this.chunks = new HashMap<Float, Chunk>();
+		this.chunks = new ChunkContainer();
 		this.camera = new Camera(new Point(0.0f, 8.0f, 0.0f), 0.0f, 0.0f);
 		this.locked = false;
 	}
