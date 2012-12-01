@@ -17,6 +17,8 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+import color.Greyscale;
+
 public class Main {
 	public static final int WIDTH = 1600;
 	public static final int HEIGHT = 900;
@@ -37,7 +39,7 @@ public class Main {
             Controller conroller = new Controller(world);
             
             // populate the world
-            world.terrains.add(new Terrain(256, 256));
+            world.terrains.add(new Terrain(256, 256, new Greyscale(12.0f, 0.0f)));
             world.terrains.get(0).draw();
             
             view.init();
