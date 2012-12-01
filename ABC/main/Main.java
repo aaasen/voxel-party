@@ -39,7 +39,7 @@ public class Main {
             Controller conroller = new Controller(world);
             
             // populate the world
-            world.terrains.add(new Terrain(256, 256, new Greyscale(12.0f, 0.0f)));
+            world.terrains.add(new Terrain(256, 256, new Greyscale(12.0f, 0.0f), 0.3f, 0.3f));
             world.terrains.get(0).draw();
             
             view.init();

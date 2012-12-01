@@ -16,10 +16,13 @@ import color.*;
 public class Terrain implements Renderable {
 	Point[][] matrix;
 	Colorist colorist;
+	float xDilation, yDilation;
 	
-	public Terrain(int width, int depth, Colorist colorist) {
+	public Terrain(int width, int depth, Colorist colorist, float xDilation, float yDilation) {
 		this.matrix = new Point[width + 1][depth + 1];
 		this.colorist = colorist;
+		this.xDilation = xDilation;
+		this.yDilation = yDilation;
 		genTerrain();
 	}
 	
@@ -29,13 +32,14 @@ public class Terrain implements Renderable {
 	public void genTerrain() {
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
-				matrix[i][j] = new Point(i * 0.1f, 0.0f, j * 0.1f);
+				matrix[i][j] = new Point(i * this.xDilation, 0.0f, j * this.yDilation);
 			}
 		}
 
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
-				matrix[i][j].y = Math.abs(Perlin.perlin2D(matrix[i][j].x, matrix[i][j].z));
+//				matrix[i][j].y = Math.abs(Perlin.perlin2D(matrix[i][j].x, matrix[i][j].z));
+				matrix[i][j].y = Math.abs(Perlin.perlin2D(i * 0.1f, j * 0.1f));
 			}
 		}
 	}
