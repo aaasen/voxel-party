@@ -1,5 +1,12 @@
 package color;
 
+/**
+ * A Greyscale Colorist
+ * 
+ * @author Lane Aasen <laneaasen@gmail.com>
+ * 
+ */
+
 import static org.lwjgl.opengl.GL11.glColor3f;
 
 public class Greyscale extends Colorist {
