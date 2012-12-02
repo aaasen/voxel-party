@@ -1,4 +1,4 @@
-package nexus.model.objects;
+package nexus.model.renderable;
 
 /**
  * A horizontal Grid for orientation

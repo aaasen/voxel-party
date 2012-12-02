@@ -1,4 +1,4 @@
-package nexus.main;
+package nexus.model.structs;
 
 /**
  * A generic 3D point made of floats for OpenGL compatibility
