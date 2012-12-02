@@ -1,4 +1,4 @@
-package nexus.model.containers;
+package nexus.model.structs;
 
 /**
  * A Container for Chunks

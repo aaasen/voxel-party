@@ -1,4 +1,4 @@
-package nexus.color;
+package nexus.view.color;
 
 /**
  * A Greyscale Colorist

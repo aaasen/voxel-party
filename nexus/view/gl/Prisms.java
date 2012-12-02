@@ -1,4 +1,4 @@
-package nexus.glhelper;
+package nexus.view.gl;
 
 /**
  * A collection of static helper methods for drawing 3D shapes
@@ -7,7 +7,7 @@ package nexus.glhelper;
  *
  */
 
-import nexus.main.Vector3;
+import nexus.model.structs.Vector3;
 
 public class Prisms {
 	

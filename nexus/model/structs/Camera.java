@@ -1,4 +1,6 @@
-package nexus.main;
+package nexus.model.structs;
+
+
 
 /**
  * A Camera that defines a viewpoint

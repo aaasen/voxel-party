@@ -1,4 +1,4 @@
-package nexus.glhelper;
+package nexus.view.gl;
 
 /**
  * A collection of static helper methods for drawing Outlines
@@ -11,7 +11,7 @@ import static org.lwjgl.opengl.GL11.GL_LINES;
 import static org.lwjgl.opengl.GL11.glBegin;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glVertex3f;
-import nexus.main.Vector3;
+import nexus.model.structs.Vector3;
 
 public class Outlines {
 	
