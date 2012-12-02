@@ -8,7 +8,6 @@ package mvc;
  */
 
 import main.Camera;
-import main.Point;
 import world.ChunkContainer;
 
 public class Model {
@@ -19,9 +18,9 @@ public class Model {
 	/**
 	 * Constructs an empty Model
 	 */
-	public Model() {
+	public Model(Camera camera) {
 		this.chunks = new ChunkContainer();
-		this.camera = new Camera(new Point(0.0f, 8.0f, 0.0f), 0.0f, 0.0f);
+		this.camera = camera;
 		this.locked = false;
 	}
 	

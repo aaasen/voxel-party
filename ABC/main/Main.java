@@ -21,6 +21,9 @@ public class Main {
 	public static final int HEIGHT = 900;
 	public static final String WINDOW_TITLE = "Nexus";
 	public static final int INIT_RENDER_DISTANCE = 6;
+	public static final Point INIT_CAMERA_POSITION = new Point(0.0f, 8.0f, 0.0f);
+	public static final float INIT_SENSITIVITY = 0.3f;
+	public static final boolean CAMERA_INVERT = true;
 	
     public static void main(String[] argv) {
         try {
@@ -32,7 +35,7 @@ public class Main {
         	Mouse.create();
 	    
         	// start the mvc framework
-        	Model world = new Model();
+        	Model world = new Model(new Camera(INIT_CAMERA_POSITION, 0.0f, 0.0f, INIT_SENSITIVITY, CAMERA_INVERT));
             View view = new View(world, INIT_RENDER_DISTANCE);
             @SuppressWarnings("unused")
             Controller controller = new Controller(world);
