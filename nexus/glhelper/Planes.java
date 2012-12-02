@@ -1,4 +1,4 @@
-package glhelper;
+package nexus.glhelper;
 
 /**
  * A collection of static helper methods for drawing 2D shapes
@@ -11,8 +11,8 @@ import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
 import static org.lwjgl.opengl.GL11.glBegin;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glVertex3f;
-import color.Colorist;
-import main.Vector3;
+import nexus.color.Colorist;
+import nexus.main.Vector3;
 
 public class Planes {
 	/**

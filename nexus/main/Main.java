@@ -1,4 +1,4 @@
-package main;
+package nexus.main;
 
 /** 
  * Launcher for Nexus
@@ -7,9 +7,10 @@ package main;
  * 
  */
 
-import mvc.Controller;
-import mvc.Model;
-import mvc.View;
+import nexus.mvc.Controller;
+import nexus.mvc.Model;
+import nexus.mvc.View;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -34,7 +35,7 @@ public class Main {
         	Keyboard.create();
         	Mouse.create();
 	    
-        	// start the mvc framework
+        	// start the nexus.mvc framework
         	Model world = new Model(new Camera(INIT_CAMERA_POSITION, 0.0f, 0.0f, INIT_SENSITIVITY, CAMERA_INVERT));
             View view = new View(world, INIT_RENDER_DISTANCE);
             @SuppressWarnings("unused")

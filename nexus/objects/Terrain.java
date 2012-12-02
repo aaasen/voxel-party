@@ -1,4 +1,4 @@
-package objects;
+package nexus.objects;
 
 /**
  * A polygonal Terrain generator
@@ -8,11 +8,11 @@ package objects;
  */
 
 import static org.lwjgl.opengl.GL11.glColor3f;
-import world.ChunkContainer;
-import glhelper.Planes;
-import main.Vector3;
-import noise.*;
-import color.*;
+import nexus.color.*;
+import nexus.glhelper.Planes;
+import nexus.main.Vector3;
+import nexus.noise.*;
+import nexus.world.ChunkContainer;
 
 public class Terrain implements Renderable {
 	public static final int BIG_NUMBER = (int) Math.pow(2, 22);

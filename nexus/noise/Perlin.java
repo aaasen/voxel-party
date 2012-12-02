@@ -1,4 +1,4 @@
-package noise;
+package nexus.noise;
 
 /**
  * Utilities for generating Perlin noise

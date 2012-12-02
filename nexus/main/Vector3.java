@@ -1,4 +1,4 @@
-package main;
+package nexus.main;
 
 /**
  * A generic 3D point made of floats for OpenGL compatibility

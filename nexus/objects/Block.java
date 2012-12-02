@@ -1,9 +1,9 @@
-package objects;
+package nexus.objects;
 
 import static org.lwjgl.opengl.GL11.glColor3f;
-import main.Vector3;
-import glhelper.Outlines;
-import glhelper.Prisms;
+import nexus.glhelper.Outlines;
+import nexus.glhelper.Prisms;
+import nexus.main.Vector3;
 
 /**
  * A generic rectangular prism

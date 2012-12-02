@@ -1,11 +1,11 @@
-package objects;
+package nexus.objects;
 
 import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
 import static org.lwjgl.opengl.GL11.glBegin;
 import static org.lwjgl.opengl.GL11.glColor3f;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glVertex3f;
-import main.Vector3;
+import nexus.main.Vector3;
 
 /**
  * A colorful pyramid

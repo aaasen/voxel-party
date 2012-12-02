@@ -1,4 +1,4 @@
-package color;
+package nexus.color;
 
 import static org.lwjgl.opengl.GL11.glColor3f;
 
