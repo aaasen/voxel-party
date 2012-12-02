@@ -1,4 +1,4 @@
-package nexus.mvc;
+package nexus.main;
 
 /**
  * The Controller which handles input
@@ -10,6 +10,7 @@ package nexus.mvc;
  * @author Lane Aasen <laneaasen@gmail.com>
  * 
  */
+
 
 
 import org.lwjgl.LWJGLException;

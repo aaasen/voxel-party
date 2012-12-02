@@ -9,9 +9,6 @@ package nexus.main;
 
 import nexus.model.structs.Camera;
 import nexus.model.structs.Vector3;
-import nexus.mvc.Controller;
-import nexus.mvc.Model;
-import nexus.mvc.View;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;

@@ -1,4 +1,4 @@
-package nexus.mvc;
+package nexus.main;
 
 /**
  * The Model which is responsible for holding all of the world's data
