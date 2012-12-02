@@ -70,8 +70,8 @@ public class Controller implements Runnable {
 			dx += Mouse.getEventDX();
 		}
 
-		this.model.camera.pitch -= dy * this.mouseSensitivity;
-		this.model.camera.yaw += dx * this.mouseSensitivity;
+		this.model.camera.pitch(-1.0f * dy * this.mouseSensitivity);
+		this.model.camera.yaw(dx * this.mouseSensitivity);
 		
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			this.model.camera.forwards();

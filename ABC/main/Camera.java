@@ -53,7 +53,33 @@ public class Camera {
 	public void update() {
 		this.focal = lookAt();
 	}
+	
+	/**
+	 * Sets for Camera's pitch and limits it to a reasonable range
+	 * 
+	 * @param a
+	 */
+	public void pitch(float a) {
+		this.pitch += a;
 		
+		if (this.pitch > 1.0f) {
+			this.pitch = 1.0f;
+		} else if (this.pitch < -1.0f) {
+			this.pitch = -1.0f;
+		}
+	}
+	
+	/**
+	 * Sets the Camera's yaw
+	 * 
+	 * Does nothing special; it's only here for consistency with pitch()
+	 * 
+	 * @param a
+	 */
+	public void yaw(float a) {
+		this.yaw += a;
+	}
+	
 	/**
 	 * Moves the camera towards where it is pointing
 	 */
