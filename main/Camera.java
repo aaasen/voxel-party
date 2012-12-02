@@ -10,8 +10,8 @@ public class Camera {
 	public Point eye;
 	public float pitch, yaw;
 	public Point focal;
-	public boolean invert = false;
-	public float sensitivity = 0.3f;
+	public boolean invert;
+	public float sensitivity;
 	
 	/**
 	 * Creates a Camera
@@ -20,10 +20,12 @@ public class Camera {
 	 * @param pitch rotation around the x axis
 	 * @param yaw rotation around the y axis
 	 */
-	public Camera(Point eye, float pitch, float yaw) {
+	public Camera(Point eye, float pitch, float yaw, float sensitivity, boolean invert) {
 		this.eye = eye;
 		this.pitch = pitch;
 		this.yaw = yaw;
+		this.sensitivity = sensitivity;
+		this.invert = invert;
 		this.focal = new Point(0.0f, 0.0f, 0.0f);
 	}
 	
