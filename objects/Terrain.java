@@ -15,6 +15,8 @@ import noise.*;
 import color.*;
 
 public class Terrain implements Renderable {
+	public static final int BIG_NUMBER = (int) Math.pow(2, 22);
+	
 	Point[][] matrix;
 	Colorist colorist;
 	float xDilation, yDilation;
@@ -42,7 +44,7 @@ public class Terrain implements Renderable {
 
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
-				matrix[i][j].y = Math.abs(Perlin.perlin2D((this.x * ChunkContainer.CHUNK_DIMENSION + i) * 0.1f, (this.y * ChunkContainer.CHUNK_DIMENSION + j)  * 0.1f));
+				matrix[i][j].y = Math.abs(Perlin.perlin2D((this.x * ChunkContainer.CHUNK_DIMENSION + i + BIG_NUMBER) * 0.1f, (this.y * ChunkContainer.CHUNK_DIMENSION + j + BIG_NUMBER)  * 0.1f));
 			}
 		}
 	}
