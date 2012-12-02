@@ -10,14 +10,14 @@ package objects;
 import static org.lwjgl.opengl.GL11.glColor3f;
 import world.ChunkContainer;
 import glhelper.Planes;
-import main.Point;
+import main.Vector3;
 import noise.*;
 import color.*;
 
 public class Terrain implements Renderable {
 	public static final int BIG_NUMBER = (int) Math.pow(2, 22);
 	
-	Point[][] matrix;
+	Vector3[][] matrix;
 	Colorist colorist;
 	float xDilation, yDilation;
 	int x, y;
@@ -25,7 +25,7 @@ public class Terrain implements Renderable {
 	public Terrain(int x, int y, int width, int depth, Colorist colorist, float xDilation, float yDilation) {
 		this.x = x;
 		this.y = y;
-		this.matrix = new Point[width + 1][depth + 1];
+		this.matrix = new Vector3[width + 1][depth + 1];
 		this.colorist = colorist;
 		this.xDilation = xDilation;
 		this.yDilation = yDilation;
@@ -38,7 +38,7 @@ public class Terrain implements Renderable {
 	public void genTerrain() {
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
-				matrix[i][j] = new Point((this.x * ChunkContainer.CHUNK_DIMENSION + i) * this.xDilation, 0.0f, (this.y * ChunkContainer.CHUNK_DIMENSION + j) * this.yDilation);
+				matrix[i][j] = new Vector3((this.x * ChunkContainer.CHUNK_DIMENSION + i) * this.xDilation, 0.0f, (this.y * ChunkContainer.CHUNK_DIMENSION + j) * this.yDilation);
 			}
 		}
 
