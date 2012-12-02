@@ -15,36 +15,40 @@ import nexus.view.color.*;
 import nexus.view.gl.Planes;
 
 public class Terrain implements Renderable {
-	public static final int BIG_NUMBER = (int) Math.pow(2, 22);
+	public static final int BIG_NUMBER = (int) Math.pow(2, 18);
 	
 	Vector3[][] matrix;
 	Colorist colorist;
-	float xDilation, yDilation;
-	int x, y;
+	float xDilation, yDilation, zDilation;
+	int x, z;
+	float y;
 	
-	public Terrain(int x, int y, int width, int depth, Colorist colorist, float xDilation, float yDilation) {
+	public Terrain(int x, int z, float y, int width, int depth, Colorist colorist, float xDilation, float yDilation, float zDilation) {
 		this.x = x;
+		this.z = z;
 		this.y = y;
 		this.matrix = new Vector3[width + 1][depth + 1];
 		this.colorist = colorist;
 		this.xDilation = xDilation;
 		this.yDilation = yDilation;
+		this.zDilation = zDilation;
+		
 		genTerrain();
 	}
 	
-	/**
+	/**this.zDilation
 	 * Populates the Terrain matrix
 	 */
 	public void genTerrain() {
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
-				matrix[i][j] = new Vector3((this.x * ChunkContainer.CHUNK_DIMENSION + i) * this.xDilation, 0.0f, (this.y * ChunkContainer.CHUNK_DIMENSION + j) * this.yDilation);
+				matrix[i][j] = new Vector3((this.x * ChunkContainer.CHUNK_DIMENSION + i), this.y, (this.z * ChunkContainer.CHUNK_DIMENSION + j));
 			}
 		}
 
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
-				matrix[i][j].y = Math.abs(Perlin.perlin2D((this.x * ChunkContainer.CHUNK_DIMENSION + i + BIG_NUMBER) * 0.1f, (this.y * ChunkContainer.CHUNK_DIMENSION + j + BIG_NUMBER)  * 0.1f));
+				matrix[i][j].y += this.yDilation * Perlin.perlin2D(matrix[i][j].x * this.xDilation + BIG_NUMBER, matrix[i][j].z * this.zDilation + BIG_NUMBER);
 			}
 		}
 	}
