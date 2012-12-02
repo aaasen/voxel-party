@@ -31,7 +31,7 @@ public class Main {
 	    
         	// start the mvc framework
         	Model world = new Model();
-            View view = new View(world);
+            View view = new View(world, 6);
             @SuppressWarnings("unused")
             Controller conroller = new Controller(world);
             
