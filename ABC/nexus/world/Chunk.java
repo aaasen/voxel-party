@@ -1,4 +1,4 @@
-package world;
+package nexus.world;
 
 /**
  * 16x16 containers for Terrain
@@ -7,7 +7,7 @@ package world;
  *
  */
 
-import objects.Terrain;
+import nexus.objects.Terrain;
 
 public class Chunk {
 	public Terrain terrain;
@@ -16,6 +16,6 @@ public class Chunk {
 	public Chunk(int x, int y) {
 		this.x = x;
 		this.y = y;
-		this.terrain = new Terrain(x, y, ChunkContainer.CHUNK_DIMENSION, ChunkContainer.CHUNK_DIMENSION, new color.Greyscale(30.0f, -18.0f), 1.0f, 1.0f);
+		this.terrain = new Terrain(x, y, ChunkContainer.CHUNK_DIMENSION, ChunkContainer.CHUNK_DIMENSION, new nexus.color.Greyscale(30.0f, -18.0f), 1.0f, 1.0f);
 	}
 }

@@ -1,4 +1,4 @@
-package mvc;
+package nexus.mvc;
 
 /**
  * The Model which is responsible for holding all of the world's data
@@ -7,8 +7,8 @@ package mvc;
  * 
  */
 
-import main.Camera;
-import world.ChunkContainer;
+import nexus.main.Camera;
+import nexus.world.ChunkContainer;
 
 public class Model {
 	public ChunkContainer chunks;

@@ -1,4 +1,4 @@
-package noise;
+package nexus.noise;
 
 /**
  * A library of static functions for Interpolation

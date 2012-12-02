@@ -1,4 +1,4 @@
-package objects;
+package nexus.objects;
 
 /**
  * An interface for anything that can be drawn in the Model

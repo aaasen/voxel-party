@@ -1,4 +1,4 @@
-package mvc;
+package nexus.mvc;
 
 /**
  * The Controller which handles input

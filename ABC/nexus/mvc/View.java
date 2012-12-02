@@ -1,4 +1,4 @@
-package mvc;
+package nexus.mvc;
 
 /** 
  * The View which is responsible for rendering a Model to the screen 
