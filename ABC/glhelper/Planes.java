@@ -12,7 +12,7 @@ import static org.lwjgl.opengl.GL11.glBegin;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glVertex3f;
 import color.Colorist;
-import main.Point;
+import main.Vector3;
 
 public class Planes {
 	/**
@@ -25,7 +25,7 @@ public class Planes {
 	 * @param c top right corner
 	 * @param d bottom right corner
 	 */
-	public static void drawQuad4f(Point a, Point b, Point c, Point d) {
+	public static void drawQuad4f(Vector3 a, Vector3 b, Vector3 c, Vector3 d) {
 		glBegin(GL_TRIANGLES);
 		
 		glVertex3f(a.x, a.y, a.z);
@@ -49,7 +49,7 @@ public class Planes {
 	 * @param c top right corner
 	 * @param d bottom right corner
 	 */
-	public static void drawQuad4f(Point a, Point b, Point c, Point d, Colorist colorist) {
+	public static void drawQuad4f(Vector3 a, Vector3 b, Vector3 c, Vector3 d, Colorist colorist) {
 		glBegin(GL_TRIANGLES);
 		
 		colorist.color(a.y);
@@ -77,7 +77,7 @@ public class Planes {
 	 * 
 	 * TODO: research
 	 */
-	public static void drawQuad2f(Point a, Point b) {
+	public static void drawQuad2f(Vector3 a, Vector3 b) {
 		glBegin(GL_TRIANGLES);
 		glVertex3f(a.x, a.y, a.z);
 		glVertex3f(b.x, a.y, a.z);
@@ -108,6 +108,6 @@ public class Planes {
 	 * @param z top right z
 	 */
 	public static void drawQuad2f(float a, float b, float c, float x, float y, float z) {
-		drawQuad2f(new Point(a, b, c), new Point(x, y, z));
+		drawQuad2f(new Vector3(a, b, c), new Vector3(x, y, z));
 	}
 }

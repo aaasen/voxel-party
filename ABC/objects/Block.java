@@ -1,7 +1,7 @@
 package objects;
 
 import static org.lwjgl.opengl.GL11.glColor3f;
-import main.Point;
+import main.Vector3;
 import glhelper.Outlines;
 import glhelper.Prisms;
 
@@ -13,8 +13,8 @@ import glhelper.Prisms;
  */
 
 public class Block implements Renderable {
-	Point a;
-	Point b;
+	Vector3 a;
+	Vector3 b;
 	
 	/**
 	 * Creates a Block
@@ -24,7 +24,7 @@ public class Block implements Renderable {
 	 * @param height height on the y axis
 	 * @param depth depth on the z axis
 	 */
-	public Block(Point a, Point b) {
+	public Block(Vector3 a, Vector3 b) {
 		this.a = a;
 		this.b = b;
 	}

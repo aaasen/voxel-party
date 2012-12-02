@@ -7,9 +7,9 @@ package main;
  *
  */
 public class Camera {
-	public Point eye;
+	public Vector3 eye;
 	public float pitch, yaw;
-	public Point focal;
+	public Vector3 focal;
 	public boolean invert;
 	public float sensitivity;
 	
@@ -20,13 +20,13 @@ public class Camera {
 	 * @param pitch rotation around the x axis
 	 * @param yaw rotation around the y axis
 	 */
-	public Camera(Point eye, float pitch, float yaw, float sensitivity, boolean invert) {
+	public Camera(Vector3 eye, float pitch, float yaw, float sensitivity, boolean invert) {
 		this.eye = eye;
 		this.pitch = pitch;
 		this.yaw = yaw;
 		this.sensitivity = sensitivity;
 		this.invert = invert;
-		this.focal = new Point(0.0f, 0.0f, 0.0f);
+		this.focal = new Vector3(0.0f, 0.0f, 0.0f);
 	}
 	
 	/**
@@ -34,8 +34,8 @@ public class Camera {
 	 * 
 	 * @return a point on the unit sphere which the Camera is pointing at
 	 */
-	private Point unitLookAt() {
-		return new Point((float) Math.cos(this.yaw), (float) Math.tan((invert ? 1.0f : -1.0f) * this.pitch), (float) Math.sin(this.yaw));
+	private Vector3 unitLookAt() {
+		return new Vector3((float) Math.cos(this.yaw), (float) Math.tan((invert ? 1.0f : -1.0f) * this.pitch), (float) Math.sin(this.yaw));
 	}
 	
 	/**
@@ -44,9 +44,9 @@ public class Camera {
 	 * @see unitLookAt()
 	 * @return an absolute point that the camera should look at
 	 */
-	public Point lookAt() {
-		Point unit = unitLookAt();
-		return new Point(this.eye.x + unit.x, this.eye.y + unit.y, this.eye.z + unit.z);
+	public Vector3 lookAt() {
+		Vector3 unit = unitLookAt();
+		return new Vector3(this.eye.x + unit.x, this.eye.y + unit.y, this.eye.z + unit.z);
 	}
 	
 	/**
@@ -86,13 +86,13 @@ public class Camera {
 	 * Moves the camera towards where it is pointing
 	 */
 	public void forwards() {
-		this.eye = Point.add(Point.scale(this.unitLookAt(), this.sensitivity), this.eye);
+		this.eye = Vector3.add(Vector3.scale(this.unitLookAt(), this.sensitivity), this.eye);
 	}
 	
 	/**
 	 * Moves the camera away from where it is pointing
 	 */
 	public void backwards() {
-		this.eye = Point.add(Point.scale(this.unitLookAt(), -this.sensitivity), this.eye);
+		this.eye = Vector3.add(Vector3.scale(this.unitLookAt(), -this.sensitivity), this.eye);
 	}
 }

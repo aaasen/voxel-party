@@ -5,7 +5,7 @@ import static org.lwjgl.opengl.GL11.glBegin;
 import static org.lwjgl.opengl.GL11.glColor3f;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glVertex3f;
-import main.Point;
+import main.Vector3;
 
 /**
  * A colorful pyramid
@@ -15,13 +15,13 @@ import main.Point;
  */
 
 public class Pyramid implements Renderable {
-	Point position;
+	Vector3 position;
 	
 	public Pyramid(float x, float y, float z) {
-		this.position = new Point(x, y, z);
+		this.position = new Vector3(x, y, z);
 	}
 	
-	public Pyramid(Point position) {
+	public Pyramid(Vector3 position) {
 		this.position = position;
 	}
 	

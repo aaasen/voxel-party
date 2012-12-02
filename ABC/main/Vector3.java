@@ -7,7 +7,7 @@ package main;
  *
  */
 
-public class Point {
+public class Vector3 {
 	public float x, y, z;
 	
 	/**
@@ -17,7 +17,7 @@ public class Point {
 	 * @param y
 	 * @param z
 	 */
-	public Point(float x, float y, float z) {
+	public Vector3(float x, float y, float z) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
@@ -30,11 +30,11 @@ public class Point {
 	 * @param b
 	 * @return sum of a and b
 	 */
-	public static Point add(Point a, Point b) {
-		return new Point(a.x + b.x, a.y + b.y, a.z + b.z);
+	public static Vector3 add(Vector3 a, Vector3 b) {
+		return new Vector3(a.x + b.x, a.y + b.y, a.z + b.z);
 	}
 	
-	public static Point scale(Point a, float scalar) {
-		return new Point(a.x * scalar, a.y * scalar, a.z * scalar); 
+	public static Vector3 scale(Vector3 a, float scalar) {
+		return new Vector3(a.x * scalar, a.y * scalar, a.z * scalar); 
 	}
 }

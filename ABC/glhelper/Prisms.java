@@ -7,7 +7,7 @@ package glhelper;
  *
  */
 
-import main.Point;
+import main.Vector3;
 
 public class Prisms {
 	
@@ -17,7 +17,7 @@ public class Prisms {
 	 * @param a near bottom left corner
 	 * @param b far top right corner
 	 */
-	public static void drawRectPrism2f(Point a, Point b) {
+	public static void drawRectPrism2f(Vector3 a, Vector3 b) {
 		Planes.drawQuad2f(a.x, a.y, a.z, b.x, b.y, a.z);
 		Planes.drawQuad2f(a.x, a.y, b.z, b.x, b.y, b.z);
 
