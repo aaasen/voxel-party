@@ -33,6 +33,7 @@ import org.lwjgl.util.glu.GLU;
 public class View {
 	Model model;
 	boolean stop = false;
+	int renderDistance;
 
 	/**
 	 * Constructs a View
@@ -41,8 +42,9 @@ public class View {
 	 * 
 	 * @param model model, or world to be drawn
 	 */
-	public View(Model model) {
+	public View(Model model, int renderDistance) {
 		this.model = model;
+		this.renderDistance = renderDistance;
 	}
 
 	/**
@@ -97,8 +99,8 @@ public class View {
 					this.model.camera.focal.x, this.model.camera.focal.y, this.model.camera.focal.z,
 					0.0f, 1.0f, 0.0f);
 
-			for(int i = 0; i <= 3; i++) {
-				for(int j = 0; j <= 3; j++) {
+			for(int i = -this.renderDistance; i <= this.renderDistance; i++) {
+				for(int j = -this.renderDistance; j <= this.renderDistance; j++) {
 					this.model.chunks.getChunk(this.model.camera.eye.x + i * 16, this.model.camera.eye.z + j * 16).terrain.draw();	
 				}
 			}
