@@ -8,10 +8,10 @@ package nexus.model.renderable;
  */
 
 import static org.lwjgl.opengl.GL11.glColor3f;
-import nexus.model.generators.*;
+import nexus.model.generators.Perlin;
 import nexus.model.structs.ChunkContainer;
 import nexus.model.structs.Vector3;
-import nexus.view.color.*;
+import nexus.view.color.Colorist;
 import nexus.view.gl.Planes;
 
 public class Terrain implements Renderable {
