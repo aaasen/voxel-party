@@ -54,7 +54,7 @@ public class Noise {
 	 * @param primes set of 4 primes to use in generating the noise
 	 * @return deteministic noise; hash of x
 	 */
-	public static float noise2f(int x, int y, int[] primes) {
+	public static float noise2f(int x, int y, int[] primes) {		
 		int n = x + y * 57;
 		n = (n<<13) ^ n;
 		return noise1f(n, primes);   	
