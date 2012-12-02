@@ -1,4 +1,4 @@
-package nexus.objects;
+package nexus.model.objects;
 
 import static org.lwjgl.opengl.GL11.glColor3f;
 import nexus.glhelper.Outlines;

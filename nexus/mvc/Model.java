@@ -8,7 +8,7 @@ package nexus.mvc;
  */
 
 import nexus.main.Camera;
-import nexus.world.ChunkContainer;
+import nexus.model.containers.ChunkContainer;
 
 public class Model {
 	public ChunkContainer chunks;

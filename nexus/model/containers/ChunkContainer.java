@@ -1,4 +1,4 @@
-package nexus.world;
+package nexus.model.containers;
 
 /**
  * A Container for Chunks

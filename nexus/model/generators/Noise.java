@@ -1,4 +1,4 @@
-package nexus.noise;
+package nexus.model.generators;
 
 /**
  * Utilities for creating deterministic Noise

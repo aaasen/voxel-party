@@ -1,4 +1,4 @@
-package nexus.objects;
+package nexus.model.objects;
 
 /**
  * A horizontal Grid for orientation

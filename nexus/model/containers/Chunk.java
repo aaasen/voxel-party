@@ -1,4 +1,4 @@
-package nexus.world;
+package nexus.model.containers;
 
 /**
  * 16x16 containers for Terrain
@@ -7,7 +7,7 @@ package nexus.world;
  *
  */
 
-import nexus.objects.Terrain;
+import nexus.model.objects.Terrain;
 
 public class Chunk {
 	public Terrain terrain;
