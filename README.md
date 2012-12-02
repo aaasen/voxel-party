@@ -18,7 +18,7 @@ This step is detailed in the [LWJGL Wiki](http://www.lwjgl.org/wiki/index.php?ti
 
 ## Note About Updates
 
-IDEs like Eclipe will generally make a copy of the code to work on.
+IDEs like Eclipse will generally make a copy of the code to work on.
 You should be able to copy-paste the original `nexus/.git` directory into `your_workspace/nexus/src/`
 
 If you have any questions, please email me at laneaasen@gmail.com.
