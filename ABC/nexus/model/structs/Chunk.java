@@ -22,8 +22,7 @@ public class Chunk {
 		this.y = y;
 		this.terrain = new Terrain(x, y, 0.0f, CHUNK_DIMENSION, CHUNK_DIMENSION,
 				0.1f, 0.1f,
-				new Biome(40.0f,
-					new Greyscale(40.0f, -20.0f)));
+				new Biome(40.0f, new Greyscale(40.0f, -20.0f)));
 		this.water = new Water(new Vector3(x * CHUNK_DIMENSION, 0.0f, y * CHUNK_DIMENSION),
 				CHUNK_DIMENSION, CHUNK_DIMENSION, 
 				new Color(0.55f, 0.804f, 0.97f));
