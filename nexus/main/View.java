@@ -27,7 +27,6 @@ import static org.lwjgl.opengl.GL11.glMatrixMode;
 import static org.lwjgl.opengl.GL11.glShadeModel;
 import static org.lwjgl.opengl.GL11.glViewport;
 
-
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.glu.GLU;
 
