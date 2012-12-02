@@ -1,4 +1,4 @@
-package nexus.noise;
+package nexus.model.generators;
 
 /**
  * A library of static functions for Interpolation
