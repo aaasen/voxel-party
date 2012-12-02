@@ -7,7 +7,6 @@ package nexus.main;
  * 
  */
 
-import nexus.model.renderable.Water;
 import nexus.model.structs.Camera;
 import nexus.model.structs.ChunkContainer;
 
