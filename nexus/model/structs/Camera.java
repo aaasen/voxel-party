@@ -1,13 +1,12 @@
 package nexus.model.structs;
 
-
-
 /**
  * A Camera that defines a viewpoint
  * 
  * @author Lane Aasen <laneaasen@gmail.com>
  *
  */
+
 public class Camera {
 	public Vector3 eye;
 	public float pitch, yaw;
