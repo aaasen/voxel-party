@@ -21,8 +21,8 @@ public class Noise {
 	 * @return deteministic noise; hash of x
 	 */
 	public static float noise1f(int x, int[] primes) {
-		x = (x<<13) ^ x;
-		return (1.0f - ( (x * (x * x * primes[0] + primes[1]) + primes[2]) & 0x7fffffff) / (float) primes[3]);
+		x = (x<<17) ^ x;
+		return ((((x * (x * x * primes[0] + primes[1]) + primes[2]) & 0x7fffffff) / (float) primes[3]) - 10.0f) / 10.0f;
 	}
 
 	/**
