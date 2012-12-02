@@ -57,7 +57,7 @@ public class View {
 		glViewport(0, 0, width, height);
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		GLU.gluPerspective(45.0f, ((float) width / (float) height), 0.1f, 100.0f);
+		GLU.gluPerspective(45.0f, ((float) width / (float) height), 0.1f, 256.0f);
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 

@@ -17,8 +17,8 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 public class Main {
-	public static final int WIDTH = 1366;
-	public static final int HEIGHT = 768;
+	public static final int WIDTH = 1600;
+	public static final int HEIGHT = 900;
 	
     public static void main(String[] argv) {
         try {
