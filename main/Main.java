@@ -19,21 +19,23 @@ import org.lwjgl.opengl.DisplayMode;
 public class Main {
 	public static final int WIDTH = 1600;
 	public static final int HEIGHT = 900;
+	public static final String WINDOW_TITLE = "Nexus";
+	public static final int INIT_RENDER_DISTANCE = 6;
 	
     public static void main(String[] argv) {
         try {
         	// initialize lwjgl
         	Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
-        	Display.setTitle("Nexus");
+        	Display.setTitle(WINDOW_TITLE);
         	Display.create();
         	Keyboard.create();
         	Mouse.create();
 	    
         	// start the mvc framework
         	Model world = new Model();
-            View view = new View(world, 6);
+            View view = new View(world, INIT_RENDER_DISTANCE);
             @SuppressWarnings("unused")
-            Controller conroller = new Controller(world);
+            Controller controller = new Controller(world);
             
             view.init();
         	
