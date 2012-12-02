@@ -1,4 +1,4 @@
-package nexus.mvc;
+package nexus.main;
 
 /** 
  * The View which is responsible for rendering a Model to the screen 
@@ -26,6 +26,7 @@ import static org.lwjgl.opengl.GL11.glLoadIdentity;
 import static org.lwjgl.opengl.GL11.glMatrixMode;
 import static org.lwjgl.opengl.GL11.glShadeModel;
 import static org.lwjgl.opengl.GL11.glViewport;
+
 
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.glu.GLU;
