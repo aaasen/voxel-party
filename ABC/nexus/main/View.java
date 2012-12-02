@@ -27,6 +27,8 @@ import static org.lwjgl.opengl.GL11.glMatrixMode;
 import static org.lwjgl.opengl.GL11.glShadeModel;
 import static org.lwjgl.opengl.GL11.glViewport;
 
+import nexus.model.structs.Chunk;
+
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.glu.GLU;
 
@@ -101,7 +103,10 @@ public class View {
 
 			for(int i = -this.renderDistance; i <= this.renderDistance; i++) {
 				for(int j = -this.renderDistance; j <= this.renderDistance; j++) {
-					this.model.chunks.getChunk(this.model.camera.eye.x + i * 16, this.model.camera.eye.z + j * 16).terrain.draw();	
+					Chunk chunk = this.model.chunks.getChunk(this.model.camera.eye.x + i * 16, this.model.camera.eye.z + j * 16);
+					chunk.terrain.draw();
+					chunk.water.draw();
+					
 				}
 			}
 			
