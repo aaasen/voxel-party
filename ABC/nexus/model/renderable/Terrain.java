@@ -52,12 +52,16 @@ public class Terrain implements Renderable {
 		}
 	}
 	
-	public void draw() {
-		for (int i = 0; i < matrix.length - 1; i++) {
-			for (int j = 0; j < matrix[i].length - 1; j++) {
+	public void draw(int detail) {
+		for (int i = 0; i < matrix.length - 1; i += detail) {
+			for (int j = 0; j < matrix[i].length - 1; j += detail) {
 				glColor3f(1.0f, 1.0f, 1.0f);
-				Planes.drawQuad4f(matrix[i][j], matrix[i + 1][j], matrix[i + 1][j + 1], matrix[i][j + 1], this.biome.colorist);
+				Planes.drawQuad4f(matrix[i][j], matrix[i + detail][j], matrix[i + detail][j + detail], matrix[i][j + detail], this.biome.colorist);
 			}
 		}
+	}
+	
+	public void draw() {
+		draw(1);
 	}
 }
