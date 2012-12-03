@@ -7,7 +7,7 @@ package nexus.model.structs;
  *
  */
 
-import static nexus.model.structs.Chunk.CHUNK_DIMENSION;
+import static nexus.model.structs.Chunk.WIDTH;
 
 import java.util.HashMap;
 
@@ -29,7 +29,7 @@ public class ChunkContainer {
 	 * @return
 	 */
 	public Chunk getChunk(float x, float y) {
-		return getChunk(((int) x) / CHUNK_DIMENSION, ((int) y) / CHUNK_DIMENSION);
+		return getChunk(((int) x) / WIDTH, ((int) y) / WIDTH);
 	}
 	
 	/**
