@@ -8,10 +8,9 @@ package nexus.model.structs;
  */
 
 import java.util.HashMap;
+import static nexus.model.structs.Chunk.CHUNK_DIMENSION;
 
 public class ChunkContainer {
-	// this value should not need to be changed
-	public static final int CHUNK_DIMENSION = 16;
 	public static final long BIG_NUMBER = (long) Math.pow(2, 31);
 	
 	public HashMap<Long, Chunk> chunks;

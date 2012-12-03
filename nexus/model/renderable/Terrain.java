@@ -7,11 +7,12 @@ package nexus.model.renderable;
  *
  */
 
+import static nexus.model.structs.Chunk.CHUNK_DIMENSION;
+
 import java.util.ArrayList;
 
 import nexus.model.generators.Perlin;
 import nexus.model.structs.Biome;
-import nexus.model.structs.ChunkContainer;
 import nexus.model.structs.Vector3;
 
 public class Terrain implements Renderable {
@@ -44,8 +45,8 @@ public class Terrain implements Renderable {
 	public void genTerrain() {
 		for (int i = 0; i < width + 1; i++) {
 			for (int j = 0; j < depth + 1; j++) {
-				float x = (this.x * ChunkContainer.CHUNK_DIMENSION + i);
-				float z = (this.z * ChunkContainer.CHUNK_DIMENSION + j);
+				float x = (this.x * CHUNK_DIMENSION + i);
+				float z = (this.z * CHUNK_DIMENSION + j);
 				float y = this.biome.yDilation * ((1.0f + Perlin.perlin2D(x * this.xDilation + BIG_NUMBER, z * this.zDilation + BIG_NUMBER)) / 2.0f);
 				
 //				System.out.println(y);
