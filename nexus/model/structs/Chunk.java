@@ -1,5 +1,7 @@
 package nexus.model.structs;
 
+import nexus.model.renderable.Block;
+
 /**
  * 16x16 containers for Terrain
  * 
@@ -7,19 +9,18 @@ package nexus.model.structs;
  *
  */
 
-import nexus.model.renderable.Terrain;
-
 public class Chunk {
 	// this value should not need to be changed
-	public static final int CHUNK_DIMENSION = 16;
-	
-	public Terrain terrain;
+	public static final int WIDTH = 16;
+	public static final int HEIGHT = 16;
 	
 	int x, y;
+	
+	Block[][][] blocks;
 	
 	public Chunk(int x, int y) {
 		this.x = x;
 		this.y = y;
-		this.terrain = new Terrain(x, y, 0.0f, CHUNK_DIMENSION, CHUNK_DIMENSION, 0.1f, 0.1f);
+		this.blocks = new Block[WIDTH][HEIGHT][WIDTH];
 	}
 }
