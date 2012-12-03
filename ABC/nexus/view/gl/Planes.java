@@ -77,23 +77,33 @@ public class Planes {
 	 * 
 	 * TODO: research
 	 */
-	public static void drawQuad2f(Vector3 a, Vector3 b) {
+	public static void drawQuad2f(Vector3 a, Vector3 b, Colorist colorist) {
 		glBegin(GL_TRIANGLES);
+		
+		colorist.color(a.y);
 		glVertex3f(a.x, a.y, a.z);
 		glVertex3f(b.x, a.y, a.z);
+		colorist.color(b.y);
 		glVertex3f(b.x, b.y, b.z);
 		
+		colorist.color(a.y);
 		glVertex3f(a.x, a.y, a.z);
+		colorist.color(b.y);
 		glVertex3f(b.x, b.y, a.z);
 		glVertex3f(b.x, b.y, b.z);
 		
+		colorist.color(a.y);
 		glVertex3f(a.x, a.y, a.z);
 		glVertex3f(a.x, a.y, b.z);
+		colorist.color(b.y);
 		glVertex3f(b.x, b.y, b.z);
 		
+		colorist.color(a.y);
 		glVertex3f(a.x, a.y, a.z);
+		colorist.color(b.y);
 		glVertex3f(a.x, b.y, b.z);
 		glVertex3f(b.x, b.y, b.z);
+		
 		glEnd();
 	}
 	
@@ -107,7 +117,7 @@ public class Planes {
 	 * @param y top right y
 	 * @param z top right z
 	 */
-	public static void drawQuad2f(float a, float b, float c, float x, float y, float z) {
-		drawQuad2f(new Vector3(a, b, c), new Vector3(x, y, z));
+	public static void drawQuad2f(float a, float b, float c, float x, float y, float z, Colorist colorist) {
+		drawQuad2f(new Vector3(a, b, c), new Vector3(x, y, z), colorist);
 	}
 }

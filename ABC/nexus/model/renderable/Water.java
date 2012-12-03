@@ -1,7 +1,7 @@
 package nexus.model.renderable;
 
-import nexus.model.structs.Color;
 import nexus.model.structs.Vector3;
+import nexus.view.color.Colorist;
 import nexus.view.gl.Planes;
 
 /**
@@ -16,18 +16,17 @@ import nexus.view.gl.Planes;
 public class Water implements Renderable {	
 	Vector3 position;
 	float width, depth;
-	Color color;
+	Colorist colorist;
 	
-	public Water(Vector3 position, float width, float depth, Color color) {
+	public Water(Vector3 position, float width, float depth, Colorist colorist) {
 		this.position = position;
 		this.width = width;
 		this.depth = depth;
-		this.color = color;
+		this.colorist = colorist;
 	}
 	
 	public void draw() {
-		this.color.color();
-		Planes.drawQuad2f(this.position, new Vector3(this.position.x + this.width, this.position.y, this.position.z + this.depth));
+		Planes.drawQuad2f(this.position, new Vector3(this.position.x + this.width, this.position.y, this.position.z + this.depth), this.colorist);
 	}
 
 }
