@@ -100,10 +100,35 @@ public class View {
 					this.model.camera.focal.x, this.model.camera.focal.y, this.model.camera.focal.z,
 					0.0f, 1.0f, 0.0f);
 
+			// 1, 2, 4, 8, 16
+			// dist = 8
+			// 1, 1, 1, 1, 2, 4, 8, 16
+			// 1, 2, 3, 4, 5, 6, 7, 8
+			//          2^0 2^1 2^2 2^3 2^4
+			// 0, 0, 0, 0, 1, 2, 3, 4
+			
 			for(int i = -this.renderDistance; i <= this.renderDistance; i++) {
 				for(int j = -this.renderDistance; j <= this.renderDistance; j++) {
+					int detail = 0;
+					int thing = 0;
+					
+					int a = Math.abs(i);
+					int b = Math.abs(j);
+					
+					if (a >= b) {
+						thing = a;
+					} else {
+						thing = b;
+					}
+					
+					detail = thing - (this.renderDistance - 4);
+					
+					if (detail < 0) {
+						detail = 0;
+					}
+					
 					Chunk chunk = this.model.chunks.getChunk(this.model.camera.eye.x + i * 16, this.model.camera.eye.z + j * 16);
-					chunk.terrain.draw();
+					chunk.terrain.draw((int) Math.pow(2, detail));
 					chunk.water.draw();
 					
 				}
