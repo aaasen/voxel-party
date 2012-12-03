@@ -27,6 +27,7 @@ import static org.lwjgl.opengl.GL11.glMatrixMode;
 import static org.lwjgl.opengl.GL11.glShadeModel;
 import static org.lwjgl.opengl.GL11.glViewport;
 import nexus.model.structs.Chunk;
+import nexus.model.structs.ChunkContainer;
 
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.glu.GLU;
@@ -100,28 +101,12 @@ public class View {
 					this.model.camera.focal.x, this.model.camera.focal.y, this.model.camera.focal.z,
 					0.0f, 1.0f, 0.0f);
 
-			// 1, 2, 4, 8, 16
-			// dist = 8
-			// 1, 1, 1, 1, 2, 4, 8, 16
-			// 1, 2, 3, 4, 5, 6, 7, 8
-			//          2^0 2^1 2^2 2^3 2^4
-			// 0, 0, 0, 0, 1, 2, 3, 4
-			
 			for(int i = -this.renderDistance; i <= this.renderDistance; i++) {
 				for(int j = -this.renderDistance; j <= this.renderDistance; j++) {
-					int detail = 0;
-					int thing = 0;
-					
-					int a = Math.abs(i);
-					int b = Math.abs(j);
-					
-					if (a >= b) {
-						thing = a;
-					} else {
-						thing = b;
-					}
-					
-					detail = thing - (this.renderDistance - 4);
+					int absI = Math.abs(i);
+					int absJ = Math.abs(j);
+					int distance = absI >= absJ ? absI : absJ;
+					int detail = distance - (this.renderDistance - (int) Math.sqrt(ChunkContainer.CHUNK_DIMENSION));
 					
 					if (detail < 0) {
 						detail = 0;
