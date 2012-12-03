@@ -7,12 +7,11 @@ package nexus.model.structs;
  *
  */
 
-import java.util.HashMap;
 import static nexus.model.structs.Chunk.CHUNK_DIMENSION;
 
+import java.util.HashMap;
+
 public class ChunkContainer {
-	public static final long BIG_NUMBER = (long) Math.pow(2, 31);
-	
 	public HashMap<Long, Chunk> chunks;
 	
 	/**
@@ -59,6 +58,6 @@ public class ChunkContainer {
 	 * @return
 	 */
 	public static long getKey(int x, int y) {
-		return x * BIG_NUMBER + y;
+		return x * (long) Math.pow(2, 31) + y;
 	}
 }
