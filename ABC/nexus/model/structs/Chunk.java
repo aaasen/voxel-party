@@ -7,12 +7,14 @@ package nexus.model.structs;
  *
  */
 
-import static nexus.model.structs.ChunkContainer.CHUNK_DIMENSION;
 import nexus.model.renderable.Terrain;
 import nexus.model.renderable.Water;
 import nexus.view.color.Greyscale;
 
 public class Chunk {
+	// this value should not need to be changed
+	public static final int CHUNK_DIMENSION = 16;
+	
 	public Terrain terrain;
 	public Water water;
 	int x, y;
