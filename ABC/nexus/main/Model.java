@@ -10,7 +10,9 @@ package nexus.main;
 import nexus.model.structs.Camera;
 import nexus.model.structs.ChunkContainer;
 
-public class Model {
+public class Model implements Runnable {
+	Thread modelThread;
+	boolean stop = false;
 	public ChunkContainer chunks;
 	Camera camera;
 	boolean locked;
@@ -19,6 +21,9 @@ public class Model {
 	 * Constructs an empty Model
 	 */
 	public Model(Camera camera) {
+		this.modelThread = new Thread(this, "model_thread");
+		this.modelThread.start();
+		
 		this.chunks = new ChunkContainer();
 		this.camera = camera;
 		this.locked = false;
@@ -38,5 +43,36 @@ public class Model {
 	 */
 	public void unlock() {
 		this.locked = false;
+	}
+	
+	/**
+	 * Starts the Model and ticks about 60 times a second
+	 */
+	@Override
+	public void run() {
+		try {
+			Thread.sleep(1l);
+		
+			
+			while (!this.stop) {
+				tick();
+				
+				try {
+					Thread.sleep(15l);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void tick() {
+		this.camera.forwards();
+	}
+	
+	public void stop() {
+		this.stop = true;
 	}
 }
