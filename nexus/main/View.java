@@ -96,13 +96,13 @@ public class View {
 
 			// adjust camera angle
 			glLoadIdentity();
-			GLU.gluLookAt(this.model.camera.eye.x, this.model.camera.eye.y, this.model.camera.eye.z,
-					this.model.camera.focal.x, this.model.camera.focal.y, this.model.camera.focal.z,
+			GLU.gluLookAt(this.model.player.camera.eye.x, this.model.player.camera.eye.y, this.model.player.camera.eye.z,
+					this.model.player.camera.focal.x, this.model.player.camera.focal.y, this.model.player.camera.focal.z,
 					0.0f, 1.0f, 0.0f);
 
 			for(int i = -this.renderDistance; i <= this.renderDistance; i++) {
 				for(int j = -this.renderDistance; j <= this.renderDistance; j++) {
-					Chunk chunk = this.model.chunks.getChunk(this.model.camera.eye.x + i * 16, this.model.camera.eye.z + j * 16);
+					Chunk chunk = this.model.chunks.getChunk(this.model.player.camera.eye.x + i * 16, this.model.player.camera.eye.z + j * 16);
 					chunk.drawBlocks();
 				}
 			}
