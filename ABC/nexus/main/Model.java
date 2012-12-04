@@ -7,7 +7,9 @@ package nexus.main;
  * 
  */
 
+import nexus.model.renderable.Block;
 import nexus.model.structs.Camera;
+import nexus.model.structs.Chunk;
 import nexus.model.structs.ChunkContainer;
 
 public class Model implements Runnable {
@@ -69,7 +71,16 @@ public class Model implements Runnable {
 	}
 	
 	public void tick() {
-		this.camera.forwards();
+		Chunk curChunk = chunks.getChunk(camera.eye.x, camera.eye.z);
+		Block[] yBlocks = curChunk.blocks[(int) camera.eye.x % Chunk.WIDTH][(int) camera.eye.z % Chunk.WIDTH];
+		Block curBlock = yBlocks[0];
+		
+		if (camera.eye.y - 1f < curBlock.a.y) {
+			camera.eye.y = 2f;
+			camera.update();
+		}
+		
+		
 	}
 	
 	public void stop() {
