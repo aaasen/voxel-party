@@ -48,7 +48,7 @@ public class Controller implements Runnable {
 	 */
 	@Override
 	public void run() {
-		while (!stop) {
+		while (!this.stop) {
 			processInput();
 			
 			try {
