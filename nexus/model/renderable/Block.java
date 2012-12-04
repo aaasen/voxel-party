@@ -15,6 +15,7 @@ import nexus.view.gl.Prisms;
 public class Block implements Renderable {
 	Vector3 a;
 	Vector3 b;
+	float dimension;
 	Colorist colorist;
 	
 	/**
@@ -25,9 +26,10 @@ public class Block implements Renderable {
 	 * @param height height on the y axis
 	 * @param depth depth on the z axis
 	 */
-	public Block(Vector3 a, Vector3 b, Colorist colorist) {
+	public Block(Vector3 a, float dimension, Colorist colorist) {
 		this.a = a;
-		this.b = b;
+		this.b = new Vector3(a.x + dimension, a.y + dimension, a.z + dimension);
+		this.dimension = dimension;
 		this.colorist = colorist;
 	}
 	

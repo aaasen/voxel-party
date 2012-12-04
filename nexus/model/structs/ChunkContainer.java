@@ -44,6 +44,7 @@ public class ChunkContainer {
 
 		if((chunk = this.chunks.get(getKey(x, y))) == null) {
 			chunk = new Chunk(x, y);
+			chunk.fillChunk();
 			this.chunks.put(getKey(x, y), chunk);
 		}
 		
