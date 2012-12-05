@@ -14,8 +14,8 @@ public class BlockMask implements Renderable {
 	
 	public BlockMask(Block block) {
 		this.block = block;
-		render = true;
-		top = true;
+		render = false;
+		top = false;
 		bottom = false;
 		near = false;
 		far = false;
