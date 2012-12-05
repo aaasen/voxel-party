@@ -16,7 +16,7 @@ import nexus.view.color.Greyscale;
 public class Chunk {
 	// this value should not need to be changed
 	public static final int WIDTH = 16;
-	public static final int HEIGHT = 5;
+	public static final int HEIGHT = 16;
 	public static final int BIG_NUMBER = (int) Math.pow(2, 18);
 	
 	int x, z;
@@ -56,37 +56,76 @@ public class Chunk {
 	 * Calculates visible sides of blocks and updates each block's mask accordingly
 	 */
 	public void calcVisible() {
-		for (int x = 1; x < WIDTH - 1; x++) {
-			for (int z = 1; z < WIDTH - 1; z++) {
-				for (int y = 1; y < HEIGHT - 1; y++) {
-					if (blocks[x][z][y + 1] instanceof Air) {
-						blocks[x][z][y].mask.render = true;
-						blocks[x][z][y].mask.top = true;
-					}
-					
-					if (blocks[x][z][y - 1] instanceof Air) {
-						blocks[x][z][y].mask.render = true;
-						blocks[x][z][y].mask.bottom = true;
-					}
+		for (int x = 0; x < WIDTH; x++) {
+			for (int z = 0; z < WIDTH; z++) {
+				for (int y = 0; y < HEIGHT; y++) {
+					if (x == 0 || x == WIDTH - 1 || z == 0 || z == WIDTH - 1 || y == 0 || y == HEIGHT - 1) {
+						if (x == 0) {
+							blocks[x][z][y].mask.render = true;
+							blocks[x][z][y].mask.left = true;
+						} else if (x == WIDTH - 1) {
+							blocks[x][z][y].mask.render = true;
+							blocks[x][z][y].mask.right = true;
+						}
+						
+						if (y == 0) {
+							blocks[x][z][y].mask.render = true;
+							blocks[x][z][y].mask.bottom = true;
+						} else if (y == WIDTH - 1) {
+							blocks[x][z][y].mask.render = true;
+							blocks[x][z][y].mask.top = true;
+						}
+						
+						if (z == 0) {
+							blocks[x][z][y].mask.render = true;
+							blocks[x][z][y].mask.near = true;
+						} else if (z == WIDTH - 1) {
+							blocks[x][z][y].mask.render = true;
+							blocks[x][z][y].mask.far = true;
+						}
+						
+						if (y != 0 && y != HEIGHT - 1) {
+							if (blocks[x][z][y + 1] instanceof Air) {
+								blocks[x][z][y].mask.render = true;
+								blocks[x][z][y].mask.top = true;
+							}
 
-					if (blocks[x + 1][z][y] instanceof Air) {
-						blocks[x][z][y].mask.render = true;
-						blocks[x][z][y].mask.right = true;
-					}
-					
-					if (blocks[x - 1][z][y] instanceof Air) {
-						blocks[x][z][y].mask.render = true;
-						blocks[x][z][y].mask.left = true;
-					}
+							if (blocks[x][z][y - 1] instanceof Air) {
+								blocks[x][z][y].mask.render = true;
+								blocks[x][z][y].mask.bottom = true;
+							}	
+						}
+						
+					} else {
+						if (blocks[x + 1][z][y] instanceof Air) {
+							blocks[x][z][y].mask.render = true;
+							blocks[x][z][y].mask.right = true;
+						}
 
-					if (blocks[x][z + 1][y] instanceof Air) {
-						blocks[x][z][y].mask.render = true;
-						blocks[x][z][y].mask.far = true;
-					}
-					
-					if (blocks[x][z - 1][y] instanceof Air) {
-						blocks[x][z][y].mask.render = true;
-						blocks[x][z][y].mask.near = true;
+						if (blocks[x - 1][z][y] instanceof Air) {
+							blocks[x][z][y].mask.render = true;
+							blocks[x][z][y].mask.left = true;
+						}
+
+						if (blocks[x][z][y + 1] instanceof Air) {
+							blocks[x][z][y].mask.render = true;
+							blocks[x][z][y].mask.top = true;
+						}
+
+						if (blocks[x][z][y - 1] instanceof Air) {
+							blocks[x][z][y].mask.render = true;
+							blocks[x][z][y].mask.bottom = true;
+						}
+						
+						if (blocks[x][z + 1][y] instanceof Air) {
+							blocks[x][z][y].mask.render = true;
+							blocks[x][z][y].mask.far = true;
+						}
+
+						if (blocks[x][z - 1][y] instanceof Air) {
+							blocks[x][z][y].mask.render = true;
+							blocks[x][z][y].mask.near = true;
+						}
 					}
 				}
 			}
