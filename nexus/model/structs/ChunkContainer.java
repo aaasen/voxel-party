@@ -43,7 +43,7 @@ public class ChunkContainer {
 		Chunk chunk; 
 
 		if((chunk = this.chunks.get(getKey(x, y))) == null) {
-			chunk = new Chunk(x, y);
+			chunk = new Chunk(x, y, new Vector3(0.2f, 10.0f, 0.2f));
 			chunk.fillChunk();
 			this.chunks.put(getKey(x, y), chunk);
 		}
