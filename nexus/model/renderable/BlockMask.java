@@ -5,7 +5,7 @@ package nexus.model.renderable;
  */
 
 import nexus.model.structs.Block;
-import nexus.view.gl.Prisms;
+import nexus.view.gl.Planes;
 
 public class BlockMask implements Renderable {
 
@@ -14,8 +14,8 @@ public class BlockMask implements Renderable {
 	
 	public BlockMask(Block block) {
 		this.block = block;
-		render = false;
-		top = false;
+		render = true;
+		top = true;
 		bottom = false;
 		near = false;
 		far = false;
@@ -25,8 +25,20 @@ public class BlockMask implements Renderable {
 	
 	@Override
 	public void draw() {
-//		if (render) {
-			Prisms.drawRectPrism2f(block.a, block.b, block.colorist);
-//		}
+		if (render) {
+			if (top) {
+				Planes.drawQuad2f(block.a.x, block.b.y, block.a.z, block.b.x, block.b.y, block.b.z, block.colorist);
+			} if (bottom) {
+				Planes.drawQuad2f(block.a.x, block.a.y, block.a.z, block.b.x, block.a.y, block.b.z, block.colorist);
+			} if (near) {
+				Planes.drawQuad2f(block.a.x, block.a.y, block.a.z, block.b.x, block.b.y, block.a.z, block.colorist);
+			} if (far) {
+				Planes.drawQuad2f(block.a.x, block.a.y, block.b.z, block.b.x, block.b.y, block.b.z, block.colorist);	
+			} if (left) {
+				Planes.drawQuad2f(block.a.x, block.a.y, block.a.z, block.a.x, block.b.y, block.b.z, block.colorist);	
+			} if (right) {
+				Planes.drawQuad2f(block.b.x, block.a.y, block.a.z, block.b.x, block.b.y, block.b.z, block.colorist);	
+			}
+		}
 	}
 }
