@@ -57,6 +57,8 @@ public class Controller implements Runnable {
 				e.printStackTrace();
 			}
 		}
+		
+		System.exit(0);
 	}
 
 	/**

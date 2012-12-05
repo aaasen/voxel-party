@@ -81,6 +81,7 @@ public class View {
 			this.render();
 		}
 
+		this.model.stop();
 		Display.destroy();
 		
 	}
