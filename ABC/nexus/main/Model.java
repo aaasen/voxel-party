@@ -63,6 +63,9 @@ public class Model implements Runnable {
 					e.printStackTrace();
 				}
 			}
+			
+			System.exit(0);
+			
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
