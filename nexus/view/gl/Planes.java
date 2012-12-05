@@ -78,31 +78,42 @@ public class Planes {
 	 * TODO: research
 	 */
 	public static void drawQuad2f(Vector3 a, Vector3 b, Colorist colorist) {
+
+		
 		glBegin(GL_TRIANGLES);
 		
-		colorist.color(a.y);
-		glVertex3f(a.x, a.y, a.z);
-		glVertex3f(b.x, a.y, a.z);
-		colorist.color(b.y);
-		glVertex3f(b.x, b.y, b.z);
-		
-		colorist.color(a.y);
-		glVertex3f(a.x, a.y, a.z);
-		colorist.color(b.y);
-		glVertex3f(b.x, b.y, a.z);
-		glVertex3f(b.x, b.y, b.z);
-		
-		colorist.color(a.y);
-		glVertex3f(a.x, a.y, a.z);
-		glVertex3f(a.x, a.y, b.z);
-		colorist.color(b.y);
-		glVertex3f(b.x, b.y, b.z);
-		
-		colorist.color(a.y);
-		glVertex3f(a.x, a.y, a.z);
-		colorist.color(b.y);
-		glVertex3f(a.x, b.y, b.z);
-		glVertex3f(b.x, b.y, b.z);
+		if (a.z == b.z) {
+			colorist.color(a.y);
+			glVertex3f(a.x, a.y, a.z);
+			colorist.color(b.y);
+			glVertex3f(a.x, b.y, a.z);
+			glVertex3f(b.x, b.y, a.z);
+			
+			glVertex3f(b.x, b.y, a.z);
+			colorist.color(a.y);
+			glVertex3f(a.x, a.y, a.z);
+			glVertex3f(b.x, a.y, a.z);
+		} else if (a.y == b.y) {
+			colorist.color(a.y);
+			glVertex3f(a.x, a.y, a.z);
+			glVertex3f(a.x, a.y, b.z);
+			glVertex3f(b.x, a.y, b.z);
+			
+			glVertex3f(a.x, a.y, a.z);
+			glVertex3f(b.x, a.y, a.z);
+			glVertex3f(b.x, a.y, b.z);	
+		} else {
+			colorist.color(a.y);
+			glVertex3f(a.x, a.y, a.z);
+			colorist.color(b.y);
+			glVertex3f(a.x, b.y, a.z);
+			glVertex3f(a.x, b.y, b.z);
+			
+			glVertex3f(a.x, b.y, b.z);	
+			colorist.color(a.y);
+			glVertex3f(a.x, a.y, a.z);
+			glVertex3f(a.x, a.y, b.z);
+		}
 		
 		glEnd();
 	}

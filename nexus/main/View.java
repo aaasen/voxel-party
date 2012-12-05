@@ -89,8 +89,7 @@ public class View {
 	/**
 	 * Renders the world once
 	 */
-	public void render() {
-
+	public void render() {		
 		// check if the model is currently being written to and skip a frame if it is
 		if(!model.locked) {
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
@@ -109,6 +108,7 @@ public class View {
 			}
 			
 			Display.update();
+			
 		}
 	}
 
