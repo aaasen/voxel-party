@@ -13,8 +13,8 @@ import nexus.view.gl.Prisms;
  */
 
 public class Block implements Renderable {
-	public Vector3 a;
-	public Vector3 b;
+	Vector3 a;
+	Vector3 b;
 	float dimension;
 	Colorist colorist;
 	

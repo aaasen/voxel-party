@@ -7,7 +7,7 @@ package nexus.main;
  * 
  */
 
-import nexus.model.renderable.Player;
+import nexus.model.structs.Camera;
 import nexus.model.structs.Vector3;
 
 import org.lwjgl.LWJGLException;
@@ -35,7 +35,7 @@ public class Main {
         	Mouse.create();
 	    
         	// start the nexus.mvc framework
-        	Model world = new Model(new Player(INIT_CAMERA_POSITION, 0.0f, 0.0f, INIT_SENSITIVITY, CAMERA_INVERT));
+        	Model world = new Model(new Camera(INIT_CAMERA_POSITION, 0.0f, 0.0f, INIT_SENSITIVITY, CAMERA_INVERT));
             View view = new View(world, INIT_RENDER_DISTANCE);
             @SuppressWarnings("unused")
             Controller controller = new Controller(world);
