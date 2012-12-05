@@ -49,45 +49,46 @@ public class Chunk {
 			}
 		}
 		
-		this.calcVisible(0, HEIGHT - 1, 0);
+		this.calcVisible();
 	}
 	
 	/**
-	 * Performs a recursive flood fill on the chunk to determine visible polygons
-	 * 
-	 * Fills from the near top left corner
-	 * 
-	 * @param a
+	 * Calculates visible sides of blocks and updates each block's mask accordingly
 	 */
-	public void calcVisible(int x, int y, int z) {
-		if (x < WIDTH - 1&& x >= 0 && z < WIDTH - 1 && z >= 0 && y < HEIGHT && y >= 1) {
-			if (blocks[x][z][y] instanceof Air) {
+	public void calcVisible() {
+		for (int x = 1; x < WIDTH - 1; x++) {
+			for (int z = 1; z < WIDTH - 1; z++) {
+				for (int y = 1; y < HEIGHT - 1; y++) {
+					if (blocks[x][z][y + 1] instanceof Air) {
+						blocks[x][z][y].mask.render = true;
+						blocks[x][z][y].mask.top = true;
+					}
+					
+					if (blocks[x][z][y - 1] instanceof Air) {
+						blocks[x][z][y].mask.render = true;
+						blocks[x][z][y].mask.bottom = true;
+					}
 
-//				System.out.println("(" + x + ", " + y + ", " + z + ")");
-				
-				
-				if (blocks[x][z][y - 1] instanceof Air) {
-					calcVisible(x, y - 1, z);
-				} else {
-					blocks[x][z][y - 1].mask.render = true;
-					blocks[x][z][y - 1].mask.top = true;
-				}
+					if (blocks[x + 1][z][y] instanceof Air) {
+						blocks[x][z][y].mask.render = true;
+						blocks[x][z][y].mask.right = true;
+					}
+					
+					if (blocks[x - 1][z][y] instanceof Air) {
+						blocks[x][z][y].mask.render = true;
+						blocks[x][z][y].mask.left = true;
+					}
 
-				if (blocks[x + 1][z][y] instanceof Air) {
-					calcVisible(x + 1, y, z);
-				} else {
-					blocks[x + 1][z][y].mask.render = true;
-					blocks[x + 1][z][y].mask.left = true;
+					if (blocks[x][z + 1][y] instanceof Air) {
+						blocks[x][z][y].mask.render = true;
+						blocks[x][z][y].mask.far = true;
+					}
+					
+					if (blocks[x][z - 1][y] instanceof Air) {
+						blocks[x][z][y].mask.render = true;
+						blocks[x][z][y].mask.near = true;
+					}
 				}
-
-				if (blocks[x][z + 1][y] instanceof Air) {
-					calcVisible(x, y, z + 1);
-				} else {
-					blocks[x][z + 1][y].mask.render = true;
-					blocks[x][z + 1][y].mask.near = true;
-				}
-			} else {
-				throw new IllegalArgumentException("calcVisible() can only be called on Air blocks");
 			}
 		}
 	}
