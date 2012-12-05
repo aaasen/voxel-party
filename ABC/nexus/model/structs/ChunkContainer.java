@@ -39,16 +39,29 @@ public class ChunkContainer {
 	 * @param y
 	 * @return
 	 */
-	public Chunk getChunk(int x, int y) {
-		Chunk chunk; 
-
-		if((chunk = this.chunks.get(getKey(x, y))) == null) {
-			chunk = new Chunk(x, y, new Vector3(0.2f, 20.0f, 0.2f));
+	public Chunk getChunk(int x, int y, boolean mask) {
+		Chunk chunk = this.chunks.get(getKey(x, y));
+		
+		if (chunk == null) {
+			chunk = new Chunk(x, y, new Vector3(0.2f, 20.0f, 0.2f), this);
 			chunk.generate();
+			
+			if (mask) {
+				chunk.calcVisible();
+			}
+			
 			this.chunks.put(getKey(x, y), chunk);
+		} else if (mask) {
+			if (!chunk.mask) {
+				chunk.calcVisible();
+			}
 		}
 		
 		return chunk;
+	}
+	
+	public Chunk getChunk(int x, int y) {
+		return getChunk(x, y, true);
 	}
 	
 	/**
