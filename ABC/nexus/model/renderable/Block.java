@@ -37,7 +37,5 @@ public class Block implements Renderable {
 	public void draw() {
 		glColor3f(1.0f, 1.0f, 1.0f);
 		Prisms.drawRectPrism2f(a, b, colorist);
-//		glColor3f(1.0f, 0.0f, 0.0f);
-//		Outlines.outlineRectPrism2f(a, b);
 	}
 }
