@@ -16,7 +16,7 @@ import nexus.view.color.Greyscale;
 public class Chunk {
 	// this value should not need to be changed
 	public static final int WIDTH = 16;
-	public static final int HEIGHT = 16;
+	public static final int HEIGHT = 32;
 	public static final int BIG_NUMBER = (int) Math.pow(2, 18);
 
 	int x, z;
@@ -29,7 +29,7 @@ public class Chunk {
 		this.z = z;
 		this.dilation = dilation;
 		this.blocks = new Block[WIDTH][WIDTH][HEIGHT];
-		this.colorist = new Greyscale(10.0f, 0.0f);
+		this.colorist = new Greyscale(16.0f, 0.0f);
 	}
 
 	public void generate() {
