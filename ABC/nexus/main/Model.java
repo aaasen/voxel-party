@@ -69,7 +69,7 @@ public class Model implements Runnable {
 	}
 	
 	public void tick() {
-		this.camera.forwards();
+
 	}
 	
 	public void stop() {
