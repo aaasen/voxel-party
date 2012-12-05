@@ -63,15 +63,18 @@ public class Chunk {
 						if (x == 0) {
 							blocks[x][z][y].mask.render = true;
 							blocks[x][z][y].mask.left = true;
+							blocks[x][z][y].mask.right = true;
+							blocks[x][z][y].mask.far = true;
+							blocks[x][z][y].mask.near = true;
 						} else if (x == WIDTH - 1) {
 							blocks[x][z][y].mask.render = true;
+							blocks[x][z][y].mask.left = true;
 							blocks[x][z][y].mask.right = true;
+							blocks[x][z][y].mask.far = true;
+							blocks[x][z][y].mask.near = true;
 						}
 						
-						if (y == 0) {
-							blocks[x][z][y].mask.render = true;
-							blocks[x][z][y].mask.bottom = true;
-						} else if (y == WIDTH - 1) {
+						if (y == HEIGHT - 1) {
 							blocks[x][z][y].mask.render = true;
 							blocks[x][z][y].mask.top = true;
 						}
@@ -79,9 +82,15 @@ public class Chunk {
 						if (z == 0) {
 							blocks[x][z][y].mask.render = true;
 							blocks[x][z][y].mask.near = true;
+							blocks[x][z][y].mask.far = true;
+							blocks[x][z][y].mask.left = true;
+							blocks[x][z][y].mask.right = true;
 						} else if (z == WIDTH - 1) {
 							blocks[x][z][y].mask.render = true;
 							blocks[x][z][y].mask.far = true;
+							blocks[x][z][y].mask.near = true;
+							blocks[x][z][y].mask.left = true;
+							blocks[x][z][y].mask.right = true;
 						}
 						
 						if (y != 0 && y != HEIGHT - 1) {

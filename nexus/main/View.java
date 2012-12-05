@@ -8,6 +8,7 @@ package nexus.main;
  */
 
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.glColor3f;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
 import static org.lwjgl.opengl.GL11.GL_LEQUAL;
@@ -26,6 +27,7 @@ import static org.lwjgl.opengl.GL11.glLoadIdentity;
 import static org.lwjgl.opengl.GL11.glMatrixMode;
 import static org.lwjgl.opengl.GL11.glShadeModel;
 import static org.lwjgl.opengl.GL11.glViewport;
+import nexus.model.renderable.Grid;
 import nexus.model.structs.Chunk;
 
 import org.lwjgl.opengl.Display;
@@ -35,7 +37,8 @@ public class View {
 	Model model;
 	boolean stop = false;
 	int renderDistance;
-
+	Grid grid = new Grid(128f, 16f, 4f, 2f);
+	
 	/**
 	 * Constructs a View
 	 * 
