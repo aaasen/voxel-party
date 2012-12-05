@@ -17,7 +17,7 @@ public class Chunk {
 	
 	int x, z;
 	
-	public Block[][][] blocks;
+	Block[][][] blocks;
 	
 	public Chunk(int x, int z) {
 		this.x = x;

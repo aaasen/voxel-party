@@ -7,27 +7,25 @@ package nexus.main;
  * 
  */
 
-import nexus.model.renderable.Block;
-import nexus.model.renderable.Player;
-import nexus.model.structs.Chunk;
+import nexus.model.structs.Camera;
 import nexus.model.structs.ChunkContainer;
 
 public class Model implements Runnable {
 	Thread modelThread;
 	boolean stop = false;
 	public ChunkContainer chunks;
-	Player player;
+	Camera camera;
 	boolean locked;
 	
 	/**
 	 * Constructs an empty Model
 	 */
-	public Model(Player player) {
+	public Model(Camera camera) {
 		this.modelThread = new Thread(this, "model_thread");
 		this.modelThread.start();
 		
 		this.chunks = new ChunkContainer();
-		this.player = player;
+		this.camera = camera;
 		this.locked = false;
 	}
 	
@@ -71,16 +69,7 @@ public class Model implements Runnable {
 	}
 	
 	public void tick() {
-		Chunk curChunk = chunks.getChunk(player.camera.eye.x, player.camera.eye.z);
-		Block[] yBlocks = curChunk.blocks[(int) player.camera.eye.x % Chunk.WIDTH][(int) player.camera.eye.z % Chunk.WIDTH];
-		Block curBlock = yBlocks[0];
-		
-		if (player.camera.eye.y - player.height < curBlock.a.y) {
-			player.camera.eye.y = 2f;
-			player.camera.update();
-		}
-		
-		
+		this.camera.forwards();
 	}
 	
 	public void stop() {
