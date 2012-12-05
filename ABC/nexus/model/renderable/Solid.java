@@ -1,5 +1,6 @@
 package nexus.model.renderable;
 
+import nexus.model.structs.Block;
 import nexus.model.structs.Vector3;
 import nexus.view.color.Colorist;
 

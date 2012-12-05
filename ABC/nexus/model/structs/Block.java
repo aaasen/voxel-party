@@ -1,9 +1,7 @@
-package nexus.model.renderable;
+package nexus.model.structs;
 
-import static org.lwjgl.opengl.GL11.glColor3f;
-import nexus.model.structs.Vector3;
+import nexus.model.renderable.BlockMask;
 import nexus.view.color.Colorist;
-import nexus.view.gl.Prisms;
 
 /**
  * A generic rectangular prism
@@ -12,11 +10,12 @@ import nexus.view.gl.Prisms;
  *
  */
 
-public class Block implements Renderable {
-	Vector3 a;
-	Vector3 b;
-	float dimension;
-	Colorist colorist;
+public class Block {
+	public Vector3 a;
+	public Vector3 b;
+	public float dimension;
+	public Colorist colorist;
+	public BlockMask mask;
 	
 	/**
 	 * Creates a Block
@@ -31,11 +30,10 @@ public class Block implements Renderable {
 		this.b = new Vector3(a.x + dimension, a.y + dimension, a.z + dimension);
 		this.dimension = dimension;
 		this.colorist = colorist;
+		this.mask = new BlockMask(this);
 	}
 	
-	@Override
 	public void draw() {
-		glColor3f(1.0f, 1.0f, 1.0f);
-		Prisms.drawRectPrism2f(a, b, colorist);
+		mask.draw();
 	}
 }

@@ -78,8 +78,6 @@ public class Planes {
 	 * TODO: research
 	 */
 	public static void drawQuad2f(Vector3 a, Vector3 b, Colorist colorist) {
-
-		
 		glBegin(GL_TRIANGLES);
 		
 		if (a.z == b.z) {
