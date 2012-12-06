@@ -34,6 +34,12 @@ public class Block {
 	}
 	
 	public void draw() {
-		mask.draw();
+		if (visible()) {
+			mask.draw();	
+		}
+	}
+	
+	public boolean visible() {
+		return true;
 	}
 }
