@@ -26,6 +26,14 @@ public class Chunk {
 	Colorist colorist;
 	ChunkContainer parent;
 
+	/**
+	 * Creates a new Chunk
+	 * 
+	 * @param x x position of the Chunk in its container
+	 * @param z z position of the Chunk in its container
+	 * @param dilation (x, y, z) dilation for terrain generatrion
+	 * @param parent the Chunk's parent ChunkContainer
+	 */
 	public Chunk(int x, int z, Vector3 dilation, ChunkContainer parent) {
 		this.x = x;
 		this.z = z;
@@ -35,6 +43,9 @@ public class Chunk {
 		this.parent = parent;
 	}
 
+	/**
+	 * Fills the Chunk with a heightmap of 2D Perlin noise
+	 */
 	public void generate() {
 		for (int i = 0; i < WIDTH; i++) {
 			for (int j = 0; j < WIDTH; j++) {
@@ -141,6 +152,9 @@ public class Chunk {
 		}
 	}
 
+	/**
+	 * Draws each block in the Chunk
+	 */
 	public void drawBlocks() {
 		for (Block[][] a : blocks) {
 			for (Block[] b : a) {
