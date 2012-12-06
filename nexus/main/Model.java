@@ -11,11 +11,14 @@ import nexus.model.structs.Camera;
 import nexus.model.structs.ChunkContainer;
 
 public class Model implements Runnable {
+	public static final long SLEEPTIME = 15l;
+	
 	Thread modelThread;
 	boolean stop = false;
-	public ChunkContainer chunks;
-	Camera camera;
 	boolean locked;
+	
+	public ChunkContainer chunks;
+	public Camera camera;
 	
 	/**
 	 * Constructs an empty Model
@@ -49,32 +52,31 @@ public class Model implements Runnable {
 	 * Starts the Model and ticks about 60 times a second
 	 */
 	@Override
-	public void run() {
-		try {
-			Thread.sleep(1l);
-		
-			
-			while (!this.stop) {
-				tick();
-				
-				try {
-					Thread.sleep(15l);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+	public void run() {		
+		while (!this.stop) {
+			tick();
+
+			try {
+				Thread.sleep(SLEEPTIME);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
-			
-			System.exit(0);
-			
-		} catch (InterruptedException e) {
-			e.printStackTrace();
 		}
+
+		System.exit(0);
+			
 	}
 	
+	/**
+	 * Updates the Model each frame
+	 */
 	public void tick() {
 
 	}
 	
+	/**
+	 * Tells the Model to exit
+	 */
 	public void stop() {
 		this.stop = true;
 	}
