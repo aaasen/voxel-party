@@ -23,6 +23,9 @@ public class BlockMask implements Renderable {
 		right = false;
 	}
 	
+	/**
+	 * Draws the specified sides of the Mask's Block
+	 */
 	@Override
 	public void draw() {
 		if (render) {

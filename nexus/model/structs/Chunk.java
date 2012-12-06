@@ -63,60 +63,60 @@ public class Chunk {
 			for (int z = 0; z < WIDTH; z++) {
 				for (int y = 0; y < HEIGHT; y++) {
 					if (x == 0) {
-						if (this.parent.getChunk(this.x - 1, this.z, false).blocks[WIDTH - 1][z][y] instanceof Air) {
+						if (!parent.getChunk(this.x - 1, this.z, false).blocks[WIDTH - 1][z][y].visible()) {
 							blocks[x][z][y].mask.render = true;
 							blocks[x][z][y].mask.left = true;
 						}
-						if (blocks[x + 1][z][y] instanceof Air) {
+						if (!blocks[x + 1][z][y].visible()) {
 							blocks[x][z][y].mask.render = true;
 							blocks[x][z][y].mask.right = true;
 						}
 					} else if (x == WIDTH - 1) {
-						if (parent.getChunk(this.x + 1, this.z, false).blocks[0][z][y] instanceof Air) {
+						if (!parent.getChunk(this.x + 1, this.z, false).blocks[0][z][y].visible()) {
 							blocks[x][z][y].mask.render = true;
 							blocks[x][z][y].mask.right = true;	
 						}
-						if (blocks[x - 1][z][y] instanceof Air) {
+						if (!blocks[x - 1][z][y].visible()) {
 							blocks[x][z][y].mask.render = true;
 							blocks[x][z][y].mask.left = true;
 						}
 					} else {
-						if (blocks[x + 1][z][y] instanceof Air) {
+						if (!blocks[x + 1][z][y].visible()) {
 							blocks[x][z][y].mask.render = true;
 							blocks[x][z][y].mask.right = true;
 						}
 
-						if (blocks[x - 1][z][y] instanceof Air) {
+						if (!blocks[x - 1][z][y].visible()) {
 							blocks[x][z][y].mask.render = true;
 							blocks[x][z][y].mask.left = true;
 						}
 					}
 
 					if (z == 0) {
-						if (this.parent.getChunk(this.x, this.z - 1, false).blocks[x][WIDTH - 1][y] instanceof Air) {
+						if (!parent.getChunk(this.x, this.z - 1, false).blocks[x][WIDTH - 1][y].visible()) {
 							blocks[x][z][y].mask.render = true;
 							blocks[x][z][y].mask.near = true;
 						}
-						if (blocks[x][z + 1][y] instanceof Air) {
+						if (!blocks[x][z + 1][y].visible()) {
 							blocks[x][z][y].mask.render = true;
 							blocks[x][z][y].mask.far = true;
 						}
 					} else if (z == WIDTH - 1) {
-						if (parent.getChunk(this.x, this.z + 1, false).blocks[x][0][y] instanceof Air) {
+						if (!parent.getChunk(this.x, this.z + 1, false).blocks[x][0][y].visible()) {
 							blocks[x][z][y].mask.render = true;
 							blocks[x][z][y].mask.far = true;	
 						}
-						if (blocks[x][z - 1][y] instanceof Air) {
+						if (!blocks[x][z - 1][y].visible()) {
 							blocks[x][z][y].mask.render = true;
 							blocks[x][z][y].mask.near = true;
 						}
 					} else {
-						if (blocks[x][z + 1][y] instanceof Air) {
+						if (!blocks[x][z + 1][y].visible()) {
 							blocks[x][z][y].mask.render = true;
 							blocks[x][z][y].mask.far = true;
 						}
 
-						if (blocks[x][z - 1][y] instanceof Air) {
+						if (!blocks[x][z - 1][y].visible()) {
 							blocks[x][z][y].mask.render = true;
 							blocks[x][z][y].mask.near = true;
 						}
@@ -126,12 +126,12 @@ public class Chunk {
 						blocks[x][z][y].mask.render = true;
 						blocks[x][z][y].mask.top = true;
 					} else if (y != 0) {
-						if (blocks[x][z][y + 1] instanceof Air) {
+						if (!blocks[x][z][y + 1].visible()) {
 							blocks[x][z][y].mask.render = true;
 							blocks[x][z][y].mask.top = true;
 						}
 
-						if (blocks[x][z][y - 1] instanceof Air) {
+						if (!blocks[x][z][y - 1].visible()) {
 							blocks[x][z][y].mask.render = true;
 							blocks[x][z][y].mask.bottom = true;
 						}	

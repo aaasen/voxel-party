@@ -10,7 +10,7 @@ public class Air extends Block {
 	}
 	
 	@Override
-	public void draw() {
-		
+	public boolean visible() {
+		return false;
 	}
 }
