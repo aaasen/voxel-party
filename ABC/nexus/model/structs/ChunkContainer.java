@@ -77,7 +77,7 @@ public class ChunkContainer {
 	}
 	
 	public Block getBlock(Vector3 a) {
-		return this.getChunk(a.x, a.z).blocks[posMod((int) a.x, WIDTH)][posMod((int) a.z, WIDTH)][(int) a.y];
+		return this.getChunk(a.x, a.z).blocks[posMod(Math.round(a.x), WIDTH)][posMod(Math.round(a.z), WIDTH)][(int) a.y];
 	}
 	
 	/**

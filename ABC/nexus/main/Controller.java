@@ -89,7 +89,7 @@ public class Controller implements Runnable {
 		this.model.camera.update();
 		
 		if (Mouse.isButtonDown(0)) {
-			for (int i = 1; i <= 5; i++) {
+			for (float i = 0f; i <= 5f; i += 0.5f) {
 				Block block = model.chunks.getBlock(model.camera.eye.add(model.camera.unitFocal.scale((float) i)));
 				if (block.visible()) {
 					block.mask.render = false;
