@@ -9,8 +9,9 @@ package nexus.model.structs;
 
 public class Camera {
 	public Vector3 eye;
-	public float pitch, yaw;
 	public Vector3 focal;
+	public Vector3 unitFocal;
+	public float pitch, yaw;
 	public boolean invert;
 	public float sensitivity;
 	
@@ -46,8 +47,8 @@ public class Camera {
 	 * @return an absolute point that the camera should look at
 	 */
 	public Vector3 lookAt() {
-		Vector3 unit = unitLookAt();
-		return new Vector3(this.eye.x + unit.x, this.eye.y + unit.y, this.eye.z + unit.z);
+		unitFocal = unitLookAt();
+		return new Vector3(this.eye.x + unitFocal.x, this.eye.y + unitFocal.y, this.eye.z + unitFocal.z);
 	}
 	
 	/**
@@ -87,13 +88,13 @@ public class Camera {
 	 * Moves the camera towards where it is pointing
 	 */
 	public void forwards() {
-		this.eye = Vector3.add(Vector3.scale(this.unitLookAt(), this.sensitivity), this.eye);
+		this.eye = this.unitLookAt().scale(this.sensitivity).add(this.eye);
 	}
 	
 	/**
 	 * Moves the camera away from where it is pointing
 	 */
 	public void backwards() {
-		this.eye = Vector3.add(Vector3.scale(this.unitLookAt(), -this.sensitivity), this.eye);
+		this.eye = this.unitLookAt().scale(-this.sensitivity).add(this.eye);
 	}
 }
