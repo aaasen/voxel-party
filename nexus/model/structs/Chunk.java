@@ -21,7 +21,7 @@ public class Chunk {
 
 	int x, z;
 	Vector3 dilation;
-	Block[][][] blocks;
+	public Block[][][] blocks;
 	boolean mask = false;
 	Colorist colorist;
 	ChunkContainer parent;

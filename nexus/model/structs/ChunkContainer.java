@@ -28,8 +28,8 @@ public class ChunkContainer {
 	 * @param y
 	 * @return
 	 */
-	public Chunk getChunk(float x, float y) {
-		return getChunk(((int) x) / WIDTH, ((int) y) / WIDTH);
+	public Chunk getChunk(float x, float z) {
+		return getChunk((int) Math.floor(x / WIDTH), (int) Math.floor(z / WIDTH));
 	}
 	
 	/**
@@ -62,6 +62,22 @@ public class ChunkContainer {
 	
 	public Chunk getChunk(int x, int y) {
 		return getChunk(x, y, true);
+	}
+	
+	/**
+	 * Java's % returns a negative number for negative input. This returns a positivie number no matter what
+	 * 
+	 * @param a
+	 * @param b
+	 * @return
+	 */
+	public static int posMod(int a, int b) {
+		int r = a % b;
+		return r < 0 ? r + b : r;
+	}
+	
+	public Block getBlock(Vector3 a) {
+		return this.getChunk(a.x, a.z).blocks[posMod((int) a.x, WIDTH)][posMod((int) a.z, WIDTH)][(int) a.y];
 	}
 	
 	/**

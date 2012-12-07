@@ -30,11 +30,15 @@ public class Vector3 {
 	 * @param b
 	 * @return sum of a and b
 	 */
-	public static Vector3 add(Vector3 a, Vector3 b) {
-		return new Vector3(a.x + b.x, a.y + b.y, a.z + b.z);
+	public Vector3 add(Vector3 a) {
+		return new Vector3(a.x + x, a.y + y, a.z + z);
 	}
 	
-	public static Vector3 scale(Vector3 a, float scalar) {
-		return new Vector3(a.x * scalar, a.y * scalar, a.z * scalar); 
+	public Vector3 scale(float scalar) {
+		return new Vector3(x * scalar, y * scalar, z * scalar); 
+	}
+	
+	public String toString() {
+		return "(" + x + ", " + y + ", " + z + ")";
 	}
 }

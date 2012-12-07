@@ -13,6 +13,8 @@ package nexus.main;
 
 
 
+import nexus.model.structs.Block;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -85,6 +87,15 @@ public class Controller implements Runnable {
 		}
 		
 		this.model.camera.update();
+		
+		if (Mouse.isButtonDown(0)) {
+			for (int i = 1; i <= 5; i++) {
+				Block block = model.chunks.getBlock(model.camera.eye.add(model.camera.unitFocal.scale((float) i)));
+				if (block.visible()) {
+					block.mask.render = false;
+				}
+			}
+		}
 		
 	}
 
