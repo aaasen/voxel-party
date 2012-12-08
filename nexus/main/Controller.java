@@ -13,7 +13,9 @@ package nexus.main;
 
 
 
+import nexus.model.renderable.Air;
 import nexus.model.structs.Block;
+import nexus.model.structs.Vector3;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
@@ -90,9 +92,40 @@ public class Controller implements Runnable {
 		
 		if (Mouse.isButtonDown(0)) {
 			for (float i = 0f; i <= 5f; i += 0.5f) {
-				Block block = model.chunks.getBlock(model.camera.eye.add(model.camera.unitFocal.scale((float) i)));
+				Vector3 b = model.camera.eye.add(model.camera.unitFocal.scale((float) i));
+				Block block = model.chunks.getBlock(b);
 				if (block.visible()) {
-					block.mask.render = false;
+					model.chunks.setBlock(new Air(b, 1.0f));
+					
+					Block above = model.chunks.getBlock(new Vector3(b.x, b.y + 1, b.z));
+					Block below = model.chunks.getBlock(new Vector3(b.x, b.y - 1, b.z));
+					Block left = model.chunks.getBlock(new Vector3(b.x - 1, b.y, b.z));
+					Block right = model.chunks.getBlock(new Vector3(b.x + 1, b.y, b.z));
+					Block near = model.chunks.getBlock(new Vector3(b.x, b.y, b.z - 1));
+					Block far = model.chunks.getBlock(new Vector3(b.x, b.y, b.z + 1));
+				
+					
+					above.mask.bottom = true;
+					above.mask.render = true;
+					
+					below.mask.top = true;
+					below.mask.render = true;
+
+					left.mask.right = true;
+					left.mask.render = true;
+					
+					right.mask.left = true;
+					right.mask.render = true;
+					
+					near.mask.far = true;
+					near.mask.render = true;
+					
+					far.mask.near = true;
+					far.mask.render = true;
+
+					
+					
+					break;
 				}
 			}
 		}
