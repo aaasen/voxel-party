@@ -17,8 +17,8 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 public class Main {
-	public static final int WIDTH = 800;
-	public static final int HEIGHT = 600;
+	public static final int WIDTH = 1600;
+	public static final int HEIGHT = 900;
 	public static final String WINDOW_TITLE = "Nexus";
 	public static final int INIT_RENDER_DISTANCE = 6;
 	public static final Vector3 INIT_CAMERA_POSITION = new Vector3(0.0f, 16.0f, 0.0f);
