@@ -80,6 +80,10 @@ public class ChunkContainer {
 		return this.getChunk(a.x, a.z).blocks[posMod(Math.round(a.x), WIDTH)][posMod(Math.round(a.z), WIDTH)][(int) a.y];
 	}
 	
+	public void setBlock(Block block) {
+		this.getChunk(block.a.x, block.a.z).blocks[posMod((int) block.a.x, WIDTH)][posMod((int) block.a.z, WIDTH)][(int) block.a.y] = block;
+	}
+	
 	/**
 	 * Generates a unique key for the given Chunk coordinate
 	 * 
