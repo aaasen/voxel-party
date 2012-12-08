@@ -82,15 +82,6 @@ public class ChunkContainer {
 		Block near = this.getBlock(block.a.add(new Vector3(0f, 0f, -1f)));
 		Block far = this.getBlock(block.a.add(new Vector3(0f, 0f, 1f)));
 		
-		System.out.println("------");
-		System.out.println(block.a.toString());
-		System.out.println(below.a.toString());
-		System.out.println(above.a.toString());
-		System.out.println(left.a.toString());
-		System.out.println(right.a.toString());
-		System.out.println(near.a.toString());
-		System.out.println(far.a.toString());
-		
 		above.mask.bottom = true;
 		above.mask.render = true;
 		
@@ -110,6 +101,11 @@ public class ChunkContainer {
 		far.mask.render = true;
 	}
 	
+	/**
+	 * places a block into the ChunkContainer and updates nearby masks if necessary
+	 * 
+	 * @param block
+	 */
 	public void setBlock(Block block) {
 		this.getChunk(block.a.x, block.a.z).blocks[posMod((int) block.a.x, WIDTH)][posMod((int) block.a.z, WIDTH)][(int) block.a.y] = block;
 	
