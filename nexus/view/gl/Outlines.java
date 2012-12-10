@@ -71,7 +71,7 @@ public class Outlines {
 	 * @param a
 	 * @param b
 	 */
-	public static void outlineRectPrism2f(Vector3 a, Vector3 b) {
+	public static void rectPrism2f(Vector3 a, Vector3 b) {
 		outlineQuad2f(a, new Vector3(b.x, b.y, a.z));
 		outlineQuad2f(a, new Vector3(b.x, a.y, b.z));
 		outlineQuad2f(b, new Vector3(a.x, a.y, b.z));

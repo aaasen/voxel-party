@@ -13,12 +13,14 @@ import java.util.HashMap;
 
 public class ChunkContainer {
 	public HashMap<Long, Chunk> chunks;
+	public Vector3 selected;
 	
 	/**
 	 * Creates an empty ChunkContainer
 	 */
 	public ChunkContainer() {
 		this.chunks = new HashMap<Long, Chunk>();
+		this.selected = new Vector3(0f, 0f, 0f);
 	}
 	
 	/**
@@ -72,6 +74,10 @@ public class ChunkContainer {
 
 	public Block getBlock(Vector3 pos) {
 		return this.getChunk(pos).blocks[posMod((int) Math.floor(pos.x), WIDTH)][posMod((int) Math.floor(pos.z), WIDTH)][(int) Math.floor(pos.y)];
+	}
+	
+	public Block getBlockRound(Vector3 pos) {
+		return this.getChunk(pos).blocks[posMod((int) Math.round(pos.x), WIDTH)][posMod((int) Math.round(pos.z), WIDTH)][(int) Math.round(Math.floor(pos.y))];
 	}
 	
 	private void updateMask(Block block) {
