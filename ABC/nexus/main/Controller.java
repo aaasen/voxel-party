@@ -21,6 +21,8 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 public class Controller implements Runnable {
+	public static final float MAX_SELECT_DISTANCE = 5f;
+	
 	Thread inputThread;
 	boolean stop = false;
 	Model model;
@@ -89,14 +91,28 @@ public class Controller implements Runnable {
 		
 		this.model.camera.update();
 		
-		if (Mouse.isButtonDown(0)) {
-			for (float i = 0f; i <= 5f; i += 0.5f) {
-				Vector3 target = model.camera.eye.add(model.camera.unitFocal.scale((float) i));
-				target = new Vector3((int) target.x, (int) target.y, (int) target.z);
-				model.chunks.setBlock(new Air(target, 1.0f));
+		for (float i = 0f; i < MAX_SELECT_DISTANCE; i += 0.1f) {
+			Vector3 target = model.camera.eye.add(model.camera.unitFocal.scale((float) i));
+			target = new Vector3((int) target.x, (int) target.y, (int) target.z);
+			
+			if (model.chunks.getBlock(target).visible()) {
+				if (target != model.chunks.selected) {
+					model.chunks.getBlockRound(model.chunks.selected).mask.outline = false;
+					model.chunks.getBlockRound(target).mask.outline = true;
+					model.chunks.selected = target;
+				}
+				
+				if (Mouse.isButtonDown(0)) {
+					model.chunks.setBlock(new Air(model.chunks.selected, 1.0f));
+				}
+				
+				if (Mouse.isButtonDown(1)) {
+				
+				}
+				
+				break;
 			}
 		}
-		
 	}
 
 	/**
