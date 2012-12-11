@@ -8,6 +8,7 @@ package nexus.model.structs;
  */
 
 import static nexus.model.structs.Chunk.WIDTH;
+import static nexus.model.structs.Chunk.HEIGHT;
 
 import java.util.HashMap;
 
@@ -185,5 +186,9 @@ public class ChunkContainer {
 	private static int posMod(int a, int b) {
 		int r = a % b;
 		return r < 0 ? r + b : r;
+	}
+	
+	public boolean inBounds(Vector3 pos) {
+		return (--pos.y < HEIGHT && pos.y >= 0);
 	}
 }
