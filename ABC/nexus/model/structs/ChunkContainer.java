@@ -80,7 +80,12 @@ public class ChunkContainer {
 		return this.getChunk(pos).blocks[posMod((int) Math.round(pos.x), WIDTH)][posMod((int) Math.round(pos.z), WIDTH)][(int) Math.round(Math.floor(pos.y))];
 	}
 	
-	private void updateMask(Block block) {
+	/**
+	 * Updates the rendering masks of nearby blocks
+	 * 
+	 * @param block
+	 */
+	private void updateNearbyMask(Block block) {
 		Block below = this.getBlock(block.a.add(new Vector3(0f, -1f, 0f)));
 		Block above = this.getBlock(block.a.add(new Vector3(0f, 1f, 0f)));
 		Block left = this.getBlock(block.a.add(new Vector3(-1f, 0f, 0f)));
@@ -108,6 +113,50 @@ public class ChunkContainer {
 	}
 	
 	/**
+	 * Updates the mask of the given block based on its neighbors
+	 * 
+	 * @param block
+	 */
+	private void updateMask(Block block) {
+		Block below = this.getBlock(block.a.add(new Vector3(0f, -1f, 0f)));
+		Block above = this.getBlock(block.a.add(new Vector3(0f, 1f, 0f)));
+		Block left = this.getBlock(block.a.add(new Vector3(-1f, 0f, 0f)));
+		Block right = this.getBlock(block.a.add(new Vector3(1f, 0f, 0f)));
+		Block near = this.getBlock(block.a.add(new Vector3(0f, 0f, -1f)));
+		Block far = this.getBlock(block.a.add(new Vector3(0f, 0f, 1f)));
+		
+		if (!below.visible()) {
+			block.mask.render = true;
+			block.mask.bottom = true;
+		}
+		
+		if (!above.visible()) {
+			block.mask.render = true;
+			block.mask.top = true;
+		}
+		
+		if (!left.visible()) {
+			block.mask.render = true;
+			block.mask.left = true;
+		}
+		
+		if (!right.visible()) {
+			block.mask.render = true;
+			block.mask.right = true;
+		}
+		
+		if (!near.visible()) {
+			block.mask.render = true;
+			block.mask.near = true;
+		}
+		
+		if (!far.visible()) {
+			block.mask.render = true;
+			block.mask.far = true;
+		}
+	}
+	
+	/**
 	 * places a block into the ChunkContainer and updates nearby masks if necessary
 	 * 
 	 * @param block
@@ -115,7 +164,9 @@ public class ChunkContainer {
 	public void setBlock(Block block) {
 		this.getChunk(block.a.x, block.a.z).blocks[posMod((int) block.a.x, WIDTH)][posMod((int) block.a.z, WIDTH)][(int) block.a.y] = block;
 	
-		if(!block.visible()) {
+		if (!block.visible()) {
+			updateNearbyMask(block);
+		} else {
 			updateMask(block);
 		}
 	}
