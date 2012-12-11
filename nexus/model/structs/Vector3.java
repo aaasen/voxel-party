@@ -34,6 +34,10 @@ public class Vector3 {
 		return new Vector3(a.x + x, a.y + y, a.z + z);
 	}
 	
+	public Vector3 subtract(Vector3 a) {
+		return new Vector3(x - a.x, y - a.y, z - a.z);
+	}
+	
 	public Vector3 scale(float scalar) {
 		return new Vector3(x * scalar, y * scalar, z * scalar); 
 	}

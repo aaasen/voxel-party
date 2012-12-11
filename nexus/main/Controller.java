@@ -14,7 +14,10 @@ package nexus.main;
 
 
 import nexus.model.renderable.Air;
+import nexus.model.renderable.Solid;
+import nexus.model.structs.Block;
 import nexus.model.structs.Vector3;
+import nexus.view.color.Greyscale;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
@@ -107,7 +110,8 @@ public class Controller implements Runnable {
 				}
 				
 				if (Mouse.isButtonDown(1)) {
-				
+					Block newBlock = new Solid(model.chunks.selected.add(new Vector3(0f, 1f, 0f)), 1.0f, new Greyscale(16.0f, 0.0f));
+					model.chunks.setBlock(newBlock);
 				}
 				
 				break;
