@@ -1,4 +1,4 @@
-package nexus.tests;
+package model.structs;
 
 import static org.junit.Assert.assertEquals;
 
