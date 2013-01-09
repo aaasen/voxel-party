@@ -1,13 +1,12 @@
 package nexus.tests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 import nexus.main.Model;
+import nexus.model.structs.Block;
 import nexus.model.structs.Camera;
 import nexus.model.structs.Chunk;
 import nexus.model.structs.ChunkContainer;
@@ -23,47 +22,38 @@ public class ChunkContainerTest {
 	public static void testSetup() {
 		world = new Model(new Camera(new Vector3(0f, 0f, 0f), 0f, 0f, 0f, false));
 	}
+
+	@Test
+	public void getBlock() {
+		Block block = world.chunks.getBlock(new Vector3(0.5f, 0.5f, 0.5f));
+		
+		assertEquals(true, new Vector3(0f, 0f, 0f).equals(block.a));
+	}
 	
 	@Test
-	public void testChunkContainer() {
-		fail("Not yet implemented");
+	public void getBlockNegative() {
+		Block block = world.chunks.getBlock(new Vector3(-0.5f, 0.5f, -0.5f));
+		
+		assertEquals(true, new Vector3(-1f, 0f, -1f).equals(block.a));
 	}
-
+	
 	@Test
-	public void testGetChunkVector3() {
-		fail("Not yet implemented");
+	public void getBlockOrigin() {
+		Block block = world.chunks.getBlock(new Vector3(0f, 0f, 0f));
+		
+		assertEquals(true, new Vector3(0f, 0f, 0f).equals(block.a));
 	}
-
-	@Test
-	public void testGetChunkFloatFloat() {
-		fail("Not yet implemented");
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void getBlockHigh() {
+		world.chunks.getBlock(new Vector3(0f, 100000f, 0f));
 	}
-
-	@Test
-	public void testGetChunkIntInt() {
-		fail("Not yet implemented");
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void getBlockLow() {
+		world.chunks.getBlock(new Vector3(0f, -1000000f, 0f));
 	}
-
-	@Test
-	public void testGetChunkIntIntBoolean() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetBlock() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetBlockRound() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetBlock() {
-		fail("Not yet implemented");
-	}
-
+	
 	@Test
 	public void getKey() {
 		int high = 100;

@@ -73,7 +73,11 @@ public class ChunkContainer {
 	 * @return the Block that the given Vector is in
 	 */
 	public Block getBlock(Vector3 pos) {
-		return this.getChunk(pos).blocks[posMod((int) Math.floor(pos.x), WIDTH)][posMod((int) Math.floor(pos.z), WIDTH)][(int) Math.floor(pos.y)];
+		if (inBounds(pos)) {
+			return this.getChunk(pos).blocks[posMod((int) Math.floor(pos.x), WIDTH)][posMod((int) Math.floor(pos.z), WIDTH)][(int) Math.floor(pos.y)];
+		} else {
+			throw new IllegalArgumentException(pos + " is out of bounds");
+		}
 	}
 	
 	/**
