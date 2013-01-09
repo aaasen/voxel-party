@@ -17,8 +17,8 @@ import org.junit.Test;
 
 public class ChunkContainerTest {
 	public static final double EXPECTED_GENERATION_TIME = 30;
-	public static final double EXPECTED_CULLING_TIME = 5;
-	public static final int TEST_ITERATIONS = 5;
+	public static final double EXPECTED_CULLING_TIME = 20;
+	public static final int TEST_ITERATIONS = 2; // default is 5, but this can be annoying for dev
 	public static Model world;
 	
 	@BeforeClass
@@ -56,6 +56,16 @@ public class ChunkContainerTest {
 	public void getBlockLow() {
 		world.chunks.getBlock(new Vector3(0f, -1000000f, 0f));
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void setBlockHigh() {
+		world.chunks.setBlock(new Block(new Vector3(0f, 100000f, 0f), 1f, null));
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void setBlockLow() {
+		world.chunks.setBlock(new Block(new Vector3(0f, -1000000f, 0f), 1f, null));
+	}	
 	
 	@Test
 	public void chunkGenerationSpeed() {

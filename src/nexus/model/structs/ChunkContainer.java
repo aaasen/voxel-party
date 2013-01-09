@@ -15,7 +15,7 @@ import java.util.HashMap;
 public class ChunkContainer {
 	public HashMap<Long, Chunk> chunks;
 	public Vector3 selected;
-	
+
 	/**
 	 * Creates an empty ChunkContainer
 	 */
@@ -23,7 +23,7 @@ public class ChunkContainer {
 		this.chunks = new HashMap<Long, Chunk>();
 		this.selected = new Vector3(0f, 0f, 0f);
 	}
-	
+
 	/**
 	 * Returns the Chunk at the given Chunk coordinates
 	 * 
@@ -36,25 +36,25 @@ public class ChunkContainer {
 	 */
 	public Chunk getChunk(int x, int z, boolean mask) {
 		Chunk chunk = this.chunks.get(getKey(x, z));
-		
+
 		if (chunk == null) {
 			chunk = new Chunk(x, z, new Vector3(0.2f, 20.0f, 0.2f), this);
 			chunk.generate();
-			
+
 			if (mask) {
 				chunk.calcVisible();
 			}
-			
+
 			this.chunks.put(getKey(x, z), chunk);
 		} else if (mask) {
 			if (!chunk.mask) {
 				chunk.calcVisible();
 			}
 		}
-		
+
 		return chunk;
 	}
-	
+
 	/**
 	 * Returns the Chunk that the given Vector is in
 	 * 
@@ -79,7 +79,26 @@ public class ChunkContainer {
 			throw new IllegalArgumentException(pos + " is out of bounds");
 		}
 	}
-	
+
+	/**
+	 * places a block into the ChunkContainer and updates nearby masks if necessary
+	 * 
+	 * @param block
+	 */
+	public void setBlock(Block block) {
+		if (inBounds(block.a) && inBounds(block.b)) {
+			this.getChunk(block.a).blocks[posMod((int) block.a.x, WIDTH)][posMod((int) block.a.z, WIDTH)][(int) block.a.y] = block;
+
+			if (!block.visible()) {
+				updateNearbyMask(block);
+			} else {
+				updateMask(block);
+			}
+		} else {
+			throw new IllegalArgumentException("block is out of bounds");
+		}
+	}
+
 	/**
 	 * Updates the rendering masks of nearby blocks
 	 * 
@@ -92,26 +111,26 @@ public class ChunkContainer {
 		Block right = this.getBlock(block.a.add(new Vector3(1f, 0f, 0f)));
 		Block near = this.getBlock(block.a.add(new Vector3(0f, 0f, -1f)));
 		Block far = this.getBlock(block.a.add(new Vector3(0f, 0f, 1f)));
-		
+
 		above.mask.bottom = true;
 		above.mask.render = true;
-		
+
 		below.mask.top = true;
 		below.mask.render = true;
 
 		left.mask.right = true;
 		left.mask.render = true;
-		
+
 		right.mask.left = true;
 		right.mask.render = true;
-		
+
 		near.mask.far = true;
 		near.mask.render = true;
-		
+
 		far.mask.near = true;
 		far.mask.render = true;
 	}
-	
+
 	/**
 	 * Updates the mask of the given block based on its neighbors
 	 * 
@@ -124,65 +143,50 @@ public class ChunkContainer {
 		Block right = this.getBlock(block.a.add(new Vector3(1f, 0f, 0f)));
 		Block near = this.getBlock(block.a.add(new Vector3(0f, 0f, -1f)));
 		Block far = this.getBlock(block.a.add(new Vector3(0f, 0f, 1f)));
-		
+
 		if (!below.visible()) {
 			block.mask.render = true;
 			block.mask.bottom = true;
 		}
-		
+
 		if (!above.visible()) {
 			block.mask.render = true;
 			block.mask.top = true;
 		}
-		
+
 		if (!left.visible()) {
 			block.mask.render = true;
 			block.mask.left = true;
 		}
-		
+
 		if (!right.visible()) {
 			block.mask.render = true;
 			block.mask.right = true;
 		}
-		
+
 		if (!near.visible()) {
 			block.mask.render = true;
 			block.mask.near = true;
 		}
-		
+
 		if (!far.visible()) {
 			block.mask.render = true;
 			block.mask.far = true;
 		}
 	}
-	
-	/**
-	 * places a block into the ChunkContainer and updates nearby masks if necessary
-	 * 
-	 * @param block
-	 */
-	public void setBlock(Block block) {
-		this.getChunk(block.a).blocks[posMod((int) block.a.x, WIDTH)][posMod((int) block.a.z, WIDTH)][(int) block.a.y] = block;
-	
-		if (!block.visible()) {
-			updateNearbyMask(block);
-		} else {
-			updateMask(block);
-		}
-	}
-	
+
 	/**
 	 * Generates a unique key for the given Chunk coordinate
 	 */
 	public static long getKey(int x, int y) {
 		return x * (long) Math.pow(2, 31) + y;
 	}
-	
+
 	private static int posMod(int a, int b) {
 		int r = a % b;
 		return r < 0 ? r + b : r;
 	}
-	
+
 	public boolean inBounds(Vector3 pos) {
 		return (pos.y <= (HEIGHT - 1) && pos.y >= 0f);
 	}
