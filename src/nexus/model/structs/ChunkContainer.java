@@ -170,7 +170,7 @@ public class ChunkContainer {
 	/**
 	 * Generates a unique key for the given Chunk coordinate
 	 */
-	private static long getKey(int x, int y) {
+	public static long getKey(int x, int y) {
 		return x * (long) Math.pow(2, 31) + y;
 	}
 	

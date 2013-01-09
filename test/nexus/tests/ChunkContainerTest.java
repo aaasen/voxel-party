@@ -1,10 +1,16 @@
 package nexus.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 import nexus.main.Model;
 import nexus.model.structs.Camera;
 import nexus.model.structs.Chunk;
+import nexus.model.structs.ChunkContainer;
 import nexus.model.structs.Vector3;
 
 import org.junit.BeforeClass;
@@ -58,6 +64,23 @@ public class ChunkContainerTest {
 		fail("Not yet implemented");
 	}
 
+	@Test
+	public void getKey() {
+		int high = 100;
+		int low = -high;
+		
+		Set<Long> results = new HashSet<Long>();
+		int expected = (int) Math.pow(high + Math.abs(low) + 1, 2);
+		
+		for (int i = low; i <= high; i++) {
+			for (int j = low; j <= high; j++) {
+				results.add(ChunkContainer.getKey(i, j));
+			}
+		}
+		
+		assertEquals(expected, results.size());
+	}
+	
 	@Test
 	public void inBoundsBelow() {
 		assertEquals(false, world.chunks.inBounds(new Vector3(0f, -1f, 0f)));
