@@ -1,0 +1,9 @@
+.classpath
+.project
+.settings/
+bin/
+
+*.mp4
+*.mp3
+*.ogg
+*.wav
