@@ -25,24 +25,6 @@ public class ChunkContainer {
 	}
 	
 	/**
-	 * Returns the Chunk that the given Vector is in
-	 * 
-	 * @param position
-	 * @return
-	 */
-	public Chunk getChunk(Vector3 pos) {
-		return getChunk(pos.x, pos.z);
-	}
-	
-	public Chunk getChunk(float x, float z) {
-		return getChunk((int) Math.floor(x / WIDTH), (int) Math.floor(z / WIDTH));
-	}
-	
-	public Chunk getChunk(int x, int y) {
-		return getChunk(x, y, true);
-	}
-	
-	/**
 	 * Returns the Chunk at the given Chunk coordinates
 	 * 
 	 * This will generate a new Chunk if there is none at the specified position
@@ -72,13 +54,26 @@ public class ChunkContainer {
 		
 		return chunk;
 	}
+	
+	/**
+	 * Returns the Chunk that the given Vector is in
+	 * 
+	 * @param position
+	 * @return
+	 */
+	public Chunk getChunk(Vector3 pos) {
+		return getChunk((int) Math.floor(pos.x / WIDTH), (int) Math.floor(pos.z / WIDTH));
+	}
 
+	public Chunk getChunk(int x, int y) {
+		return getChunk(x, y, true);
+	}
+
+	/**
+	 * @return the Block that the given Vector is in
+	 */
 	public Block getBlock(Vector3 pos) {
 		return this.getChunk(pos).blocks[posMod((int) Math.floor(pos.x), WIDTH)][posMod((int) Math.floor(pos.z), WIDTH)][(int) Math.floor(pos.y)];
-	}
-	
-	public Block getBlockRound(Vector3 pos) {
-		return this.getChunk(pos).blocks[posMod((int) Math.round(pos.x), WIDTH)][posMod((int) Math.round(pos.z), WIDTH)][(int) Math.round(Math.floor(pos.y))];
 	}
 	
 	/**
@@ -163,7 +158,7 @@ public class ChunkContainer {
 	 * @param block
 	 */
 	public void setBlock(Block block) {
-		this.getChunk(block.a.x, block.a.z).blocks[posMod((int) block.a.x, WIDTH)][posMod((int) block.a.z, WIDTH)][(int) block.a.y] = block;
+		this.getChunk(block.a).blocks[posMod((int) block.a.x, WIDTH)][posMod((int) block.a.z, WIDTH)][(int) block.a.y] = block;
 	
 		if (!block.visible()) {
 			updateNearbyMask(block);
@@ -174,10 +169,6 @@ public class ChunkContainer {
 	
 	/**
 	 * Generates a unique key for the given Chunk coordinate
-	 * 
-	 * @param x
-	 * @param y
-	 * @return
 	 */
 	private static long getKey(int x, int y) {
 		return x * (long) Math.pow(2, 31) + y;
