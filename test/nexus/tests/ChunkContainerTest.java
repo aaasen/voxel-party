@@ -16,6 +16,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class ChunkContainerTest {
+	public static final double EXPECTED_GENERATION_TIME = 30;
+	public static final double EXPECTED_CULLING_TIME = 5;
+	public static final int TEST_ITERATIONS = 5;
 	public static Model world;
 	
 	@BeforeClass
@@ -52,6 +55,46 @@ public class ChunkContainerTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void getBlockLow() {
 		world.chunks.getBlock(new Vector3(0f, -1000000f, 0f));
+	}
+	
+	@Test
+	public void chunkGenerationSpeed() {
+		long begin = System.currentTimeMillis();
+		
+		int numChunks = generateChunks(TEST_ITERATIONS, 0, false);
+		
+		long end = System.currentTimeMillis();
+		long elapsed = end - begin;
+		
+		double timePerChunk = (double) elapsed / numChunks;
+		
+		assertEquals("took " + timePerChunk + " ms/chunk, expected " + EXPECTED_GENERATION_TIME, true, timePerChunk < EXPECTED_GENERATION_TIME);
+	}
+	
+	@Test
+	public void chunkCullingSpeed() {
+
+		generateChunks(TEST_ITERATIONS, 100, false);
+		
+		long begin = System.currentTimeMillis();
+		
+		int numChunks = generateChunks(TEST_ITERATIONS - 1, 100, true);
+
+		long end = System.currentTimeMillis();
+		long elapsed = end - begin;
+		double timePerChunk = (double) elapsed / numChunks;
+	
+		assertEquals("took " + timePerChunk + " ms/chunk, expected " + EXPECTED_CULLING_TIME, true, timePerChunk < EXPECTED_CULLING_TIME);
+	}
+	
+	public int generateChunks(int iterations, int offset, boolean mask) {
+		for (int i = -iterations; i <= iterations; i++) {
+			for (int j = -iterations; j <= iterations; j++) {
+				world.chunks.getChunk(i + offset, j + offset, mask);
+			}
+		}
+		
+		return (int) Math.pow(iterations * 2 + 1, 2);
 	}
 	
 	@Test
