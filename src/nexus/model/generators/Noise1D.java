@@ -2,9 +2,7 @@ package nexus.model.generators;
 
 public class Noise1D {
 	
-	public static final int[][] primes = {{789221, 1376312589, 107374182, 15731},
-		{102181, 21143, 879089741, 1288831},
-		{1000003, 982304003, 134053243, 1871}};
+	public static final int[][] primes = { {15731, 789221, 1376312589, 107374182} };
 	
 	/**
 	 * Deteministically hashes one number
@@ -14,7 +12,7 @@ public class Noise1D {
 	 * @return deteministic noise; hash of x
 	 */
 	public static float noise(int x, int[] primes) {
-		x = (x<<17) ^ x;
+		x = (x<<17) ^ x; 
 		return ((((x * (x * x * primes[0] + primes[1]) + primes[2]) & 0x7fffffff) / (float) primes[3]) - 10.0f) / 10.0f;
 	}
 
