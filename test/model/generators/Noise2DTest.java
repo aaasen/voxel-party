@@ -17,9 +17,8 @@ public class Noise2DTest {
 	public final TreeSet<Float> noise = new TreeSet<Float>(genRandom(TEST_ITERATIONS));
 	
 	@Test
-	public void testNoise() {
-		assertEquals(TEST_RUNS - noise.size() + " collisions (" + (float) noise.size() / TEST_RUNS + "%)",
-				TEST_RUNS, noise.size(), 0);
+	public void noiseCollision() {
+		assertEquals((float) noise.size() / TEST_RUNS, 0, 0.05f);
 	}
 	
 	private Set<Float> genRandom(int iterations) {

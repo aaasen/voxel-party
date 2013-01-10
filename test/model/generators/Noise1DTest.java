@@ -17,7 +17,9 @@ public class Noise1DTest {
 	
 	@Test
 	public void noiseCollision() {
-		assertEquals(TEST_ITERATIONS - noise.size() + " collisions (" + (float) noise.size() / TEST_ITERATIONS + "%)", TEST_ITERATIONS, noise.size());
+		System.out.println(noise.size());
+		System.out.println(TEST_ITERATIONS);
+		assertEquals((TEST_ITERATIONS - (float) noise.size()) / TEST_ITERATIONS, 0f, 5f);
 	}
 	
 	@Test
