@@ -12,6 +12,8 @@ import nexus.model.generators.Noise1D;
 import org.junit.Test;
 
 public class Noise1DTest {
+	public static final float ACCEPTABLE_DISTRIBUTION_PERCENT = 0.01f;
+	public static final float ACCEPTABLE_COLLISION_PERCENT = 0.05f;
 	public static final int TEST_ITERATIONS = (int) Math.pow(2, 20);
 	public final TreeSet<Float> noise = new TreeSet<Float>(genRandom(TEST_ITERATIONS));
 	
@@ -19,7 +21,7 @@ public class Noise1DTest {
 	public void noiseCollision() {
 		System.out.println(noise.size());
 		System.out.println(TEST_ITERATIONS);
-		assertEquals((TEST_ITERATIONS - (float) noise.size()) / TEST_ITERATIONS, 0f, 5f);
+		assertEquals((TEST_ITERATIONS - (float) noise.size()) / TEST_ITERATIONS, 0f, ACCEPTABLE_COLLISION_PERCENT);
 	}
 	
 	@Test
@@ -34,7 +36,7 @@ public class Noise1DTest {
 		
 		float realAverage = (float) (sum / noise.size());
 		
-		assertEquals(expectedAverage, realAverage, 0.1f);
+		assertEquals(expectedAverage, realAverage, ACCEPTABLE_DISTRIBUTION_PERCENT);
 	}
 	
 	@Test
