@@ -6,6 +6,6 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ ChunkContainerTest.class, Vector3Test.class })
-public class AllTests {
+public class StructTests {
 
 }

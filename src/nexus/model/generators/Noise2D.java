@@ -21,7 +21,7 @@ public class Noise2D {
 	public static float noise(int x, int y, int[] primes) {		
 		int n = x + y * 57;
 		n = (n<<13) ^ n;
-		return Noise1D.noise(n, primes);   	
+		return Noise1D.noise(n, primes);
 	}
 
 	/**

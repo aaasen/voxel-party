@@ -1,8 +1,7 @@
-package model.structs;
+package model.generators;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -38,19 +37,19 @@ public class Noise1DTest {
 	
 	@Test
 	public void noiseLow() {
-		assertEquals(true, noise.first() >= 0);
+		assertEquals(noise.first() + "", true, noise.first() >= -1);
 	}
 	
 	@Test
 	public void noiseHigh() {
-		assertEquals(true, noise.last() <= 0);
+		assertEquals(noise.last() + "", true, noise.last() <= 1);
 	}
 	
 	private Set<Float> genRandom(int iterations) {
 		Set<Float> results = new HashSet<Float>();
 		
 		for (int i = 0; i < iterations; i++) {
-			results.add(Noise1D.noise(i, Noise1D.primes[i % 3]));
+			results.add(Noise1D.noise(i, Noise1D.primes[0]));
 		}
 		
 		return results;
