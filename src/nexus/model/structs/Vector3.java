@@ -29,7 +29,7 @@ public class Vector3 {
 	}
 	
 	public Vector3 subtract(Vector3 a) {
-		return new Vector3(a.x - x, a.y - y, a.z - z);
+		return new Vector3(x - a.x, y - a.y, z - a.z);
 	}
 	
 	public float length() {
@@ -45,7 +45,7 @@ public class Vector3 {
 	}
 	
     public Vector3 normalize() {
-        return scale(1 / length());
+        return this.scale(1 / length());
     }
 
     public float dotProduct(Vector3 vector) {
@@ -62,7 +62,7 @@ public class Vector3 {
     }
 
     public Vector3 perpendicular(Vector3 vector) {
-        return subtract(projection(vector));
+        return this.subtract(projection(vector));
     }
 	
 	public String toString() {
