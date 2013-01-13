@@ -86,7 +86,7 @@ public class ChunkContainer {
 	 * @param block
 	 */
 	public void setBlock(Block block) {
-		if (inBounds(block.a) && inBounds(block.b)) {
+		if (inBounds(block.a) && inBounds(block.b) && block.isOnGrid()) {
 			this.getChunk(block.a).blocks[posMod((int) block.a.x, WIDTH)][posMod((int) block.a.z, WIDTH)][(int) block.a.y] = block;
 
 			if (!block.visible()) {
@@ -95,7 +95,7 @@ public class ChunkContainer {
 				updateMask(block);
 			}
 		} else {
-			throw new IllegalArgumentException("block is out of bounds");
+			throw new IllegalArgumentException(block.a.toString() + " is an illegal block position");
 		}
 	}
 

@@ -67,6 +67,11 @@ public class ChunkContainerTest {
 		world.chunks.setBlock(new Block(new Vector3(0f, -1000000f, 0f), 1f, null));
 	}	
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void setBlockFloat() {
+		world.chunks.setBlock(new Block(new Vector3(0f, 0.1f, 0f), 1f, null));
+	}
+	
 	@Test
 	public void chunkGenerationSpeed() {
 		long begin = System.currentTimeMillis();

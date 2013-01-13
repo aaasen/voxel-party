@@ -109,7 +109,7 @@ public class Controller implements Runnable {
 				}
 				
 				if (Mouse.isButtonDown(1)) {
-					Block newBlock = new Solid(model.chunks.selected.add(new Vector3(0f, 1f, 0f)), 1.0f, new Greyscale(16.0f, 0.0f));
+					Block newBlock = new Solid(model.chunks.getBlock(model.chunks.selected).a.add(new Vector3(0f, 1f, 0f)), 1.0f, new Greyscale(16.0f, 0.0f));
 					model.chunks.setBlock(newBlock);
 				}
 				
