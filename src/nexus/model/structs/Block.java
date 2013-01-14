@@ -42,4 +42,10 @@ public class Block {
 	public boolean visible() {
 		return true;
 	}
+	
+	public boolean isOnGrid() {
+		Vector3 mod = new Vector3(this.a.x % 1f, this.a.y % 1f, this.a.z % 1f);
+		
+		return mod.equals(new Vector3(0f, 0f, 0f));
+	}
 }
