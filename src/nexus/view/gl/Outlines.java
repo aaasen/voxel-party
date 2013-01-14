@@ -36,6 +36,7 @@ public class Outlines {
 	 * @param c
 	 * @param d
 	 */
+	@Deprecated
 	public static void outline(Vector3 a, Vector3 b, Vector3 c, Vector3 d) {
 		Vector3[] points = {a, b, c, d};
 		Outlines.outline(points);	
@@ -47,6 +48,7 @@ public class Outlines {
 	 * @param a
 	 * @param b
 	 */
+	@Deprecated
 	public static void outlineQuad2f(Vector3 a, Vector3 b) {
 		glBegin(GL_LINES);
 		
@@ -71,6 +73,7 @@ public class Outlines {
 	 * @param a
 	 * @param b
 	 */
+	@Deprecated
 	public static void rectPrism2f(Vector3 a, Vector3 b) {
 		outlineQuad2f(a, new Vector3(b.x, b.y, a.z));
 		outlineQuad2f(a, new Vector3(b.x, a.y, b.z));
@@ -85,6 +88,7 @@ public class Outlines {
 	 * @param a
 	 * @param b
 	 */
+	@Deprecated
 	public static void drawLine(Vector3 a, Vector3 b) {
 		glBegin(GL_LINES);
 		

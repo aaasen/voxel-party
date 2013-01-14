@@ -18,6 +18,7 @@ public class Prisms {
 	 * @param a near bottom left corner
 	 * @param b far top right corner
 	 */
+	@Deprecated
 	public static void drawRectPrism2f(Vector3 a, Vector3 b, Colorist colorist) {
 		Planes.drawQuad2f(a.x, a.y, a.z, b.x, b.y, a.z, colorist);
 		Planes.drawQuad2f(a.x, a.y, b.z, b.x, b.y, b.z, colorist);
