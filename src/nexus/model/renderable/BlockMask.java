@@ -17,18 +17,18 @@ public class BlockMask implements Renderable {
 	public static final float OUTLINE_WIDTH = 4f;
 	
 	public Block block;
-	public boolean render, top, bottom, near, far, left, right, outline;
+	public boolean render, drawTop, drawBottom, drawNear, drawFar, drawLeft, drawRight, drawOutline;
 	
 	public BlockMask(Block block) {
 		this.block = block;
 		render = false;
-		top = false;
-		bottom = false;
-		near = false;
-		far = false;
-		left = false;
-		right = false;
-		outline = false;
+		drawTop = false;
+		drawBottom = false;
+		drawNear = false;
+		drawFar = false;
+		drawLeft = false;
+		drawRight = false;
+		drawOutline = false;
 	}
 	
 	/**
@@ -37,19 +37,19 @@ public class BlockMask implements Renderable {
 	@Override
 	public void draw() {
 		if (render) {
-			if (top) {
+			if (drawTop) {
 				Planes.drawQuad2f(block.a.x, block.b.y, block.a.z, block.b.x, block.b.y, block.b.z, block.colorist);
-			} if (bottom) {
+			} if (drawBottom) {
 				Planes.drawQuad2f(block.a.x, block.a.y, block.a.z, block.b.x, block.a.y, block.b.z, block.colorist);
-			} if (near) {
+			} if (drawNear) {
 				Planes.drawQuad2f(block.a.x, block.a.y, block.a.z, block.b.x, block.b.y, block.a.z, block.colorist);
-			} if (far) {
+			} if (drawFar) {
 				Planes.drawQuad2f(block.a.x, block.a.y, block.b.z, block.b.x, block.b.y, block.b.z, block.colorist);	
-			} if (left) {
+			} if (drawLeft) {
 				Planes.drawQuad2f(block.a.x, block.a.y, block.a.z, block.a.x, block.b.y, block.b.z, block.colorist);	
-			} if (right) {
+			} if (drawRight) {
 				Planes.drawQuad2f(block.b.x, block.a.y, block.a.z, block.b.x, block.b.y, block.b.z, block.colorist);	
-			} if (outline) {
+			} if (drawOutline) {
 				glColor3f(OUTLINE_R, OUTLINE_G, OUTLINE_B);
 				glLineWidth(OUTLINE_WIDTH);
 				Outlines.rectPrism2f(block.a, block.b);

@@ -9,6 +9,7 @@ package nexus.model.structs;
  */
 
 public class Vector3 {
+	public static final int NUM_ELEMENTS = 3;
 	public float x, y, z;
 	
 	/**
@@ -71,5 +72,30 @@ public class Vector3 {
 	
 	public boolean equals(Vector3 a) {
 		return this.x == a.x && this.y == a.y && this.z == a.z;
+	}
+	
+	/**
+	 * Converts a Vector into an array of floats
+	 */
+	public float[] toArray() {
+		return new float[] { x, y, z };
+	}
+	
+	/**
+	 * Combines multiple Vectors into one array of floats
+	 * 
+	 * @param vectors
+	 * @return combined array of floats
+	 */
+	public static float[] combine(Vector3[] vectors) {
+		float[] combined = new float[vectors.length * Vector3.NUM_ELEMENTS];
+		
+		for (int i = 0; i < vectors.length; i++) {
+			combined[Vector3.NUM_ELEMENTS * i] = vectors[i].x;
+			combined[Vector3.NUM_ELEMENTS * i + 1] = vectors[i].y;
+			combined[Vector3.NUM_ELEMENTS * i + 2] = vectors[i].z;
+		}
+		
+		return combined;
 	}
 }

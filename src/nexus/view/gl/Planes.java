@@ -25,6 +25,7 @@ public class Planes {
 	 * @param c top right corner
 	 * @param d bottom right corner
 	 */
+	@Deprecated
 	public static void drawQuad4f(Vector3 a, Vector3 b, Vector3 c, Vector3 d) {
 		glBegin(GL_TRIANGLES);
 		
@@ -49,6 +50,7 @@ public class Planes {
 	 * @param c top right corner
 	 * @param d bottom right corner
 	 */
+	@Deprecated
 	public static void drawQuad4f(Vector3 a, Vector3 b, Vector3 c, Vector3 d, Colorist colorist) {
 		glBegin(GL_TRIANGLES);
 		
@@ -77,6 +79,7 @@ public class Planes {
 	 * 
 	 * TODO: research
 	 */
+	@Deprecated
 	public static void drawQuad2f(Vector3 a, Vector3 b, Colorist colorist) {
 		glBegin(GL_TRIANGLES);
 		
