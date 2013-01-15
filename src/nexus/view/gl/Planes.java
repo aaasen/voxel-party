@@ -129,7 +129,19 @@ public class Planes {
 	 * @param y top right y
 	 * @param z top right z
 	 */
+	@Deprecated
 	public static void drawQuad2f(float a, float b, float c, float x, float y, float z, Colorist colorist) {
 		drawQuad2f(new Vector3(a, b, c), new Vector3(x, y, z), colorist);
+	}
+	
+	/**
+	 * Form a quad between two vectors. Only tested for orthagonal.
+	 * 
+	 * @param a lower left corner
+	 * @param b upper right corner
+	 * @return float[] that, when parsed as triangles, will for a quad
+	 */
+	public static float[] makeQuad2f(Vector3 a, Vector3 b) {
+		return Vector3.combine(new Vector3[] { a, b, new Vector3(a.x, b.y, a.z), b, a, new Vector3(b.x, a.y, b.z)});
 	}
 }
