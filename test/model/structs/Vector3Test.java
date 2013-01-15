@@ -1,6 +1,9 @@
 package model.structs;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
+import java.util.Arrays;
 
 import nexus.model.structs.Vector3;
 
@@ -110,5 +113,22 @@ public class Vector3Test {
 	@Test
 	public void testPerpendicular() {
 		fail("not implemented");
+	}
+	
+	@Test
+	public void testToArray() {
+		Vector3 a = new Vector3(3f, -1f, 0f);
+		
+		assertEquals(true, Arrays.equals(a.toArray(), new float[] { 3f, -1f, 0f }));
+	}
+	
+	@Test
+	public void testCombined() {
+		Vector3 a = new Vector3(0f, 1f, 2f);
+		Vector3 b = new Vector3(3f, 4f, 5f);
+		Vector3 c = new Vector3(6f, 7f, 8f);
+		
+		assertEquals(true, Arrays.equals(Vector3.combine(new Vector3[] { a, b, c }),
+				new float[] { 0f, 1f, 2f, 3f, 4f, 5f, 6f, 7f, 8f }));
 	}
 }
