@@ -8,7 +8,6 @@ package nexus.view.gl;
  */
 
 import nexus.model.structs.Vector3;
-import nexus.view.color.Colorist;
 
 public class Prisms {
 	
@@ -17,16 +16,10 @@ public class Prisms {
 	 * 
 	 * @param a near bottom left corner
 	 * @param b far top right corner
+	 * 
+	 * TODO: implement
 	 */
-	@Deprecated
-	public static void drawRectPrism2f(Vector3 a, Vector3 b, Colorist colorist) {
-		Planes.drawQuad2f(a.x, a.y, a.z, b.x, b.y, a.z, colorist);
-		Planes.drawQuad2f(a.x, a.y, b.z, b.x, b.y, b.z, colorist);
-
-		Planes.drawQuad2f(a.x, b.y, a.z, b.x, b.y, b.z, colorist);
-		Planes.drawQuad2f(a.x, a.y, a.z, b.x, a.y, b.z, colorist);
-		
-		Planes.drawQuad2f(a.x, a.y, a.z, a.x, b.y, b.z, colorist);
-		Planes.drawQuad2f(b.x, a.y, a.z, b.x, b.y, b.z, colorist);
+	public static float[] makeRectPrism2f(Vector3 a, Vector3 b) {
+		return null;
 	}
 }
