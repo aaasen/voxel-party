@@ -68,6 +68,6 @@ public class PlanesTest {
 	public void makeQuad2fNonOrtho() {
 		Vector3 a = new Vector3(0, 0, 0);
 		Vector3 b = new Vector3(1, 1, 1);
-		float[] result = Planes.makeQuad2f(a, b);
+		Planes.makeQuad2f(a, b);
 	}
 }
