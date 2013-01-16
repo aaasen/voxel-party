@@ -64,18 +64,10 @@ public class PlanesTest {
 		assertEquals("got " + Arrays.toString(expected) + "\nexpected " + Arrays.toString(result), true, Arrays.equals(expected, result));
 	}
 	
-	@Test
+	@Test(expected=IllegalArgumentException.class)
 	public void makeQuad2fNonOrtho() {
 		Vector3 a = new Vector3(0, 0, 0);
 		Vector3 b = new Vector3(1, 1, 1);
 		float[] result = Planes.makeQuad2f(a, b);
-		float[] expected = new float[] { 0, 0, 0, 1, 1, 1, 0, 1, 0,
-										 1, 1, 1, 0, 0, 0, 1, 0, 0 };
-		
-		System.out.println("non ortho");
-		System.out.println(Arrays.toString(expected));
-		System.out.println(Arrays.toString(result));
-		
-		assertEquals("got " + Arrays.toString(expected) + "\nexpected " + Arrays.toString(result), true, Arrays.equals(expected, result));
 	}
 }
