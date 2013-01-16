@@ -34,7 +34,6 @@ import org.lwjgl.util.glu.GLU;
 
 public class View {
 	Model model;
-	boolean stop = false;
 	int renderDistance;
 	
 	/**
@@ -77,14 +76,12 @@ public class View {
 	 * Continuously renders the world
 	 */
 	public void run() {
-		while (!Display.isCloseRequested() && !this.stop) {
+		while (!Display.isCloseRequested() && !this.model.stop) {
 			Display.sync(60);
 			this.render();
 		}
 
-		this.model.stop();
-		Display.destroy();
-		
+		this.cleanUp();	
 	}
 
 	/**
@@ -110,14 +107,12 @@ public class View {
 			}
 			
 			Display.update();
-			
 		}
 	}
 
-	/**
-	 * Closes the View
-	 */
-	public void stop() {
-		this.stop = true;
+	public void cleanUp() {
+		Display.destroy();
+
+		System.exit(0);
 	}
 }

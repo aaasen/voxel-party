@@ -66,7 +66,7 @@ public class Controller implements Runnable {
 			}
 		}
 		
-		System.exit(0);
+		this.cleanUp();
 	}
 
 	/**
@@ -83,6 +83,10 @@ public class Controller implements Runnable {
 
 		this.model.camera.pitch(dy * this.mouseSensitivity);
 		this.model.camera.yaw(dx * this.mouseSensitivity);
+		
+		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
+			this.stop();
+		}
 		
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			this.model.camera.forwards();
@@ -123,5 +127,11 @@ public class Controller implements Runnable {
 	 */
 	public void stop() {
 		this.stop = true;
+		
+		this.model.stop();
+	}
+	
+	public void cleanUp() {
+
 	}
 }

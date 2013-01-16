@@ -62,9 +62,8 @@ public class Model implements Runnable {
 				e.printStackTrace();
 			}
 		}
-
-		System.exit(0);
-			
+		
+		this.cleanUp();
 	}
 	
 	/**
@@ -79,5 +78,9 @@ public class Model implements Runnable {
 	 */
 	public void stop() {
 		this.stop = true;
+	}
+	
+	public void cleanUp() {
+
 	}
 }
