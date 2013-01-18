@@ -3,8 +3,6 @@ package nexus.view.structs;
 import static org.lwjgl.opengl.ARBBufferObject.GL_STATIC_DRAW_ARB;
 import static org.lwjgl.opengl.ARBBufferObject.glBindBufferARB;
 import static org.lwjgl.opengl.ARBBufferObject.glBufferDataARB;
-import static org.lwjgl.opengl.ARBBufferObject.glDeleteBuffersARB;
-import static org.lwjgl.opengl.ARBBufferObject.glGenBuffersARB;
 import static org.lwjgl.opengl.ARBVertexBufferObject.GL_ARRAY_BUFFER_ARB;
 import static org.lwjgl.opengl.GL11.GL_COLOR_ARRAY;
 import static org.lwjgl.opengl.GL11.GL_FLOAT;
@@ -20,10 +18,14 @@ import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
 import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
+import org.lwjgl.*;
+import org.lwjgl.opengl.*;
+import static org.lwjgl.opengl.ARBBufferObject.*;
+import static org.lwjgl.opengl.ARBVertexBufferObject.*;
+import static org.lwjgl.opengl.GL11.*;
 
 public class VertexContainer {
 	public float[] vertices;
@@ -42,22 +44,8 @@ public class VertexContainer {
 
 	public VertexContainer(float[] vertices) {
 		this.vertices = vertices;
-		this.vertexBuffer = BufferUtils.createFloatBuffer(vertices.length);
-		this.vertexBuffer.put(vertices);
-		this.vertexCount = vertices.length;
-		this.vertexBuffer.flip();
-		
 		this.colors = new float[] { 1, 0, 0, 0, 1, 0, 0, 0, 1 };
-		this.colorBuffer = BufferUtils.createFloatBuffer(colors.length);
-		this.colorBuffer.put(vertices);
-		this.colorBuffer.flip();
 		
-//		IntBuffer ib = BufferUtils.createIntBuffer(2);
-//		glGenBuffersARB(ib);
-//
-//		this.vertexId = ib.get(0);
-//		this.colorId = ib.get(1);
-
 //		this.genVBO();
 	}
 
@@ -76,20 +64,38 @@ public class VertexContainer {
 //	}
 
 	public void render() {
+		this.vertexBuffer = BufferUtils.createFloatBuffer(vertices.length);
+		this.vertexBuffer.put(this.vertices);
+		this.vertexCount = vertices.length;
+		this.vertexBuffer.flip();
+		
+		this.colorBuffer = BufferUtils.createFloatBuffer(colors.length);
+		this.colorBuffer.put(this.colors);
+		this.colorBuffer.flip();
+		
 		IntBuffer ib = BufferUtils.createIntBuffer(2);
-
 		glGenBuffersARB(ib);
-		int vHandle = ib.get(0);
-		int cHandle = ib.get(1);
+
+		this.vertexId = ib.get(0);
+		this.colorId = ib.get(1);
+		
+//		this.vertexBuffer.flip();
+//		this.colorBuffer.flip();
+		
+//		IntBuffer ib = BufferUtils.createIntBuffer(2);
+//
+//		glGenBuffersARB(ib);
+//		int vHandle = ib.get(0);
+//		int cHandle = ib.get(1);
 
 		glEnableClientState(GL_VERTEX_ARRAY);
 		glEnableClientState(GL_COLOR_ARRAY);
 
-		glBindBufferARB(GL_ARRAY_BUFFER_ARB, vHandle);
+		glBindBufferARB(GL_ARRAY_BUFFER_ARB, this.vertexId);
 		glBufferDataARB(GL_ARRAY_BUFFER_ARB, this.vertexBuffer, GL_STATIC_DRAW_ARB);
 		glVertexPointer(3, GL_FLOAT, /* stride */3 << 2, 0L);
 
-		glBindBufferARB(GL_ARRAY_BUFFER_ARB, cHandle);
+		glBindBufferARB(GL_ARRAY_BUFFER_ARB, this.colorId);
 		glBufferDataARB(GL_ARRAY_BUFFER_ARB, this.colorBuffer, GL_STATIC_DRAW_ARB);
 		glColorPointer(3, GL_FLOAT, /* stride */3 << 2, 0L);
 
@@ -100,9 +106,9 @@ public class VertexContainer {
 		glDisableClientState(GL_COLOR_ARRAY);
 		glDisableClientState(GL_VERTEX_ARRAY);
 
-		// cleanup VBO handles
-		ib.put(0, vHandle);
-		ib.put(1, cHandle);
+//		 cleanup VBO handles
+		ib.put(0, this.vertexId);
+		ib.put(1, this.colorId);
 		glDeleteBuffersARB(ib);
 	}
 
