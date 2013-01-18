@@ -2,7 +2,6 @@ package nexus.model.structs;
 
 import nexus.model.renderable.BlockMask;
 import nexus.view.color.Colorist;
-import nexus.view.gl.VertexContainer;
 
 /**
  * A generic rectangular prism
@@ -17,7 +16,6 @@ public class Block {
 	public float dimension;
 	public Colorist colorist;
 	public BlockMask mask;
-	public VertexContainer vertices;
 	
 	/**
 	 * Creates a Block
