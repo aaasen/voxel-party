@@ -7,8 +7,10 @@ package nexus.model.renderable;
 import static org.lwjgl.opengl.GL11.glColor3f;
 import static org.lwjgl.opengl.GL11.glLineWidth;
 import nexus.model.structs.Block;
+import nexus.model.structs.Vector3;
 import nexus.view.gl.Outlines;
 import nexus.view.gl.Planes;
+import nexus.view.structs.VertexContainer;
 
 public class BlockMask implements Renderable {
 	public static final float OUTLINE_R = 0.5f;
@@ -18,6 +20,7 @@ public class BlockMask implements Renderable {
 	
 	public Block block;
 	public boolean render, drawTop, drawBottom, drawNear, drawFar, drawLeft, drawRight, drawOutline;
+	public VertexContainer top, bottom, near, far, left, right;
 	
 	public BlockMask(Block block) {
 		this.block = block;
@@ -29,6 +32,13 @@ public class BlockMask implements Renderable {
 		drawLeft = false;
 		drawRight = false;
 		drawOutline = false;
+		
+		top = new VertexContainer(Planes.makeQuad2f(new Vector3(block.a.x, block.b.y, block.a.z), block.b));
+		bottom = new VertexContainer(Planes.makeQuad2f(block.a, new Vector3(block.b.x, block.a.y, block.b.z)));
+		near = new VertexContainer(Planes.makeQuad2f(block.a, new Vector3(block.b.x, block.b.y, block.a.z)));
+		far = new VertexContainer(Planes.makeQuad2f(new Vector3(block.a.x, block.a.y, block.b.z), block.b));
+		left = new VertexContainer(Planes.makeQuad2f(block.a, new Vector3(block.a.x, block.b.y, block.b.z)));
+		right = new VertexContainer(Planes.makeQuad2f(new Vector3(block.b.x, block.b.y, block.a.z), block.b));
 	}
 	
 	/**
@@ -38,17 +48,17 @@ public class BlockMask implements Renderable {
 	public void draw() {
 		if (render) {
 			if (drawTop) {
-				Planes.drawQuad2f(block.a.x, block.b.y, block.a.z, block.b.x, block.b.y, block.b.z, block.colorist);
+				top.render();
 			} if (drawBottom) {
-				Planes.drawQuad2f(block.a.x, block.a.y, block.a.z, block.b.x, block.a.y, block.b.z, block.colorist);
+				bottom.render();
 			} if (drawNear) {
-				Planes.drawQuad2f(block.a.x, block.a.y, block.a.z, block.b.x, block.b.y, block.a.z, block.colorist);
+				near.render();
 			} if (drawFar) {
-				Planes.drawQuad2f(block.a.x, block.a.y, block.b.z, block.b.x, block.b.y, block.b.z, block.colorist);	
+				far.render();	
 			} if (drawLeft) {
-				Planes.drawQuad2f(block.a.x, block.a.y, block.a.z, block.a.x, block.b.y, block.b.z, block.colorist);	
+				left.render();
 			} if (drawRight) {
-				Planes.drawQuad2f(block.b.x, block.a.y, block.a.z, block.b.x, block.b.y, block.b.z, block.colorist);	
+				right.render();
 			} if (drawOutline) {
 				glColor3f(OUTLINE_R, OUTLINE_G, OUTLINE_B);
 				glLineWidth(OUTLINE_WIDTH);
