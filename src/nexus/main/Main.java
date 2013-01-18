@@ -19,10 +19,10 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.PixelFormat;
 
 public class Main {
-	public static final int WIDTH = 1600;
-	public static final int HEIGHT = 900;
+	public static final int WIDTH = 600;
+	public static final int HEIGHT = 400;
 	public static final String WINDOW_TITLE = "Nexus";
-	public static final int INIT_RENDER_DISTANCE = 6;
+	public static final int INIT_RENDER_DISTANCE = 1;
 	public static final Vector3 INIT_CAMERA_POSITION = new Vector3(0.0f, 16.0f, 0.0f);
 	public static final float INIT_SENSITIVITY = 0.3f;
 	public static final boolean CAMERA_INVERT = true;
