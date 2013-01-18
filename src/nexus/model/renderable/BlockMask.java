@@ -34,11 +34,11 @@ public class BlockMask implements Renderable {
 		drawOutline = false;
 		
 		top = new VertexContainer(Planes.makeQuad2f(new Vector3(block.a.x, block.b.y, block.a.z), block.b));
-		bottom = new VertexContainer(Planes.makeQuad2f(block.a, new Vector3(block.b.x, block.a.y, block.b.z)));
-		near = new VertexContainer(Planes.makeQuad2f(block.a, new Vector3(block.b.x, block.b.y, block.a.z)));
-		far = new VertexContainer(Planes.makeQuad2f(new Vector3(block.a.x, block.a.y, block.b.z), block.b));
-		left = new VertexContainer(Planes.makeQuad2f(block.a, new Vector3(block.a.x, block.b.y, block.b.z)));
-		right = new VertexContainer(Planes.makeQuad2f(new Vector3(block.b.x, block.b.y, block.a.z), block.b));
+//		bottom = new VertexContainer(Planes.makeQuad2f(block.a, new Vector3(block.b.x, block.a.y, block.b.z)));
+//		near = new VertexContainer(Planes.makeQuad2f(block.a, new Vector3(block.b.x, block.b.y, block.a.z)));
+//		far = new VertexContainer(Planes.makeQuad2f(new Vector3(block.a.x, block.a.y, block.b.z), block.b));
+//		left = new VertexContainer(Planes.makeQuad2f(block.a, new Vector3(block.a.x, block.b.y, block.b.z)));
+//		right = new VertexContainer(Planes.makeQuad2f(new Vector3(block.b.x, block.b.y, block.a.z), block.b));
 	}
 	
 	/**
@@ -50,15 +50,15 @@ public class BlockMask implements Renderable {
 			if (drawTop) {
 				top.render();
 			} if (drawBottom) {
-				bottom.render();
+//				bottom.render();
 			} if (drawNear) {
-				near.render();
+//				near.render();
 			} if (drawFar) {
-				far.render();	
+//				far.render();	
 			} if (drawLeft) {
-				left.render();
+//				left.render();
 			} if (drawRight) {
-				right.render();
+//				right.render();
 			} if (drawOutline) {
 				glColor3f(OUTLINE_R, OUTLINE_G, OUTLINE_B);
 				glLineWidth(OUTLINE_WIDTH);

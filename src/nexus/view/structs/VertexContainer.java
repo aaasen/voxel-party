@@ -18,14 +18,23 @@ import static org.lwjgl.opengl.GL11.glVertexPointer;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
+import java.nio.ShortBuffer;
 
-import org.lwjgl.BufferUtils;
+import org.lwjgl.*;
+import org.lwjgl.opengl.*;
+import static org.lwjgl.opengl.ARBBufferObject.*;
+import static org.lwjgl.opengl.ARBVertexBufferObject.*;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL15.*;
 
 public class VertexContainer {
 	public float[] vertices;
 	public FloatBuffer vertexBuffer;
-	public int vertexCount;
 	public int vertexId;
+
+	public short[] indices;
+	public ShortBuffer indexBuffer;
+	public int indexId;
 
 	public float[] colors;
 	public FloatBuffer colorBuffer;
@@ -34,58 +43,59 @@ public class VertexContainer {
 	public IntBuffer ib;
 	public int type;
 
+	public boolean loaded = false;
+
 	public VertexContainer(float[] vertices) {
 		this.vertices = vertices;
-		this.colors = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1 };
-	}
-	
-	public void render() {
-		load();
-		draw();
-		clean();
-	}
-	
+		this.indices = new short[] {0, 1, 2, 0, 2, 3, 0, 1, 2, 0, 2, 3}; 
+		this.colors = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 
-	public void load() {
-		this.vertexBuffer = BufferUtils.createFloatBuffer(vertices.length);
+		this.vertexBuffer = BufferUtils.createFloatBuffer(this.vertices.length);
 		this.vertexBuffer.put(this.vertices);
-		this.vertexCount = vertices.length;
 		this.vertexBuffer.flip();
+
+		this.indexBuffer = BufferUtils.createShortBuffer(this.indices.length);
+		this.indexBuffer.put(this.indices);
+		this.indexBuffer.flip();
 		
-		this.colorBuffer = BufferUtils.createFloatBuffer(colors.length);
+		this.colorBuffer = BufferUtils.createFloatBuffer(this.colors.length);
 		this.colorBuffer.put(this.colors);
 		this.colorBuffer.flip();
-		
-		this.ib = BufferUtils.createIntBuffer(2);
-		glGenBuffersARB(ib);
-
-		this.vertexId = ib.get(0);
-		this.colorId = ib.get(1);
 	}
-	
-	public void draw() {
+
+	public void render() {
+		if (!this.loaded) {
+			this.ib = BufferUtils.createIntBuffer(2);
+			glGenBuffersARB(ib);
+
+			this.vertexId = ib.get(0);
+			this.colorId = ib.get(1);
+
+			glBindBufferARB(GL_ARRAY_BUFFER_ARB, this.vertexId);
+			glBufferDataARB(GL_ARRAY_BUFFER_ARB, this.vertexBuffer, GL_STATIC_DRAW_ARB);
+			glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
+
+			glBindBufferARB(GL_ARRAY_BUFFER_ARB, this.indexId);
+			glBufferDataARB(GL_ARRAY_BUFFER_ARB, this.indexBuffer, GL_STATIC_DRAW_ARB);
+			glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
+			
+			this.loaded = true;
+		}
+
 		glEnableClientState(GL_VERTEX_ARRAY);
 		glEnableClientState(GL_COLOR_ARRAY);
-
+		
 		glBindBufferARB(GL_ARRAY_BUFFER_ARB, this.vertexId);
-		glBufferDataARB(GL_ARRAY_BUFFER_ARB, this.vertexBuffer, GL_STATIC_DRAW_ARB);
 		glVertexPointer(3, GL_FLOAT, 3 << 2, 0L);
+		glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER, this.indexId);
+
 
 		glBindBufferARB(GL_ARRAY_BUFFER_ARB, this.colorId);
-		glBufferDataARB(GL_ARRAY_BUFFER_ARB, this.colorBuffer, GL_STATIC_DRAW_ARB);
 		glColorPointer(3, GL_FLOAT, 3 << 2, 0L);
 
-		glDrawArrays(GL_TRIANGLES, 0, 3);
-	}
-	
-	public void clean() {
-		glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
 
-		glDisableClientState(GL_COLOR_ARRAY);
 		glDisableClientState(GL_VERTEX_ARRAY);
-		
-		this.ib.put(0, this.vertexId);
-		this.ib.put(1, this.colorId);
-		glDeleteBuffersARB(this.ib);
+		glDisableClientState(GL_COLOR_ARRAY);
 	}
 }
