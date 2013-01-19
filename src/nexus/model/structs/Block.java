@@ -30,12 +30,15 @@ public class Block {
 		this.b = new Vector3(a.x + dimension, a.y + dimension, a.z + dimension);
 		this.dimension = dimension;
 		this.colorist = colorist;
-		this.mask = new BlockMask(this);
+		
+		if (this.visible()) {
+			this.mask = new BlockMask(this);
+		}
 	}
 	
 	public void draw() {
 		if (visible()) {
-			mask.draw();	
+			mask.draw();
 		}
 	}
 	
