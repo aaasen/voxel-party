@@ -26,6 +26,9 @@ import static org.lwjgl.opengl.GL11.glLoadIdentity;
 import static org.lwjgl.opengl.GL11.glMatrixMode;
 import static org.lwjgl.opengl.GL11.glShadeModel;
 import static org.lwjgl.opengl.GL11.glViewport;
+
+import java.util.HashSet;
+
 import nexus.model.structs.Chunk;
 import nexus.model.structs.Vector3;
 
@@ -35,6 +38,8 @@ import org.lwjgl.util.glu.GLU;
 public class View {
 	Model model;
 	int renderDistance;
+	
+	public HashSet<Chunk> toRender;
 	
 	/**
 	 * Constructs a View
@@ -98,6 +103,9 @@ public class View {
 					this.model.camera.focal.x, this.model.camera.focal.y, this.model.camera.focal.z,
 					0.0f, 1.0f, 0.0f);
 
+			
+//			this.model.requestChunk(new Vector3(0, 0, 0));
+			
 			for(int i = -this.renderDistance; i <= this.renderDistance; i++) {
 				for(int j = -this.renderDistance; j <= this.renderDistance; j++) {
 					Chunk chunk = this.model.chunks.getChunk(this.model.camera.eye.add(new Vector3(i, 0, j).scale(16f)));

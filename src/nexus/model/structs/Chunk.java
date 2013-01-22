@@ -76,77 +76,77 @@ public class Chunk {
 					if (blocks[x][z][y].visible()) {
 						if (x == 0) {
 							if (!parent.getChunk(this.x - 1, this.z, false).blocks[WIDTH - 1][z][y].visible()) {
-								blocks[x][z][y].mask.render = true;
-								blocks[x][z][y].mask.drawLeft = true;
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawLeft(true);
 							}
 							if (!blocks[x + 1][z][y].visible()) {
-								blocks[x][z][y].mask.render = true;
-								blocks[x][z][y].mask.drawRight = true;
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawRight(true);
 							}
 						} else if (x == WIDTH - 1) {
 							if (!parent.getChunk(this.x + 1, this.z, false).blocks[0][z][y].visible()) {
-								blocks[x][z][y].mask.render = true;
-								blocks[x][z][y].mask.drawRight = true;	
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawRight(true);	
 							}
 							if (!blocks[x - 1][z][y].visible()) {
-								blocks[x][z][y].mask.render = true;
-								blocks[x][z][y].mask.drawLeft = true;
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawLeft(true);
 							}
 						} else {
 							if (!blocks[x + 1][z][y].visible()) {
-								blocks[x][z][y].mask.render = true;
-								blocks[x][z][y].mask.drawRight = true;
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawRight(true);
 							}
 
 							if (!blocks[x - 1][z][y].visible()) {
-								blocks[x][z][y].mask.render = true;
-								blocks[x][z][y].mask.drawLeft = true;
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawLeft(true);
 							}
 						}
 
 
 						if (z == 0) {
 							if (!parent.getChunk(this.x, this.z - 1, false).blocks[x][WIDTH - 1][y].visible()) {
-								blocks[x][z][y].mask.render = true;
-								blocks[x][z][y].mask.drawNear = true;
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawNear(true);
 							}
 							if (!blocks[x][z + 1][y].visible()) {
-								blocks[x][z][y].mask.render = true;
-								blocks[x][z][y].mask.drawFar = true;
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawFar(true);
 							}
 						} else if (z == WIDTH - 1) {
 							if (!parent.getChunk(this.x, this.z + 1, false).blocks[x][0][y].visible()) {
-								blocks[x][z][y].mask.render = true;
-								blocks[x][z][y].mask.drawFar = true;	
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawFar(true);	
 							}
 							if (!blocks[x][z - 1][y].visible()) {
-								blocks[x][z][y].mask.render = true;
-								blocks[x][z][y].mask.drawNear = true;
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawNear(true);
 							}
 						} else {
 							if (!blocks[x][z + 1][y].visible()) {
-								blocks[x][z][y].mask.render = true;
-								blocks[x][z][y].mask.drawFar = true;
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawFar(true);
 							}
 
 							if (!blocks[x][z - 1][y].visible()) {
-								blocks[x][z][y].mask.render = true;
-								blocks[x][z][y].mask.drawNear = true;
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawNear(true);
 							}
 						}
 
 						if (y == HEIGHT - 1) {
-							blocks[x][z][y].mask.render = true;
-							blocks[x][z][y].mask.drawTop = true;
+							blocks[x][z][y].getMask().setRender(true);
+							blocks[x][z][y].getMask().setDrawTop(true);
 						} else if (y != 0) {
 							if (!blocks[x][z][y + 1].visible()) {
-								blocks[x][z][y].mask.render = true;
-								blocks[x][z][y].mask.drawTop = true;
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawTop(true);
 							}
 
 							if (!blocks[x][z][y - 1].visible()) {
-								blocks[x][z][y].mask.render = true;
-								blocks[x][z][y].mask.drawBottom = true;
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawBottom(true);
 							}	
 						}
 					}

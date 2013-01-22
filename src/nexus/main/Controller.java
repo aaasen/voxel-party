@@ -103,8 +103,8 @@ public class Controller implements Runnable {
 
 			if (model.chunks.inBounds(target) && model.chunks.getBlock(target).visible()) {
 				if (target != model.chunks.selected) {
-					model.chunks.getBlock(model.chunks.selected).mask.drawOutline = false;
-					model.chunks.getBlock(target).mask.drawOutline = true;
+					model.chunks.getBlock(model.chunks.selected).getMask().setDrawOutline(false);
+					model.chunks.getBlock(target).getMask().setDrawOutline(true);
 					model.chunks.selected = target;
 				}
 				

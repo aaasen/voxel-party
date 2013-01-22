@@ -15,7 +15,7 @@ public class Block {
 	public Vector3 b;
 	public float dimension;
 	public Colorist colorist;
-	public BlockMask mask;
+	private BlockMask mask;
 	
 	/**
 	 * Creates a Block
@@ -31,18 +31,26 @@ public class Block {
 		this.dimension = dimension;
 		this.colorist = colorist;
 		
-		if (this.visible()) {
-			this.mask = new BlockMask(this);
-		}
+//		if (this.visible()) {
+//			this.mask = new BlockMask(this);
+//		}
 	}
 	
 	public void draw() {
-		if (visible()) {
+		if (this.visible() && this.mask != null) {
 			mask.draw();
 		}
 	}
 	
 	public boolean visible() {
 		return true;
+	}
+	
+	public BlockMask getMask() {
+		if (this.mask == null && this.visible()) {
+			this.mask = new BlockMask(this);
+		}
+		
+		return this.mask;
 	}
 }

@@ -112,23 +112,23 @@ public class ChunkContainer {
 		Block near = this.getBlock(block.a.add(new Vector3(0f, 0f, -1f)));
 		Block far = this.getBlock(block.a.add(new Vector3(0f, 0f, 1f)));
 
-		above.mask.drawBottom = true;
-		above.mask.render = true;
+		above.getMask().setDrawBottom(true);
+		above.getMask().setRender(true);
 
-		below.mask.drawTop = true;
-		below.mask.render = true;
+		below.getMask().setDrawTop(true);
+		below.getMask().setRender(true);
 
-		left.mask.drawRight = true;
-		left.mask.render = true;
+		left.getMask().setDrawRight(true);
+		left.getMask().setRender(true);
 
-		right.mask.drawLeft = true;
-		right.mask.render = true;
+		right.getMask().setDrawLeft(true);
+		right.getMask().setRender(true);
 
-		near.mask.drawFar = true;
-		near.mask.render = true;
+		near.getMask().setDrawFar(true);
+		near.getMask().setRender(true);
 
-		far.mask.drawNear = true;
-		far.mask.render = true;
+		far.getMask().setDrawNear(true);
+		far.getMask().setRender(true);
 	}
 
 	/**
@@ -145,33 +145,33 @@ public class ChunkContainer {
 		Block far = this.getBlock(block.a.add(new Vector3(0f, 0f, 1f)));
 
 		if (!below.visible()) {
-			block.mask.render = true;
-			block.mask.drawBottom = true;
+			block.getMask().setRender(true);
+			block.getMask().setDrawBottom(true);
 		}
 
 		if (!above.visible()) {
-			block.mask.render = true;
-			block.mask.drawTop = true;
+			block.getMask().setRender(true);
+			block.getMask().setDrawTop(true);
 		}
 
 		if (!left.visible()) {
-			block.mask.render = true;
-			block.mask.drawLeft = true;
+			block.getMask().setRender(true);
+			block.getMask().setDrawLeft(true);
 		}
 
 		if (!right.visible()) {
-			block.mask.render = true;
-			block.mask.drawRight = true;
+			block.getMask().setRender(true);
+			block.getMask().setDrawRight(true);
 		}
 
 		if (!near.visible()) {
-			block.mask.render = true;
-			block.mask.drawNear = true;
+			block.getMask().setRender(true);
+			block.getMask().setDrawNear(true);
 		}
 
 		if (!far.visible()) {
-			block.mask.render = true;
-			block.mask.drawFar = true;
+			block.getMask().setRender(true);
+			block.getMask().setDrawFar(true);
 		}
 	}
 
