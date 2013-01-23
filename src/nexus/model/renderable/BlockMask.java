@@ -25,6 +25,8 @@ public class BlockMask implements Renderable {
 	
 	public Block block;
 
+	public static long face = 0;
+	
 	// top, bottom, near, far, left, right
 	private boolean[] doRender;
 	public boolean render = false;
@@ -51,8 +53,8 @@ public class BlockMask implements Renderable {
 					getFace(i).render();
 				}
 			}
-
-			if (this.outline); {
+			
+			if (this.outline) {
 				glColor3f(OUTLINE_R, OUTLINE_G, OUTLINE_B);
 				glLineWidth(OUTLINE_WIDTH);
 				Outlines.rectPrism2f(block.a, block.b);
@@ -69,6 +71,8 @@ public class BlockMask implements Renderable {
 	}
 	
 	public VertexContainer makeFace(int i) {
+		this.face++;
+		
 		if (i == index.TOP.ordinal()) {
 			return new VertexContainer(Planes.makeQuad2f(new Vector3(block.a.x, block.b.y, block.a.z), block.b));
 		} else if (i == index.BOTTOM.ordinal()) {
@@ -94,27 +98,35 @@ public class BlockMask implements Renderable {
 		this.outline = x;
 	}
 	
+	private void setField(int i, boolean x) {
+		if (x) {
+			this.render = true;
+		}
+		
+		this.doRender[i] = x;
+	}
+	
 	public void setDrawTop(boolean x) {
-		this.doRender[index.TOP.ordinal()] = x;
+		this.setField(index.TOP.ordinal(), x);
 	}
 	
 	public void setDrawBottom(boolean x) {
-		this.doRender[index.BOTTOM.ordinal()] = x;
+		this.setField(index.BOTTOM.ordinal(), x);
 	}
 	
 	public void setDrawLeft(boolean x) {
-		this.doRender[index.LEFT.ordinal()] = x;
+		this.setField(index.LEFT.ordinal(), x);
 	}
 	
 	public void setDrawRight(boolean x) {
-		this.doRender[index.RIGHT.ordinal()] = x;
+		this.setField(index.RIGHT.ordinal(), x);
 	}
 	
 	public void setDrawNear(boolean x) {
-		this.doRender[index.NEAR.ordinal()] = x;
+		this.setField(index.NEAR.ordinal(), x);
 	}
 	
 	public void setDrawFar(boolean x) {
-		this.doRender[index.FAR.ordinal()] = x;
+		this.setField(index.FAR.ordinal(), x);
 	}
 }

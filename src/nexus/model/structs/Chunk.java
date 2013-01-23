@@ -2,7 +2,6 @@ package nexus.model.structs;
 
 import nexus.model.generators.Perlin;
 import nexus.model.renderable.Air;
-import nexus.model.renderable.BlockMask;
 import nexus.model.renderable.Solid;
 import nexus.view.color.Colorist;
 import nexus.view.color.Greyscale;

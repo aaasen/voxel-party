@@ -86,7 +86,7 @@ public class ChunkContainer {
 	 * @param block
 	 */
 	public void setBlock(Block block) {
-		if (inBounds(block.a) && inBounds(block.b)) {
+		if (inBounds(block.a) && inBounds(block.b) && block.isOnGrid()) {
 			this.getChunk(block.a).blocks[posMod((int) block.a.x, WIDTH)][posMod((int) block.a.z, WIDTH)][(int) block.a.y] = block;
 
 			if (!block.visible()) {
@@ -95,7 +95,7 @@ public class ChunkContainer {
 				updateMask(block);
 			}
 		} else {
-			throw new IllegalArgumentException("block is out of bounds");
+			throw new IllegalArgumentException(block.a.toString() + " is an illegal block position");
 		}
 	}
 
@@ -112,23 +112,29 @@ public class ChunkContainer {
 		Block near = this.getBlock(block.a.add(new Vector3(0f, 0f, -1f)));
 		Block far = this.getBlock(block.a.add(new Vector3(0f, 0f, 1f)));
 
-		above.getMask().setDrawBottom(true);
-		above.getMask().setRender(true);
+		if (below.visible()) {
+			block.getMask().setDrawBottom(true);
+		}
 
-		below.getMask().setDrawTop(true);
-		below.getMask().setRender(true);
+		if (above.visible()) {
+			block.getMask().setDrawTop(true);
+		}
 
-		left.getMask().setDrawRight(true);
-		left.getMask().setRender(true);
+		if (left.visible()) {
+			block.getMask().setDrawLeft(true);
+		}   
 
-		right.getMask().setDrawLeft(true);
-		right.getMask().setRender(true);
+		if (right.visible()) {
+			block.getMask().setDrawRight(true);
+		}
 
-		near.getMask().setDrawFar(true);
-		near.getMask().setRender(true);
+		if (near.visible()) {
+			block.getMask().setDrawNear(true);
+		}
 
-		far.getMask().setDrawNear(true);
-		far.getMask().setRender(true);
+		if (far.visible()) {
+			block.getMask().setDrawFar(true);
+		}
 	}
 
 	/**
@@ -145,32 +151,26 @@ public class ChunkContainer {
 		Block far = this.getBlock(block.a.add(new Vector3(0f, 0f, 1f)));
 
 		if (!below.visible()) {
-			block.getMask().setRender(true);
 			block.getMask().setDrawBottom(true);
 		}
 
 		if (!above.visible()) {
-			block.getMask().setRender(true);
 			block.getMask().setDrawTop(true);
 		}
 
 		if (!left.visible()) {
-			block.getMask().setRender(true);
 			block.getMask().setDrawLeft(true);
-		}
+		}   
 
 		if (!right.visible()) {
-			block.getMask().setRender(true);
 			block.getMask().setDrawRight(true);
 		}
 
 		if (!near.visible()) {
-			block.getMask().setRender(true);
 			block.getMask().setDrawNear(true);
 		}
 
 		if (!far.visible()) {
-			block.getMask().setRender(true);
 			block.getMask().setDrawFar(true);
 		}
 	}

@@ -14,6 +14,7 @@ package nexus.main;
 
 
 import nexus.model.renderable.Air;
+import nexus.model.renderable.BlockMask;
 import nexus.model.renderable.Solid;
 import nexus.model.structs.Block;
 import nexus.model.structs.Vector3;
@@ -126,6 +127,8 @@ public class Controller implements Runnable {
 	 * Stops the Controller
 	 */
 	public void stop() {
+		System.out.println(BlockMask.face);
+		
 		this.stop = true;
 		
 		this.model.stop();

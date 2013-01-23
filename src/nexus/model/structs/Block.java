@@ -53,4 +53,8 @@ public class Block {
 		
 		return this.mask;
 	}
+	
+	public boolean isOnGrid() {
+		return (a.length() % 1 == 0);
+	}
 }
