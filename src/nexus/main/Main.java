@@ -45,8 +45,8 @@ public class Main {
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 			System.exit(0);
-		}	
-
+		}
+		
 		// start the nexus.mvc framework
 		Model world = new Model(new Camera(INIT_CAMERA_POSITION, 0.0f, 0.0f, INIT_SENSITIVITY, CAMERA_INVERT));
 		View view = new View(world, INIT_RENDER_DISTANCE);
