@@ -85,4 +85,36 @@ public class BlockMask implements Renderable {
 			throw new IllegalArgumentException(i + " is out of range");
 		}
 	}
+	
+	public void setRender(boolean x) {
+		this.render = x;
+	}
+	
+	public void setDrawOutline(boolean x) {
+		this.outline = x;
+	}
+	
+	public void setDrawTop(boolean x) {
+		this.doRender[index.TOP.ordinal()] = x;
+	}
+	
+	public void setDrawBottom(boolean x) {
+		this.doRender[index.BOTTOM.ordinal()] = x;
+	}
+	
+	public void setDrawLeft(boolean x) {
+		this.doRender[index.LEFT.ordinal()] = x;
+	}
+	
+	public void setDrawRight(boolean x) {
+		this.doRender[index.RIGHT.ordinal()] = x;
+	}
+	
+	public void setDrawNear(boolean x) {
+		this.doRender[index.NEAR.ordinal()] = x;
+	}
+	
+	public void setDrawFar(boolean x) {
+		this.doRender[index.FAR.ordinal()] = x;
+	}
 }
