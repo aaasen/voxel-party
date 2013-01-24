@@ -6,9 +6,14 @@ package nexus.model.renderable;
 
 import static org.lwjgl.opengl.GL11.glColor3f;
 import static org.lwjgl.opengl.GL11.glLineWidth;
+
+import java.util.Arrays;
+
 import nexus.model.structs.Block;
+import nexus.model.structs.Vector3;
 import nexus.view.gl.Outlines;
 import nexus.view.gl.Planes;
+import nexus.view.structs.VertexContainer;
 
 public class BlockMask implements Renderable {
 	public static final float OUTLINE_R = 0.5f;
@@ -16,44 +21,110 @@ public class BlockMask implements Renderable {
 	public static final float OUTLINE_B = 0.5f;
 	public static final float OUTLINE_WIDTH = 4f;
 	
-	public Block block;
-	public boolean render, drawTop, drawBottom, drawNear, drawFar, drawLeft, drawRight, drawOutline;
+	public static enum index { TOP, BOTTOM, LEFT, RIGHT, NEAR, FAR }
 	
+	public Block block;
+
+	public static long face = 0;
+	
+	// top, bottom, near, far, left, right
+	private boolean[] doRender;
+	public boolean render = false;
+	public boolean outline = false;
+	private VertexContainer[] faces;
+
 	public BlockMask(Block block) {
 		this.block = block;
-		render = false;
-		drawTop = false;
-		drawBottom = false;
-		drawNear = false;
-		drawFar = false;
-		drawLeft = false;
-		drawRight = false;
-		drawOutline = false;
+
+		this.doRender = new boolean[6];
+		Arrays.fill(doRender, false);
+		
+		this.faces = new VertexContainer[6];
 	}
-	
+
 	/**
 	 * Draws the specified sides of the Mask's Block
 	 */
 	@Override
 	public void draw() {
-		if (render) {
-			if (drawTop) {
-				Planes.drawQuad2f(block.a.x, block.b.y, block.a.z, block.b.x, block.b.y, block.b.z, block.colorist);
-			} if (drawBottom) {
-				Planes.drawQuad2f(block.a.x, block.a.y, block.a.z, block.b.x, block.a.y, block.b.z, block.colorist);
-			} if (drawNear) {
-				Planes.drawQuad2f(block.a.x, block.a.y, block.a.z, block.b.x, block.b.y, block.a.z, block.colorist);
-			} if (drawFar) {
-				Planes.drawQuad2f(block.a.x, block.a.y, block.b.z, block.b.x, block.b.y, block.b.z, block.colorist);	
-			} if (drawLeft) {
-				Planes.drawQuad2f(block.a.x, block.a.y, block.a.z, block.a.x, block.b.y, block.b.z, block.colorist);	
-			} if (drawRight) {
-				Planes.drawQuad2f(block.b.x, block.a.y, block.a.z, block.b.x, block.b.y, block.b.z, block.colorist);	
-			} if (drawOutline) {
+		if (this.render) {
+			for (int i = 0; i < faces.length; i++) {
+				if (doRender[i]) {
+					getFace(i).render();
+				}
+			}
+			
+			if (this.outline) {
 				glColor3f(OUTLINE_R, OUTLINE_G, OUTLINE_B);
 				glLineWidth(OUTLINE_WIDTH);
 				Outlines.rectPrism2f(block.a, block.b);
 			}
 		}
+	}
+	
+	public VertexContainer getFace(int i) {
+		if (this.faces[i] == null) {
+			this.faces[i] = makeFace(i);
+		}
+		
+		return this.faces[i];
+	}
+	
+	public VertexContainer makeFace(int i) {
+		if (i == index.TOP.ordinal()) {
+			return new VertexContainer(Planes.makeQuad2f(new Vector3(block.a.x, block.b.y, block.a.z), block.b));
+		} else if (i == index.BOTTOM.ordinal()) {
+			return new VertexContainer(Planes.makeQuad2f(block.a, new Vector3(block.b.x, block.a.y, block.b.z)));
+		} else if (i == index.RIGHT.ordinal()) {
+			return new VertexContainer(Planes.makeQuad2f(new Vector3(block.b.x, block.a.y, block.a.z), block.b));
+		} else if (i == index.LEFT.ordinal()) {
+			return new VertexContainer(Planes.makeQuad2f(block.a, new Vector3(block.a.x, block.b.y, block.b.z)));
+		} else if (i == index.NEAR.ordinal()) {
+			return new VertexContainer(Planes.makeQuad2f(block.a, new Vector3(block.b.x, block.b.y, block.a.z)));
+		} else if (i == index.FAR.ordinal()) {
+			return new VertexContainer(Planes.makeQuad2f(new Vector3(block.a.x, block.a.y, block.b.z), block.b));
+		} else {
+			throw new IllegalArgumentException(i + " is out of range");
+		}
+	}
+	
+	public void setRender(boolean x) {
+		this.render = x;
+	}
+	
+	public void setDrawOutline(boolean x) {
+		this.outline = x;
+	}
+	
+	private void setField(int i, boolean x) {
+		if (x) {
+			this.render = true;
+		}
+		
+		this.doRender[i] = x;
+	}
+	
+	public void setDrawTop(boolean x) {
+		this.setField(index.TOP.ordinal(), x);
+	}
+	
+	public void setDrawBottom(boolean x) {
+		this.setField(index.BOTTOM.ordinal(), x);
+	}
+	
+	public void setDrawLeft(boolean x) {
+		this.setField(index.LEFT.ordinal(), x);
+	}
+	
+	public void setDrawRight(boolean x) {
+		this.setField(index.RIGHT.ordinal(), x);
+	}
+	
+	public void setDrawNear(boolean x) {
+		this.setField(index.NEAR.ordinal(), x);
+	}
+	
+	public void setDrawFar(boolean x) {
+		this.setField(index.FAR.ordinal(), x);
 	}
 }

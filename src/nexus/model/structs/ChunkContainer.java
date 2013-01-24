@@ -112,23 +112,29 @@ public class ChunkContainer {
 		Block near = this.getBlock(block.a.add(new Vector3(0f, 0f, -1f)));
 		Block far = this.getBlock(block.a.add(new Vector3(0f, 0f, 1f)));
 
-		above.mask.drawBottom = true;
-		above.mask.render = true;
+		if (below.visible()) {
+			block.getMask().setDrawBottom(true);
+		}
 
-		below.mask.drawTop = true;
-		below.mask.render = true;
+		if (above.visible()) {
+			block.getMask().setDrawTop(true);
+		}
 
-		left.mask.drawRight = true;
-		left.mask.render = true;
+		if (left.visible()) {
+			block.getMask().setDrawLeft(true);
+		}   
 
-		right.mask.drawLeft = true;
-		right.mask.render = true;
+		if (right.visible()) {
+			block.getMask().setDrawRight(true);
+		}
 
-		near.mask.drawFar = true;
-		near.mask.render = true;
+		if (near.visible()) {
+			block.getMask().setDrawNear(true);
+		}
 
-		far.mask.drawNear = true;
-		far.mask.render = true;
+		if (far.visible()) {
+			block.getMask().setDrawFar(true);
+		}
 	}
 
 	/**
@@ -145,33 +151,27 @@ public class ChunkContainer {
 		Block far = this.getBlock(block.a.add(new Vector3(0f, 0f, 1f)));
 
 		if (!below.visible()) {
-			block.mask.render = true;
-			block.mask.drawBottom = true;
+			block.getMask().setDrawBottom(true);
 		}
 
 		if (!above.visible()) {
-			block.mask.render = true;
-			block.mask.drawTop = true;
+			block.getMask().setDrawTop(true);
 		}
 
 		if (!left.visible()) {
-			block.mask.render = true;
-			block.mask.drawLeft = true;
-		}
+			block.getMask().setDrawLeft(true);
+		}   
 
 		if (!right.visible()) {
-			block.mask.render = true;
-			block.mask.drawRight = true;
+			block.getMask().setDrawRight(true);
 		}
 
 		if (!near.visible()) {
-			block.mask.render = true;
-			block.mask.drawNear = true;
+			block.getMask().setDrawNear(true);
 		}
 
 		if (!far.visible()) {
-			block.mask.render = true;
-			block.mask.drawFar = true;
+			block.getMask().setDrawFar(true);
 		}
 	}
 

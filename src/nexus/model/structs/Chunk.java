@@ -69,83 +69,86 @@ public class Chunk {
 	 */
 	public void calcVisible() {
 		this.mask = true;
-		
+
 		for (int x = 0; x < WIDTH; x++) {
 			for (int z = 0; z < WIDTH; z++) {
 				for (int y = 0; y < HEIGHT; y++) {
-					if (x == 0) {
-						if (!parent.getChunk(this.x - 1, this.z, false).blocks[WIDTH - 1][z][y].visible()) {
-							blocks[x][z][y].mask.render = true;
-							blocks[x][z][y].mask.drawLeft = true;
-						}
-						if (!blocks[x + 1][z][y].visible()) {
-							blocks[x][z][y].mask.render = true;
-							blocks[x][z][y].mask.drawRight = true;
-						}
-					} else if (x == WIDTH - 1) {
-						if (!parent.getChunk(this.x + 1, this.z, false).blocks[0][z][y].visible()) {
-							blocks[x][z][y].mask.render = true;
-							blocks[x][z][y].mask.drawRight = true;	
-						}
-						if (!blocks[x - 1][z][y].visible()) {
-							blocks[x][z][y].mask.render = true;
-							blocks[x][z][y].mask.drawLeft = true;
-						}
-					} else {
-						if (!blocks[x + 1][z][y].visible()) {
-							blocks[x][z][y].mask.render = true;
-							blocks[x][z][y].mask.drawRight = true;
+					if (blocks[x][z][y].visible()) {
+						if (x == 0) {
+							if (!parent.getChunk(this.x - 1, this.z, false).blocks[WIDTH - 1][z][y].visible()) {
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawLeft(true);
+							}
+							if (!blocks[x + 1][z][y].visible()) {
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawRight(true);
+							}
+						} else if (x == WIDTH - 1) {
+							if (!parent.getChunk(this.x + 1, this.z, false).blocks[0][z][y].visible()) {
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawRight(true);	
+							}
+							if (!blocks[x - 1][z][y].visible()) {
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawLeft(true);
+							}
+						} else {
+							if (!blocks[x + 1][z][y].visible()) {
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawRight(true);
+							}
+
+							if (!blocks[x - 1][z][y].visible()) {
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawLeft(true);
+							}
 						}
 
-						if (!blocks[x - 1][z][y].visible()) {
-							blocks[x][z][y].mask.render = true;
-							blocks[x][z][y].mask.drawLeft = true;
-						}
-					}
 
-					if (z == 0) {
-						if (!parent.getChunk(this.x, this.z - 1, false).blocks[x][WIDTH - 1][y].visible()) {
-							blocks[x][z][y].mask.render = true;
-							blocks[x][z][y].mask.drawNear = true;
-						}
-						if (!blocks[x][z + 1][y].visible()) {
-							blocks[x][z][y].mask.render = true;
-							blocks[x][z][y].mask.drawFar = true;
-						}
-					} else if (z == WIDTH - 1) {
-						if (!parent.getChunk(this.x, this.z + 1, false).blocks[x][0][y].visible()) {
-							blocks[x][z][y].mask.render = true;
-							blocks[x][z][y].mask.drawFar = true;	
-						}
-						if (!blocks[x][z - 1][y].visible()) {
-							blocks[x][z][y].mask.render = true;
-							blocks[x][z][y].mask.drawNear = true;
-						}
-					} else {
-						if (!blocks[x][z + 1][y].visible()) {
-							blocks[x][z][y].mask.render = true;
-							blocks[x][z][y].mask.drawFar = true;
-						}
+						if (z == 0) {
+							if (!parent.getChunk(this.x, this.z - 1, false).blocks[x][WIDTH - 1][y].visible()) {
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawNear(true);
+							}
+							if (!blocks[x][z + 1][y].visible()) {
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawFar(true);
+							}
+						} else if (z == WIDTH - 1) {
+							if (!parent.getChunk(this.x, this.z + 1, false).blocks[x][0][y].visible()) {
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawFar(true);	
+							}
+							if (!blocks[x][z - 1][y].visible()) {
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawNear(true);
+							}
+						} else {
+							if (!blocks[x][z + 1][y].visible()) {
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawFar(true);
+							}
 
-						if (!blocks[x][z - 1][y].visible()) {
-							blocks[x][z][y].mask.render = true;
-							blocks[x][z][y].mask.drawNear = true;
-						}
-					}
-
-					if (y == HEIGHT - 1) {
-						blocks[x][z][y].mask.render = true;
-						blocks[x][z][y].mask.drawTop = true;
-					} else if (y != 0) {
-						if (!blocks[x][z][y + 1].visible()) {
-							blocks[x][z][y].mask.render = true;
-							blocks[x][z][y].mask.drawTop = true;
+							if (!blocks[x][z - 1][y].visible()) {
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawNear(true);
+							}
 						}
 
-						if (!blocks[x][z][y - 1].visible()) {
-							blocks[x][z][y].mask.render = true;
-							blocks[x][z][y].mask.drawBottom = true;
-						}	
+						if (y == HEIGHT - 1) {
+							blocks[x][z][y].getMask().setRender(true);
+							blocks[x][z][y].getMask().setDrawTop(true);
+						} else if (y != 0) {
+							if (!blocks[x][z][y + 1].visible()) {
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawTop(true);
+							}
+
+							if (!blocks[x][z][y - 1].visible()) {
+								blocks[x][z][y].getMask().setRender(true);
+								blocks[x][z][y].getMask().setDrawBottom(true);
+							}	
+						}
 					}
 				}
 			}

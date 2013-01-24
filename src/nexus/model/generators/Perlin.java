@@ -12,7 +12,7 @@ public class Perlin {
 	public static final float P = 0.5f;
 	public static final int OCTAVES = 1;
 	
-	public static float perlin2D(float x, float y) {
+	public static float perlin2D(float x, float y) {	
 		float total = 0.0f;
 		
 		for (int i = 0; i < OCTAVES; i++) {

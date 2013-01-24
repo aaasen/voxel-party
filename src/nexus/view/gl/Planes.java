@@ -7,129 +7,29 @@ package nexus.view.gl;
  * 
  */
 
-import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
-import static org.lwjgl.opengl.GL11.glBegin;
-import static org.lwjgl.opengl.GL11.glEnd;
-import static org.lwjgl.opengl.GL11.glVertex3f;
 import nexus.model.structs.Vector3;
-import nexus.view.color.Colorist;
 
 public class Planes {
 	/**
-	 * Draws a quad through Points a, b, c, and d and colors each vertex based on height
+	 * Form a quad between two vectors. Only tested for orthagonal.
 	 * 
-	 * This is preferred over the deprecated GL_QUADS 
-	 * 
-	 * @param a bottom left corner
-	 * @param b top left corner
-	 * @param c top right corner
-	 * @param d bottom right corner
+	 * @param a lower left corner
+	 * @param b upper right corner
+	 * @return float[] that, when parsed as triangles, will for a quad
 	 */
-	@Deprecated
-	public static void drawQuad4f(Vector3 a, Vector3 b, Vector3 c, Vector3 d) {
-		glBegin(GL_TRIANGLES);
-		
-		glVertex3f(a.x, a.y, a.z);
-		glVertex3f(b.x, b.y, b.z);
-		glVertex3f(c.x, c.y, c.z);
-		
-		glVertex3f(a.x, a.y, a.z);
-		glVertex3f(d.x, d.y, d.z);
-		glVertex3f(c.x, c.y, c.z);
-		
-		glEnd();		
-	}
-	
-	/**
-	 * Draws a quad through Points a, b, c, and d and colors each vertex based on height
-	 * 
-	 * This is preferred over the deprecated GL_QUADS 
-	 * 
-	 * @param a bottom left corner
-	 * @param b top left corner
-	 * @param c top right corner
-	 * @param d bottom right corner
-	 */
-	@Deprecated
-	public static void drawQuad4f(Vector3 a, Vector3 b, Vector3 c, Vector3 d, Colorist colorist) {
-		glBegin(GL_TRIANGLES);
-		
-		colorist.color(a.y);
-		glVertex3f(a.x, a.y, a.z);
-		colorist.color(b.y);
-		glVertex3f(b.x, b.y, b.z);
-		colorist.color(c.y);
-		glVertex3f(c.x, c.y, c.z);
-		
-		colorist.color(a.y);
-		glVertex3f(a.x, a.y, a.z);
-		colorist.color(d.y);
-		glVertex3f(d.x, d.y, d.z);
-		colorist.color(c.y);
-		glVertex3f(c.x, c.y, c.z);
-		
-		glEnd();		
-	}
-	
-	/**
-	 * Draws a rectangle through Points a and b
-	 * 
-	 * @param a bottom left corner
-	 * @param b top right corner
-	 * 
-	 * TODO: research
-	 */
-	@Deprecated
-	public static void drawQuad2f(Vector3 a, Vector3 b, Colorist colorist) {
-		glBegin(GL_TRIANGLES);
-		
-		if (a.z == b.z) {
-			colorist.color(a.y);
-			glVertex3f(a.x, a.y, a.z);
-			colorist.color(b.y);
-			glVertex3f(a.x, b.y, a.z);
-			glVertex3f(b.x, b.y, a.z);
-			
-			glVertex3f(b.x, b.y, a.z);
-			colorist.color(a.y);
-			glVertex3f(a.x, a.y, a.z);
-			glVertex3f(b.x, a.y, a.z);
-		} else if (a.y == b.y) {
-			colorist.color(a.y);
-			glVertex3f(a.x, a.y, a.z);
-			glVertex3f(a.x, a.y, b.z);
-			glVertex3f(b.x, a.y, b.z);
-			
-			glVertex3f(a.x, a.y, a.z);
-			glVertex3f(b.x, a.y, a.z);
-			glVertex3f(b.x, a.y, b.z);	
+	public static float[] makeQuad2f(Vector3 a, Vector3 b) {
+		if (a.x <= b.x && a.y <= b.y && a.z <= b.z) {
+			if (a.x == b.x) {
+				return Vector3.combine(new Vector3[] { a, b, new Vector3(a.x, b.y, a.z), b, a, new Vector3(a.x, a.y, b.z)});
+			} else if (a.y == b.y) {
+				return Vector3.combine(new Vector3[] { a, b, new Vector3(a.x, a.y, b.z), b, a, new Vector3(b.x, a.y, a.z)});
+			} else if (a.z == b.z) {
+				return Vector3.combine(new Vector3[] { a, b, new Vector3(a.x, b.y, a.z), b, a, new Vector3(b.x, a.y, a.z)});
+			} else {
+				throw new IllegalArgumentException("vertices must be orthagonal: " + a.toString() + ", " + b.toString());
+			}
 		} else {
-			colorist.color(a.y);
-			glVertex3f(a.x, a.y, a.z);
-			colorist.color(b.y);
-			glVertex3f(a.x, b.y, a.z);
-			glVertex3f(a.x, b.y, b.z);
-			
-			glVertex3f(a.x, b.y, b.z);	
-			colorist.color(a.y);
-			glVertex3f(a.x, a.y, a.z);
-			glVertex3f(a.x, a.y, b.z);
+			throw new IllegalArgumentException("all values of a must be smaller than those of b");
 		}
-		
-		glEnd();
-	}
-	
-	/**
-	 * Draws a rectangle through a, b, c and x, y z
-	 * 
-	 * @param a bottom left x
-	 * @param b bottom left y
-	 * @param c bottom left z
-	 * @param x top right x
-	 * @param y top right y
-	 * @param z top right z
-	 */
-	public static void drawQuad2f(float a, float b, float c, float x, float y, float z, Colorist colorist) {
-		drawQuad2f(new Vector3(a, b, c), new Vector3(x, y, z), colorist);
 	}
 }

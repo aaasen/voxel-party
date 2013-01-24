@@ -14,6 +14,7 @@ package nexus.main;
 
 
 import nexus.model.renderable.Air;
+import nexus.model.renderable.BlockMask;
 import nexus.model.renderable.Solid;
 import nexus.model.structs.Block;
 import nexus.model.structs.Vector3;
@@ -66,7 +67,7 @@ public class Controller implements Runnable {
 			}
 		}
 		
-		System.exit(0);
+		this.cleanUp();
 	}
 
 	/**
@@ -84,6 +85,10 @@ public class Controller implements Runnable {
 		this.model.camera.pitch(dy * this.mouseSensitivity);
 		this.model.camera.yaw(dx * this.mouseSensitivity);
 		
+		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
+			this.stop();
+		}
+		
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			this.model.camera.forwards();
 		}
@@ -99,8 +104,8 @@ public class Controller implements Runnable {
 
 			if (model.chunks.inBounds(target) && model.chunks.getBlock(target).visible()) {
 				if (target != model.chunks.selected) {
-					model.chunks.getBlock(model.chunks.selected).mask.drawOutline = false;
-					model.chunks.getBlock(target).mask.drawOutline = true;
+					model.chunks.getBlock(model.chunks.selected).getMask().setDrawOutline(false);
+					model.chunks.getBlock(target).getMask().setDrawOutline(true);
 					model.chunks.selected = target;
 				}
 				
@@ -123,5 +128,11 @@ public class Controller implements Runnable {
 	 */
 	public void stop() {
 		this.stop = true;
+		
+		this.model.stop();
+	}
+	
+	public void cleanUp() {
+
 	}
 }
