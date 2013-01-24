@@ -89,10 +89,6 @@ public class Controller implements Runnable {
 			this.stop();
 		}
 		
-		if (Keyboard.isKeyDown(Keyboard.KEY_H)) {
-			System.out.println(BlockMask.face);
-		}
-		
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			this.model.camera.forwards();
 		}
@@ -131,8 +127,6 @@ public class Controller implements Runnable {
 	 * Stops the Controller
 	 */
 	public void stop() {
-		System.out.println(BlockMask.face);
-		
 		this.stop = true;
 		
 		this.model.stop();

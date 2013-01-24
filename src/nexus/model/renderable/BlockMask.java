@@ -48,13 +48,11 @@ public class BlockMask implements Renderable {
 	@Override
 	public void draw() {
 		if (this.render) {
-			getFace(0).render();
-			
-//			for (int i = 0; i < faces.length; i++) {
-//				if (doRender[i]) {
-//					getFace(i).render();
-//				}
-//			}
+			for (int i = 0; i < faces.length; i++) {
+				if (doRender[i]) {
+					getFace(i).render();
+				}
+			}
 			
 			if (this.outline) {
 				glColor3f(OUTLINE_R, OUTLINE_G, OUTLINE_B);
@@ -73,8 +71,6 @@ public class BlockMask implements Renderable {
 	}
 	
 	public VertexContainer makeFace(int i) {
-		this.face++;
-		
 		if (i == index.TOP.ordinal()) {
 			return new VertexContainer(Planes.makeQuad2f(new Vector3(block.a.x, block.b.y, block.a.z), block.b));
 		} else if (i == index.BOTTOM.ordinal()) {
