@@ -89,6 +89,10 @@ public class Controller implements Runnable {
 			this.stop();
 		}
 		
+		if (Keyboard.isKeyDown(Keyboard.KEY_H)) {
+			System.out.println(BlockMask.face);
+		}
+		
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			this.model.camera.forwards();
 		}

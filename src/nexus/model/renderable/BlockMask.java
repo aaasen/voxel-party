@@ -48,11 +48,13 @@ public class BlockMask implements Renderable {
 	@Override
 	public void draw() {
 		if (this.render) {
-			for (int i = 0; i < faces.length; i++) {
-				if (doRender[i]) {
-					getFace(i).render();
-				}
-			}
+			getFace(0).render();
+			
+//			for (int i = 0; i < faces.length; i++) {
+//				if (doRender[i]) {
+//					getFace(i).render();
+//				}
+//			}
 			
 			if (this.outline) {
 				glColor3f(OUTLINE_R, OUTLINE_G, OUTLINE_B);

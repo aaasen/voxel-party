@@ -3,7 +3,6 @@ package nexus.view.structs;
 import static org.lwjgl.opengl.ARBBufferObject.GL_STATIC_DRAW_ARB;
 import static org.lwjgl.opengl.ARBBufferObject.glBindBufferARB;
 import static org.lwjgl.opengl.ARBBufferObject.glBufferDataARB;
-import static org.lwjgl.opengl.ARBBufferObject.glDeleteBuffersARB;
 import static org.lwjgl.opengl.ARBBufferObject.glGenBuffersARB;
 import static org.lwjgl.opengl.ARBVertexBufferObject.GL_ARRAY_BUFFER_ARB;
 import static org.lwjgl.opengl.GL11.GL_COLOR_ARRAY;
@@ -15,17 +14,13 @@ import static org.lwjgl.opengl.GL11.glDisableClientState;
 import static org.lwjgl.opengl.GL11.glDrawArrays;
 import static org.lwjgl.opengl.GL11.glEnableClientState;
 import static org.lwjgl.opengl.GL11.glVertexPointer;
+import static org.lwjgl.opengl.GL15.GL_ELEMENT_ARRAY_BUFFER;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.nio.ShortBuffer;
 
-import org.lwjgl.*;
-import org.lwjgl.opengl.*;
-import static org.lwjgl.opengl.ARBBufferObject.*;
-import static org.lwjgl.opengl.ARBVertexBufferObject.*;
-import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL15.*;
+import org.lwjgl.BufferUtils;
 
 public class VertexContainer {
 	public float[] vertices;
