@@ -76,7 +76,7 @@ public class BlockMask implements Renderable {
 		} else if (i == index.BOTTOM.ordinal()) {
 			return new VertexContainer(Planes.makeQuad2f(block.a, new Vector3(block.b.x, block.a.y, block.b.z)));
 		} else if (i == index.RIGHT.ordinal()) {
-			return new VertexContainer(Planes.makeQuad2f(new Vector3(block.b.x, block.b.y, block.a.z), block.b));
+			return new VertexContainer(Planes.makeQuad2f(new Vector3(block.b.x, block.a.y, block.a.z), block.b));
 		} else if (i == index.LEFT.ordinal()) {
 			return new VertexContainer(Planes.makeQuad2f(block.a, new Vector3(block.a.x, block.b.y, block.b.z)));
 		} else if (i == index.NEAR.ordinal()) {
