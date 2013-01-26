@@ -1,3 +1,5 @@
+![heavily altered screenshot](http://i.imgur.com/LJ8tKi6.png)
+
 # Voxel Party
 
 Voxel Party is an 3D voxel-based MVC game engine built on Java, LWJGL and OpenGL.
