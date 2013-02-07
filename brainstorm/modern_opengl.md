@@ -22,13 +22,15 @@
 * controller/
     * `Controller` 
 
+---
+
 ## Block
 ```java
 class Block:
    Vector a, b
 
    public Block(Vector a):
-      if not integer: throw IllegalArgumentException
+      if a is not integer: throw IllegalArgumentException
       
       this.a = a;
       this.b = a.add((1, 1, 1))
@@ -36,6 +38,8 @@ class Block:
 
 ### Tests
 * should be integers (but in float form: 1.0)
+
+---
 
 ## Chunk
 
@@ -52,9 +56,20 @@ class Chunk
       this.generator = generator
 
    public Block getBlock(Vector pos):
+      if pos.y is negative or
+         pos.y is greater than dimensions.y or
+         pos.x is out of bounds or
+         pos.z is out of bounds:
+         throw IllegalArgumentException
+      
       return this.blocks[(int) dimensions.x][(int) dimensions.y][(int) dimensions.z]
 
 ```
+
+### Tests
+* check that out of bounds exceptions work
+
+---
 
 ## World
 ```java
@@ -77,6 +92,8 @@ class World
 
 ```
 
+---
+
 ## Generator
 ```java
 // Generators fill Chunks with Blocks
@@ -88,3 +105,6 @@ interface Generator:
 
 ### Tests
 * must fill every single block, no null values
+
+
+---
