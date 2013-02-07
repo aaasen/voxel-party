@@ -88,9 +88,16 @@ class World
          return chunk
 
    public Block getBlock(Vector pos):
+      if pos.y out of bounds:
+         thrown IllegalArgumentException
+   
       return this.getChunk(pos).getBlock(pos)
 
 ```
+
+### Tests
+* check that getBlock() out of bounds works
+* check that getKey() does not produce collisions in a reasonable range
 
 ---
 
