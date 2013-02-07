@@ -33,7 +33,9 @@ class Block:
 
 ```java
 class Chunk
-   Vector dimensions = (16, 128, 16)
+   final static Vector dimensions = (16, 128, 16)
+   
+   Vector pos
    Block[][][] blocks
    Generator generator
    
@@ -66,3 +68,15 @@ class World
       return this.getChunk(pos).getBlock(pos)
 
 ```
+
+## Generator
+```java
+// Generators fill Chunks with Blocks
+// we could have Generators for each biome, like Plains, Ocean, Mountains etc.
+interface Generator:
+   public Chunk genChunk(Chunk chunk)
+
+```
+
+### Tests
+* must fill every single block, no null values
