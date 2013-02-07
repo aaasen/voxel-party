@@ -23,11 +23,19 @@
     * `Controller` 
 
 ## Block
-
 ```java
 class Block:
    Vector a, b
+
+   public Block(Vector a):
+      if not integer: throw IllegalArgumentException
+      
+      this.a = a;
+      this.b = a.add((1, 1, 1))
 ```
+
+### Tests
+* should be integers (but in float form: 1.0)
 
 ## Chunk
 
