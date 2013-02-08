@@ -1,4 +1,3 @@
-
 # Model
 In an MVC framework, the model contains all data about the game world, players, etc.
 
@@ -12,7 +11,7 @@ class Model implements Runnable:
    
    public Model():
       this.modelThread = new Thread(this, "model_thread")
-   	this.modelThread.start()
+      this.modelThread.start()
       
       this.world = new World()
       
