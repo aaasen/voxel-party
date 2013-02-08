@@ -25,6 +25,18 @@
 ---
 
 ## Block
+The world of Voxel Party is made of Blocks. Every part of the landscape, from dirt and sand to water and leaves, are Blocks.
+
+Block is meant to be a parent class, and should not be used directly. I've included a possible Block hierarchy below.
+
+> * Block
+   * TransparentBlock
+      * Glass
+      * Water
+   * OpaqueBlock
+      * Dirt
+      * Sand
+
 ```java
 class Block:
    Vector a, b
