@@ -117,6 +117,11 @@ class View:
 
 ---
 
+## Controller
+The Controller is pretty simple, and really just LWJGL stuff so I've left it out.
+
+---
+
 ## Block
 The world of Voxel Party is made of Blocks. Every part of the landscape, from dirt and sand to water and leaves, are Blocks.
 
