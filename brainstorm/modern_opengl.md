@@ -24,6 +24,29 @@
 
 ---
 
+## Init
+Init reads a configuration file and launches the engine. In the future, it will do so via a proper graphical launcher.
+
+```java
+class Init:
+   Map config = loadConfigFromFile("config.json")
+   // config = { "screen_width" : 1920, "screen_height" : 1080 }
+   
+   // initialize LWJGL
+   Display.create();
+   Keyboard.create();
+	Mouse.create();
+   
+   Model model = new Model(...)
+   Controller controller = new Controller(model, ...)
+   View view = new View(model, ...)
+   
+   model.init()
+   view.init()
+```
+
+---
+
 ## Block
 The world of Voxel Party is made of Blocks. Every part of the landscape, from dirt and sand to water and leaves, are Blocks.
 
@@ -57,7 +80,7 @@ class Block:
 Chunks are containers for blocks, usually 16x16 at the base and 128+ in height.
 
 ```java
-class Chunk
+class Chunk:
    final static Vector dimensions = (16, 128, 16)
    
    Vector pos
@@ -88,7 +111,7 @@ class Chunk
 The World (name pending), is a container for Chunks. Chunks should not usually be accessed directly, rather they should be accessed via the World.
 
 ```java
-class World
+class World:
    HashMap<Long, Chunk> chunks
    
    private Long getKey(Vector pos):
