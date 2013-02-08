@@ -42,6 +42,7 @@ class Block:
 ---
 
 ## Chunk
+Chunks are containers for blocks, usually 16x16 at the base and 128+ in height.
 
 ```java
 class Chunk
@@ -72,6 +73,8 @@ class Chunk
 ---
 
 ## World
+The World (name pending), is a container for Chunks. Chunks should not usually be accessed directly, rather they should be accessed via the World.
+
 ```java
 class World
    HashMap<Long, Chunk> chunks
@@ -102,9 +105,10 @@ class World
 ---
 
 ## Generator
+Generators fill Chunks with Blocks.
+
+By making Generator an interface, biomes become much easier. There can be a Forest Generator, a Mountain Generator, an Ocean Generator, etc.
 ```java
-// Generators fill Chunks with Blocks
-// we could have Generators for each biome, like Plains, Ocean, Mountains etc.
 interface Generator:
    public Chunk genChunk(Chunk chunk)
 
