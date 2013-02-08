@@ -14,9 +14,15 @@ class Model implements Runnable:
       this.modelThread.start()
       
       this.world = new World()
+   
+   public void run():
+      while (!stop):
+         this.tick()
       
+      this.cleanup()
+   
    // updates the Model
-   public void tick()
+   public void tick():
       this.locked = true
       // update the world
       this.locked = false
@@ -43,7 +49,7 @@ class Block:
    public Block(Vector a):
       if a is not integer: throw IllegalArgumentException
       
-      this.a = a;
+      this.a = a
       this.b = a.add((1, 1, 1))
 ```
 
