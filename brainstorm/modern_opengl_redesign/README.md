@@ -1,7 +1,13 @@
+# Why Redesign?
 
-# File Structure
+I originally created Voxel Party during a weekend of fervent hacking.
+I came into it with no knowledge of OpenGL, and tutorials taught me legacy methods.
+
+Now, I'm modernizing VoxelParty. Updating it to OpenGL 3, and cleaning everything up in the process.
 
 ## MVC (Model View Controller)
+
+Voxel Party uses an MVC model, which is explained below:
 
 > Model–view–controller (MVC) is a software architecture pattern that separates the representation of information from the user's interaction with it.
 > The model consists of application data and business rules, and the controller mediates input, converting it to commands for the model or view.
@@ -18,8 +24,9 @@ However, I've heard that threading can get really ugly in games and isn't worth 
 Oh well! Current computers have at least 2 cores, my desktop has 6, and next gen consoles are rumored to have 8.
 There's got to be some point in threading games.
 
-`Init`
+# Structural Overview
 
+`Init`
 * model/
     * `Model` 
     * structs/
@@ -41,7 +48,12 @@ There's got to be some point in threading games.
 
 ---
 
-## Init
+## Structural Specifics
+I've include an explanation for `Init` below. It contains pseudocode, and a brief description.
+
+Descriptions for other files can be found in `model.md` and `view.md`.
+
+### Init
 Init reads a configuration file and launches the engine. In the future, it will do so via a proper graphical launcher.
 
 ```java
