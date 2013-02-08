@@ -64,7 +64,28 @@ class Init:
 ---
 
 ## Model
-In an MVC
+In an MVC framework, the model contains all data about the game world, players, etc.
+
+Threading out the Model can create concurrent modification issues, which I try to solve by locking the Model when it is being updated.
+Don't know how this will work out, though.
+```java
+class Model implements Runnable:
+   World world
+   Thread modelThread
+   boolean locked
+   
+   public Model():
+      this.modelThread = new Thread(this, "model_thread")
+   	this.modelThread.start()
+      
+      this.world = new World()
+      
+   // updates the Model
+   public void tick()
+      this.locked = true
+      // update the world
+      this.locked = false
+```
 
 ---
 
