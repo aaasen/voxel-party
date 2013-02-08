@@ -1,4 +1,3 @@
-
 # View
 In MVC, the View just draws the Model every frame.
 
@@ -26,3 +25,20 @@ class View:
 ```
 
 ---
+
+## VertexContainer
+VertexContainer is a temporary container for vertex data.
+It is loaded into a container, then added to a buffer at which point the container is deleted.
+
+Not sure if this is even necessary, actually.
+
+---
+
+## VertexBuffer
+The VertexBuffer contains data for many vertices.
+Ideally, the entire program would need just one.
+
+I have no idea how to do this dynamically right now, but it can be done.
+
+---
+   
